@@ -1,0 +1,6 @@
+file(GLOB_RECURSE PROJECT_TEST_SOURCES ${TOP_DIR}/test/*.cpp)
+add_executable(ichor_test ${PROJECT_TEST_SOURCES})
+add_test(NAME MyTest COMMAND ichor_test)
+target_link_libraries(ichor_test ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_test ichor)
+target_link_libraries(ichor_test Catch2::Catch2WithMain)
