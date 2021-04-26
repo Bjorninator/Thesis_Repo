@@ -2,7 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+#include <chrono>
 #include <time.h>
+#include <fmt/core.h>
 #include <linux/unistd.h>
 #include <linux/kernel.h>
 #include <linux/types.h>
@@ -66,7 +71,7 @@ void *run_deadline(void *data)
     attr.sched_policy = SCHED_DEADLINE;
     attr.sched_runtime = 10 * 1000000;
     attr.sched_period  = 30 * 1000000;
-    attr.sched_deadline= 30 * 1000000;
+    attr.sched_deadline= 12 * 1000000;
 
     ret = sched_setattr(0, &attr, flags);
     if (ret < 0) {
@@ -76,8 +81,9 @@ void *run_deadline(void *data)
     }
 
     while (!done) {
-        printf("task1\n");
-    }
+		x++;
+	}
+    
     return NULL;
 }
 
@@ -108,39 +114,9 @@ void *run_deadline2(void *data)
     }
 
     while (!done) {
-        printf("task2\n");
-    }
-    return NULL;
-}
-
-void *run_deadline3(void *data)
- {
-    struct sched_attr attr;
-    int x = 0, ret, idk;
-    unsigned int flags = 0;
-
-    printf("deadline thread start %ld\n", gettid());
-
-    attr.size = sizeof(attr);
-    attr.sched_flags = 0;
-    attr.sched_nice = 0;
-    attr.sched_priority = 0;
-
-     /* creates a 10ms/30ms reservation */
-    attr.sched_policy = SCHED_DEADLINE;
-    attr.sched_runtime = 5 * 1000000;
-    attr.sched_period  = 10 * 1000000;
-    attr.sched_deadline= 10 * 1000000;
-
-    ret = sched_setattr(0, &attr, flags);
-    if (ret < 0) {
-        done = 0;
-        perror("sched_setattr");
-        exit(-1);
-    }
-
-    while (!done) {
-        printf("task3\n");
+        std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+        std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+        std::cout << "task2: " << std::put_time(std::localtime(&now_c), "%F %T") << '\n';
     }
     return NULL;
 }
@@ -151,9 +127,7 @@ int main (int argc, char **argv)
 	pthread_t thread;
 	printf("main thread [%ld]\n", gettid());
 	pthread_create (&thread, NULL, run_deadline, NULL);
-    pthread_create (&thread, NULL, run_deadline2, NULL);
-    pthread_create (&thread, NULL, run_deadline3, NULL);
-	sleep(1);
+ 	sleep(30);
 	done = 1;
 	pthread_join (thread, NULL);
 	
