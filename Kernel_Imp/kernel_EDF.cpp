@@ -76,7 +76,7 @@ void *run_deadline(void *data)
     }
 
     while (!done) {
-        printf("yo\n");
+        printf("task1\n");
     }
     return NULL;
 }
@@ -108,7 +108,7 @@ void *run_deadline2(void *data)
     }
 
     while (!done) {
-        printf("yolo\n");
+        printf("task2\n");
     }
     return NULL;
 }
@@ -140,7 +140,7 @@ void *run_deadline3(void *data)
     }
 
     while (!done) {
-        printf("yolo bolo\n");
+        printf("task3\n");
     }
     return NULL;
 }
@@ -153,7 +153,7 @@ int main (int argc, char **argv)
 	pthread_create (&thread, NULL, run_deadline, NULL);
     pthread_create (&thread, NULL, run_deadline2, NULL);
     pthread_create (&thread, NULL, run_deadline3, NULL);
-	sleep(5);
+	sleep(1);
 	done = 1;
 	pthread_join (thread, NULL);
 	
