@@ -54,7 +54,7 @@ int main() {
     logger->setLogLevel(LogLevel::DEBUG);
     dm.createServiceManager<SigIntService>();
     // Start manager, consumes current thread.
-    dm.start();
+    dm.startFP();
 
     return 0;
 }

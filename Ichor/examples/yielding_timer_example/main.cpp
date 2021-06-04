@@ -1,4 +1,5 @@
 #include "UsingTimerService.h"
+#include "OtherTimerService.h"
 #include <ichor/optional_bundles/logging_bundle/LoggerAdmin.h>
 #ifdef USE_SPDLOG
 #include <ichor/optional_bundles/logging_bundle/SpdlogFrameworkLogger.h>
@@ -29,8 +30,9 @@ int main() {
 #endif
     dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
     dm.createServiceManager<UsingTimerService, IUsingTimerService>();
-    dm.createServiceManager<UsingTimerService, IUsingTimerService>();
-    dm.start();
+    dm.createServiceManager<OtherTimerService, IOtherTimerService>();
+    
+    dm.startFP();
     auto end = std::chrono::steady_clock::now();
     fmt::print("Program ran for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(end-start).count());
 

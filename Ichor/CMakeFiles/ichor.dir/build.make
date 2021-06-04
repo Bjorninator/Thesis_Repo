@@ -46,10 +46,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/bjorn/Thesis/Ichor
+CMAKE_SOURCE_DIR = /home/bjorn/Thesis/git_repo/Ichor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/bjorn/Thesis/Ichor
+CMAKE_BINARY_DIR = /home/bjorn/Thesis/git_repo/Ichor
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ichor.dir/depend.make
@@ -62,289 +62,289 @@ include CMakeFiles/ichor.dir/flags.make
 
 CMakeFiles/ichor.dir/external/fmt/src/format.cc.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/external/fmt/src/format.cc.o: external/fmt/src/format.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ichor.dir/external/fmt/src/format.cc.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/external/fmt/src/format.cc.o -c /home/bjorn/Thesis/Ichor/external/fmt/src/format.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ichor.dir/external/fmt/src/format.cc.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/external/fmt/src/format.cc.o -c /home/bjorn/Thesis/git_repo/Ichor/external/fmt/src/format.cc
 
 CMakeFiles/ichor.dir/external/fmt/src/format.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/external/fmt/src/format.cc.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/external/fmt/src/format.cc > CMakeFiles/ichor.dir/external/fmt/src/format.cc.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/external/fmt/src/format.cc > CMakeFiles/ichor.dir/external/fmt/src/format.cc.i
 
 CMakeFiles/ichor.dir/external/fmt/src/format.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/external/fmt/src/format.cc.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/external/fmt/src/format.cc -o CMakeFiles/ichor.dir/external/fmt/src/format.cc.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/external/fmt/src/format.cc -o CMakeFiles/ichor.dir/external/fmt/src/format.cc.s
 
 CMakeFiles/ichor.dir/external/fmt/src/os.cc.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/external/fmt/src/os.cc.o: external/fmt/src/os.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ichor.dir/external/fmt/src/os.cc.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/external/fmt/src/os.cc.o -c /home/bjorn/Thesis/Ichor/external/fmt/src/os.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ichor.dir/external/fmt/src/os.cc.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/external/fmt/src/os.cc.o -c /home/bjorn/Thesis/git_repo/Ichor/external/fmt/src/os.cc
 
 CMakeFiles/ichor.dir/external/fmt/src/os.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/external/fmt/src/os.cc.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/external/fmt/src/os.cc > CMakeFiles/ichor.dir/external/fmt/src/os.cc.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/external/fmt/src/os.cc > CMakeFiles/ichor.dir/external/fmt/src/os.cc.i
 
 CMakeFiles/ichor.dir/external/fmt/src/os.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/external/fmt/src/os.cc.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/external/fmt/src/os.cc -o CMakeFiles/ichor.dir/external/fmt/src/os.cc.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/external/fmt/src/os.cc -o CMakeFiles/ichor.dir/external/fmt/src/os.cc.s
 
 CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.o: src/ichor/DependencyManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.o -c /home/bjorn/Thesis/Ichor/src/ichor/DependencyManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/ichor/DependencyManager.cpp
 
 CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/ichor/DependencyManager.cpp > CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/ichor/DependencyManager.cpp > CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.i
 
 CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/ichor/DependencyManager.cpp -o CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/ichor/DependencyManager.cpp -o CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.s
 
 CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.o: src/ichor/GetThreadLocalMemoryResource.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.o -c /home/bjorn/Thesis/Ichor/src/ichor/GetThreadLocalMemoryResource.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/ichor/GetThreadLocalMemoryResource.cpp
 
 CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/ichor/GetThreadLocalMemoryResource.cpp > CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/ichor/GetThreadLocalMemoryResource.cpp > CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.i
 
 CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/ichor/GetThreadLocalMemoryResource.cpp -o CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/ichor/GetThreadLocalMemoryResource.cpp -o CMakeFiles/ichor.dir/src/ichor/GetThreadLocalMemoryResource.cpp.s
 
 CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.o: src/ichor/LifecycleManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.o -c /home/bjorn/Thesis/Ichor/src/ichor/LifecycleManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/ichor/LifecycleManager.cpp
 
 CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/ichor/LifecycleManager.cpp > CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/ichor/LifecycleManager.cpp > CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.i
 
 CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/ichor/LifecycleManager.cpp -o CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/ichor/LifecycleManager.cpp -o CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.s
 
 CMakeFiles/ichor.dir/src/ichor/Service.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/ichor/Service.cpp.o: src/ichor/Service.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ichor.dir/src/ichor/Service.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/ichor/Service.cpp.o -c /home/bjorn/Thesis/Ichor/src/ichor/Service.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ichor.dir/src/ichor/Service.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/ichor/Service.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/ichor/Service.cpp
 
 CMakeFiles/ichor.dir/src/ichor/Service.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/ichor/Service.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/ichor/Service.cpp > CMakeFiles/ichor.dir/src/ichor/Service.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/ichor/Service.cpp > CMakeFiles/ichor.dir/src/ichor/Service.cpp.i
 
 CMakeFiles/ichor.dir/src/ichor/Service.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/ichor/Service.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/ichor/Service.cpp -o CMakeFiles/ichor.dir/src/ichor/Service.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/ichor/Service.cpp -o CMakeFiles/ichor.dir/src/ichor/Service.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.o: src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutFrameworkLogger.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.o: src/optional_bundles/logging_bundle/CoutLogger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/CoutLogger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/CoutLogger.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/CoutLogger.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/CoutLogger.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/CoutLogger.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/CoutLogger.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/CoutLogger.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.o: src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.o: src/optional_bundles/logging_bundle/SpdlogLogger.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/SpdlogLogger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/SpdlogLogger.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/SpdlogLogger.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/SpdlogLogger.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/SpdlogLogger.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/SpdlogLogger.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.o: src/optional_bundles/logging_bundle/SpdlogSharedService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.o: src/optional_bundles/network_bundle/http/HttpConnectionService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.o: src/optional_bundles/network_bundle/http/HttpHostService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/http/HttpHostService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/http/HttpHostService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/http/HttpHostService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/http/HttpHostService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/http/HttpHostService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/http/HttpHostService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.o: src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.o: src/optional_bundles/network_bundle/tcp/TcpHostService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.o: src/optional_bundles/network_bundle/uv/UvConnectionService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvConnectionService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.o: src/optional_bundles/network_bundle/uv/UvHostService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/uv/UvHostService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/uv/UvHostService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/uv/UvHostService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/uv/UvHostService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/uv/UvHostService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/uv/UvHostService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/uv/UvHostService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.o: src/optional_bundles/network_bundle/ws/WsConnectionService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.o: src/optional_bundles/network_bundle/ws/WsHostService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/ws/WsHostService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/ws/WsHostService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/ws/WsHostService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/ws/WsHostService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/network_bundle/ws/WsHostService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/network_bundle/ws/WsHostService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.o: src/optional_bundles/metrics_bundle/EventStatisticsService.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp > CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.o: src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp > CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp > CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryUsageFunctions.cpp.s
 
 CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.o: CMakeFiles/ichor.dir/flags.make
 CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.o: src/optional_bundles/serialization_bundle/SerializationAdmin.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.o"
-	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.o -c /home/bjorn/Thesis/Ichor/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.o"
+	/usr/bin/g++-10  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.o -c /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp
 
 CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.i"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/Ichor/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp > CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.i
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp > CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.i
 
 CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.s"
-	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/Ichor/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.s
+	/usr/bin/g++-10 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bjorn/Thesis/git_repo/Ichor/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp -o CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.s
 
 # Object files for target ichor
 ichor_OBJECTS = \
@@ -398,7 +398,7 @@ bin/libichor.a: CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/MemoryU
 bin/libichor.a: CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmin.cpp.o
 bin/libichor.a: CMakeFiles/ichor.dir/build.make
 bin/libichor.a: CMakeFiles/ichor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bjorn/Thesis/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX static library bin/libichor.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX static library bin/libichor.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/ichor.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ichor.dir/link.txt --verbose=$(VERBOSE)
 
@@ -412,6 +412,6 @@ CMakeFiles/ichor.dir/clean:
 .PHONY : CMakeFiles/ichor.dir/clean
 
 CMakeFiles/ichor.dir/depend:
-	cd /home/bjorn/Thesis/Ichor && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bjorn/Thesis/Ichor /home/bjorn/Thesis/Ichor /home/bjorn/Thesis/Ichor /home/bjorn/Thesis/Ichor /home/bjorn/Thesis/Ichor/CMakeFiles/ichor.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bjorn/Thesis/git_repo/Ichor /home/bjorn/Thesis/git_repo/Ichor /home/bjorn/Thesis/git_repo/Ichor /home/bjorn/Thesis/git_repo/Ichor /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles/ichor.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ichor.dir/depend
 

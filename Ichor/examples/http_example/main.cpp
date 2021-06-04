@@ -40,7 +40,7 @@ int main() {
     dm.createServiceManager<HttpHostService, IHttpService>(IchorProperties{{"Address", Ichor::make_any<std::string>("127.0.0.1")}, {"Port", Ichor::make_any<uint16_t>(8001)}});
     dm.createServiceManager<ClientAdmin<HttpConnectionService, IHttpConnectionService>, IClientAdmin>();
     dm.createServiceManager<UsingHttpService>(IchorProperties{{"Address", Ichor::make_any<std::string>("127.0.0.1")}, {"Port", Ichor::make_any<uint16_t>(8001)}});
-    dm.start();
+    dm.startFP();
     auto end = std::chrono::steady_clock::now();
     fmt::print("Program ran for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(end-start).count());
 

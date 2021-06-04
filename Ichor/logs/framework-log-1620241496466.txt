@@ -1,0 +1,68 @@
+[21-05-05 21:04:56.467] [SpdlogFrameworkLogger.cpp:39] [T] SpdlogFrameworkLogger constructor
+[21-05-05 21:04:56.467] [DependencyManager.h:441] [D] added ServiceManager<Ichor::IFrameworkLogger, Ichor::SpdlogFrameworkLogger>
+[21-05-05 21:04:56.467] [SpdlogFrameworkLogger.cpp:78] [T] SpdlogFrameworkLogger started
+[21-05-05 21:04:56.467] [DependencyManager.h:441] [D] added ServiceManager<Ichor::ISpdlogSharedService, Ichor::SpdlogSharedService>
+[21-05-05 21:04:56.467] [LifecycleManager.h:266] [D] Started Ichor::SpdlogSharedService
+[21-05-05 21:04:56.467] [DependencyManager.h:441] [D] added ServiceManager<Ichor::ILoggerAdmin, Ichor::LoggerAdmin<Ichor::SpdlogLogger>>
+[21-05-05 21:04:56.468] [LoggerAdmin.h:32] [T] Inserted logger
+[21-05-05 21:04:56.468] [LifecycleManager.h:150] [D] Started Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-05-05 21:04:56.468] [DependencyManager.h:448] [D] added ServiceManager<OtherService>
+[21-05-05 21:04:56.468] [DependencyManager.cpp:34] [D] starting dm
+[21-05-05 21:04:56.468] [DependencyManager.cpp:38] [T] depman 1 has 6 events
+[21-05-05 21:04:56.468] [DependencyManager.h:441] [D] added ServiceManager<Ichor::ILogger, Ichor::SpdlogLogger>
+[21-05-05 21:04:56.468] [LifecycleManager.h:150] [D] Started Ichor::SpdlogLogger
+[21-05-05 21:04:56.468] [OtherService.h:32] [I] Inserted logger svcid 5 for svcid 4
+[21-05-05 21:04:56.468] [OtherService.h:18] [I] OtherService started with dependency
+[21-05-05 21:04:56.468] [LifecycleManager.h:150] [D] Started OtherService
+[21-05-05 21:04:56.469] [SpdlogFrameworkLogger.cpp:39] [T] SpdlogFrameworkLogger constructor
+[21-05-05 21:04:56.469] [DependencyManager.h:441] [D] added ServiceManager<Ichor::IFrameworkLogger, Ichor::SpdlogFrameworkLogger>
+[21-05-05 21:04:56.469] [SpdlogFrameworkLogger.cpp:78] [T] SpdlogFrameworkLogger started
+[21-05-05 21:04:56.469] [DependencyManager.h:441] [D] added ServiceManager<Ichor::ISpdlogSharedService, Ichor::SpdlogSharedService>
+[21-05-05 21:04:56.469] [LifecycleManager.h:266] [D] Started Ichor::SpdlogSharedService
+[21-05-05 21:04:56.469] [DependencyManager.h:441] [D] added ServiceManager<Ichor::ILoggerAdmin, Ichor::LoggerAdmin<Ichor::SpdlogLogger>>
+[21-05-05 21:04:56.469] [LoggerAdmin.h:32] [T] Inserted logger
+[21-05-05 21:04:56.469] [LifecycleManager.h:150] [D] Started Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-05-05 21:04:56.469] [DependencyManager.h:448] [D] added ServiceManager<OneService>
+[21-05-05 21:04:56.469] [DependencyManager.cpp:34] [D] starting dm
+[21-05-05 21:04:56.469] [DependencyManager.cpp:38] [T] depman 0 has 6 events
+[21-05-05 21:04:56.469] [DependencyManager.h:441] [D] added ServiceManager<Ichor::ILogger, Ichor::SpdlogLogger>
+[21-05-05 21:04:56.470] [LifecycleManager.h:150] [D] Started Ichor::SpdlogLogger
+[21-05-05 21:04:56.470] [OneService.h:35] [I] Inserted logger svcid 10 for svcid 9
+[21-05-05 21:04:56.470] [OneService.h:19] [I] OneService started with dependency
+[21-05-05 21:04:56.500] [DependencyManager.h:211] [T] inserted event of type Ichor::CustomEvent into manager 1
+[21-05-05 21:04:56.500] [DependencyManager.h:211] [T] inserted event of type Ichor::QuitEvent into manager 0
+[21-05-05 21:04:56.500] [LifecycleManager.h:150] [D] Started OneService
+[21-05-05 21:04:56.500] [LifecycleManager.h:163] [D] Stopped Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-05-05 21:04:56.501] [SpdlogFrameworkLogger.cpp:83] [T] SpdlogFrameworkLogger stopped
+[21-05-05 21:04:56.501] [LifecycleManager.h:163] [D] Stopped OneService
+[21-05-05 21:04:56.501] [LifecycleManager.h:163] [D] Stopped Ichor::SpdlogLogger
+[21-05-05 21:04:56.501] [LifecycleManager.h:167] [D] Couldn't stop Ichor::SpdlogLogger
+[21-05-05 21:04:56.501] [LifecycleManager.h:278] [D] Stopped Ichor::SpdlogSharedService
+[21-05-05 21:04:56.501] [LifecycleManager.h:167] [D] Couldn't stop Ichor::SpdlogLogger
+[21-05-05 21:04:56.501] [LifecycleManager.h:167] [D] Couldn't stop OneService
+[21-05-05 21:04:56.501] [LifecycleManager.h:167] [D] Couldn't stop Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-05-05 21:04:56.502] [LifecycleManager.h:282] [D] Couldn't stop Ichor::SpdlogSharedService
+[21-05-05 21:04:56.500] [OtherService.h:40] [I] Handling custom event
+[21-05-05 21:04:56.502] [LifecycleManager.h:54] [T] destroying Ichor::SpdlogLogger, id 10
+[21-05-05 21:04:56.502] [DependencyManager.h:173] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 0, but have to quit
+[21-05-05 21:04:56.502] [DependencyManager.h:211] [T] inserted event of type Ichor::QuitEvent into manager 1
+[21-05-05 21:04:56.502] [LifecycleManager.h:163] [D] Stopped Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-05-05 21:04:56.502] [SpdlogFrameworkLogger.cpp:83] [T] SpdlogFrameworkLogger stopped
+[21-05-05 21:04:56.503] [LifecycleManager.h:163] [D] Stopped OtherService
+[21-05-05 21:04:56.503] [LifecycleManager.h:163] [D] Stopped Ichor::SpdlogLogger
+[21-05-05 21:04:56.503] [LifecycleManager.h:167] [D] Couldn't stop Ichor::SpdlogLogger
+[21-05-05 21:04:56.503] [LifecycleManager.h:278] [D] Stopped Ichor::SpdlogSharedService
+[21-05-05 21:04:56.503] [LifecycleManager.h:167] [D] Couldn't stop Ichor::SpdlogLogger
+[21-05-05 21:04:56.503] [LifecycleManager.h:167] [D] Couldn't stop OtherService
+[21-05-05 21:04:56.503] [LifecycleManager.h:167] [D] Couldn't stop Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-05-05 21:04:56.503] [LifecycleManager.h:282] [D] Couldn't stop Ichor::SpdlogSharedService
+[21-05-05 21:04:56.503] [LifecycleManager.h:54] [T] destroying Ichor::SpdlogLogger, id 5
+[21-05-05 21:04:56.503] [DependencyManager.h:173] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 1, but have to quit
+[21-05-05 21:04:56.504] [LifecycleManager.h:54] [T] destroying OtherService, id 4
+[21-05-05 21:04:56.504] [DependencyManager.h:173] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 1, but have to quit
+[21-05-05 21:04:56.504] [LifecycleManager.h:54] [T] destroying Ichor::LoggerAdmin<Ichor::SpdlogLogger>, id 3
+[21-05-05 21:04:56.504] [DependencyManager.h:173] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 1, but have to quit
+[21-05-05 21:04:56.502] [LifecycleManager.h:54] [T] destroying OneService, id 9
+[21-05-05 21:04:56.504] [DependencyManager.h:173] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 0, but have to quit
+[21-05-05 21:04:56.504] [LifecycleManager.h:54] [T] destroying Ichor::LoggerAdmin<Ichor::SpdlogLogger>, id 8
+[21-05-05 21:04:56.504] [DependencyManager.h:173] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 0, but have to quit

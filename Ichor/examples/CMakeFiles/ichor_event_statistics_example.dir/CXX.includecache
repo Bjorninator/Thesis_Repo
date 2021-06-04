@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/bjorn/Thesis/Ichor/examples/event_statistics_example/UsingStatisticsService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/event_statistics_example/UsingStatisticsService.h
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/Logger.h
@@ -18,13 +18,13 @@ ichor/Service.h
 ichor/LifecycleManager.h
 -
 
-/home/bjorn/Thesis/Ichor/examples/event_statistics_example/main.cpp
+/home/bjorn/Thesis/git_repo/Ichor/examples/event_statistics_example/main.cpp
 ichor/optional_bundles/logging_bundle/LoggerAdmin.h
 -
 ichor/optional_bundles/metrics_bundle/EventStatisticsService.h
 -
 UsingStatisticsService.h
-/home/bjorn/Thesis/Ichor/examples/event_statistics_example/UsingStatisticsService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/event_statistics_example/UsingStatisticsService.h
 ichor/optional_bundles/logging_bundle/SpdlogFrameworkLogger.h
 -
 ichor/optional_bundles/logging_bundle/SpdlogLogger.h

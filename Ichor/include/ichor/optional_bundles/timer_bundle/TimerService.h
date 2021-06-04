@@ -69,7 +69,10 @@ namespace Ichor {
                     std::this_thread::sleep_for(std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire)/10));
                     now = std::chrono::steady_clock::now();
                 }
-                getManager()->pushPrioritisedEvent<TimerEvent>(getServiceId(), _priority.load(std::memory_order_acquire));
+                auto time_point = std::chrono::system_clock::now();
+                std::time_t now_c = std::chrono::system_clock::to_time_t(time_point);
+                std::cout << std::ctime(&now_c) << "\n";
+                getManager()->pushPrioritisedEvent<TimerEvent>(getServiceId(), _priority.load(std::memory_order_acquire), 10, 11, 15);
 
                 next += std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
             }

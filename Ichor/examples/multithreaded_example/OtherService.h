@@ -38,9 +38,8 @@ public:
 
     Generator<bool> handleEvent(CustomEvent const * const evt) {
         ICHOR_LOG_INFO(_logger, "Handling custom event");
-        getManager()->pushEvent<QuitEvent>(getServiceId());
         getManager()->getCommunicationChannel()->broadcastEvent<QuitEvent>(getManager(), getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-
+        getManager()->pushEvent<QuitEvent>(getServiceId());
         // we dealt with it, don't let other services handle this event
         co_return (bool)PreventOthersHandling;
     }

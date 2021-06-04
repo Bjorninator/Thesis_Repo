@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/bjorn/Thesis/Ichor/benchmarks/event_benchmark/TestService.h
+/home/bjorn/Thesis/git_repo/Ichor/benchmarks/event_benchmark/TestService.h
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/Logger.h
@@ -16,9 +16,9 @@ ichor/Service.h
 ichor/LifecycleManager.h
 -
 
-/home/bjorn/Thesis/Ichor/benchmarks/event_benchmark/main.cpp
+/home/bjorn/Thesis/git_repo/Ichor/benchmarks/event_benchmark/main.cpp
 TestService.h
-/home/bjorn/Thesis/Ichor/benchmarks/event_benchmark/TestService.h
+/home/bjorn/Thesis/git_repo/Ichor/benchmarks/event_benchmark/TestService.h
 ichor/optional_bundles/logging_bundle/LoggerAdmin.h
 -
 ichor/optional_bundles/logging_bundle/SpdlogSharedService.h

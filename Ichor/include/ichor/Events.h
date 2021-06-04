@@ -11,13 +11,16 @@ namespace Ichor {
     constexpr uint64_t INTERNAL_EVENT_PRIORITY = 1000;
 
     struct Event {
-        Event(uint64_t _type, std::string_view _name, uint64_t _id, uint64_t _originatingService, uint64_t _priority) noexcept : type{_type}, name{_name}, id{_id}, originatingService{_originatingService}, priority{_priority} {}
+        Event(uint64_t _type, std::string_view _name, uint64_t _id, uint64_t _originatingService, uint64_t _priority, uint64_t _runtime = 0, uint64_t _period = 0, uint64_t _deadline = 0) noexcept : type{_type}, name{_name}, id{_id}, originatingService{_originatingService}, priority{_priority}, runtime{_runtime} , period{_period}, deadline{_deadline} {}
         virtual ~Event() = default;
         const uint64_t type;
         const std::string_view name;
         const uint64_t id;
         const uint64_t originatingService;
-        const uint64_t priority;
+        uint64_t priority;
+        uint64_t runtime;
+        uint64_t period;
+        uint64_t deadline;
     };
 
     struct DependencyOnlineEvent final : public Event {

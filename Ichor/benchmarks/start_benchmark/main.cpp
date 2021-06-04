@@ -38,7 +38,7 @@ int main() {
             dm.createServiceManager<TestService>(IchorProperties{{"Iteration", Ichor::make_any<uint64_t>(dm.getMemoryResource(), i)},
                                                                  {"LogLevel",  Ichor::make_any<LogLevel>(dm.getMemoryResource(), LogLevel::WARN)}});
         }
-        dm.start();
+        dm.startFP();
         auto end = std::chrono::steady_clock::now();
         std::cout << fmt::format("Single Threaded Program ran for {:L} µs with {:L} peak memory usage\n", std::chrono::duration_cast<std::chrono::microseconds>(end - start).count(), getPeakRSS());
     }
@@ -63,7 +63,7 @@ int main() {
                 for (uint64_t z = 0; z < 10'000; z++) {
                     managers[i].createServiceManager<TestService>(IchorProperties{{"Iteration", Ichor::make_any<uint64_t>(managers[i].getMemoryResource(), z)}, {"LogLevel", Ichor::make_any<LogLevel>(managers[i].getMemoryResource(), LogLevel::WARN)}});
                 }
-                managers[i].start();
+                managers[i].startFP();
             });
         }
         for (uint_fast32_t i = 0; i < 8; i++) {

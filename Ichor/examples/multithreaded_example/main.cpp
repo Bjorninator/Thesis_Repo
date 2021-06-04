@@ -37,7 +37,7 @@ int main() {
 #endif
         dmOne.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dmOne.createServiceManager<OneService>();
-        dmOne.start();
+        dmOne.startFP();
     });
 
     std::thread t2([&dmTwo] {
@@ -47,7 +47,7 @@ int main() {
 #endif
         dmTwo.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dmTwo.createServiceManager<OtherService>();
-        dmTwo.start();
+        dmTwo.startFP();
     });
 
     t1.join();

@@ -1,4 +1,4 @@
-# Install script for directory: /home/bjorn/Thesis/Ichor/examples
+# Install script for directory: /home/bjorn/Thesis/git_repo/Ichor/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

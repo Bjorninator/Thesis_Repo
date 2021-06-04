@@ -11,7 +11,7 @@ TEST_CASE("DependencyManager") {
         std::thread t([&]() {
             try {
                 Ichor::DependencyManager dm{};
-                dm.start();
+                dm.startFP();
             } catch (...) {
                 thrown_exception = true;
             }
@@ -31,7 +31,7 @@ TEST_CASE("DependencyManager") {
             try {
                 Ichor::DependencyManager dm{};
                 dm.createServiceManager<UselessService>();
-                dm.start();
+                dm.startFP();
             } catch (...) {
                 thrown_exception = true;
             }
@@ -50,7 +50,7 @@ TEST_CASE("DependencyManager") {
         std::thread t([&]() {
             dm.createServiceManager<NullFrameworkLogger, IFrameworkLogger>();
             dm.createServiceManager<UselessService>();
-            dm.start();
+            dm.startFP();
         });
 
         dm.waitForEmptyQueue();

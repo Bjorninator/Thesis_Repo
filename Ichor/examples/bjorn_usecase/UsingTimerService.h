@@ -5,9 +5,9 @@
 #include <ichor/optional_bundles/timer_bundle/TimerService.h>
 #include <ichor/Service.h>
 #include <ichor/LifecycleManager.h>
+#include "OtherTimerService.h"
 
 using namespace Ichor;
-
 
 struct IUsingTimerService : virtual public IService {
 };
@@ -50,17 +50,13 @@ public:
         for(uint32_t i = 0; i < 5; i++) {
             //simulate long task
             std::this_thread::sleep_for(std::chrono::milliseconds(40));
-            ICHOR_LOG_INFO(_logger, "Timer {} completed 'long' task {} times", getServiceId(), i);
+            ICHOR_LOG_INFO(_logger, "Timer {} completed 'waarom ", getServiceId(), waarom);
+            // ICHOR_LOG_INFO(_logger, "Timer {} completed 'long' task {} times", getServiceId(), i);
             // schedule us again later in the event loop for the next iteration, don't let other handlers handle this event.
-            co_yield (bool)PreventOthersHandling;
+        
         }
-
-        if(_timerTriggerCount == 2) {
-            getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-        }
-
-        ICHOR_LOG_INFO(_logger, "Timer {} completed 'long' task", getServiceId());
         co_return (bool)PreventOthersHandling;
+
     }
 
 private:
@@ -68,4 +64,5 @@ private:
     std::unique_ptr<EventHandlerRegistration, Deleter> _timerEventRegistration{nullptr};
     uint64_t _timerTriggerCount{0};
     Timer* _timerManager{nullptr};
+    uint64_t waarom{0};
 };

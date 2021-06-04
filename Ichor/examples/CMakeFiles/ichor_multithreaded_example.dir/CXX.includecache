@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/bjorn/Thesis/Ichor/examples/multithreaded_example/CustomEvent.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/multithreaded_example/CustomEvent.h
 ichor/Events.h
 -
 
-/home/bjorn/Thesis/Ichor/examples/multithreaded_example/OneService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/multithreaded_example/OneService.h
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/Logger.h
@@ -22,9 +22,9 @@ ichor/LifecycleManager.h
 ichor/CommunicationChannel.h
 -
 CustomEvent.h
-/home/bjorn/Thesis/Ichor/examples/multithreaded_example/CustomEvent.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/multithreaded_example/CustomEvent.h
 
-/home/bjorn/Thesis/Ichor/examples/multithreaded_example/OtherService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/multithreaded_example/OtherService.h
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/Logger.h
@@ -34,13 +34,13 @@ ichor/Service.h
 ichor/LifecycleManager.h
 -
 CustomEvent.h
-/home/bjorn/Thesis/Ichor/examples/multithreaded_example/CustomEvent.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/multithreaded_example/CustomEvent.h
 
-/home/bjorn/Thesis/Ichor/examples/multithreaded_example/main.cpp
+/home/bjorn/Thesis/git_repo/Ichor/examples/multithreaded_example/main.cpp
 OneService.h
-/home/bjorn/Thesis/Ichor/examples/multithreaded_example/OneService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/multithreaded_example/OneService.h
 OtherService.h
-/home/bjorn/Thesis/Ichor/examples/multithreaded_example/OtherService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/multithreaded_example/OtherService.h
 ichor/optional_bundles/logging_bundle/LoggerAdmin.h
 -
 ichor/optional_bundles/logging_bundle/SpdlogFrameworkLogger.h

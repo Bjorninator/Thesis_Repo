@@ -5,6 +5,9 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <ichor/DependencyManager.h>
 
+
+// 10:35:31.748 nanoseconds
+// miliseconds
 bool Ichor::SpdlogSharedService::start() {
     auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_st>();
 

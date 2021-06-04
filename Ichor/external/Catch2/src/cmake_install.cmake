@@ -1,4 +1,4 @@
-# Install script for directory: /home/bjorn/Thesis/Ichor/external/Catch2/src
+# Install script for directory: /home/bjorn/Thesis/git_repo/Ichor/external/Catch2/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

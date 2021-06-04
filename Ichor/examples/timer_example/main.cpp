@@ -30,7 +30,7 @@ int main() {
     dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
     dm.createServiceManager<UsingTimerService>();
     dm.createServiceManager<UsingTimerService>();
-    dm.start();
+    dm.startFP();
     auto end = std::chrono::steady_clock::now();
     fmt::print("Program ran for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(end-start).count());
 

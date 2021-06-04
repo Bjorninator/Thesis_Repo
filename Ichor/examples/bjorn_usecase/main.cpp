@@ -1,5 +1,6 @@
 #include "UsingTimerService.h"
 #include "OtherTimerService.h"
+#include "CalculationService.h"
 #include <ichor/optional_bundles/logging_bundle/LoggerAdmin.h>
 #ifdef USE_SPDLOG
 #include <ichor/optional_bundles/logging_bundle/SpdlogFrameworkLogger.h>
@@ -22,6 +23,8 @@ using namespace std::string_literals;
 int main() {
     std::locale::global(std::locale("en_US.UTF-8"));
 
+   // static thread_local uint64_t rage = 0;
+
     auto start = std::chrono::steady_clock::now();
     DependencyManager dm{};
     dm.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
@@ -31,7 +34,8 @@ int main() {
     dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
     dm.createServiceManager<UsingTimerService, IUsingTimerService>();
     dm.createServiceManager<OtherTimerService, IOtherTimerService>();
-    dm.start();
+    dm.createServiceManager<CalculationService, ICalculationService>();
+    dm.startFP();
     auto end = std::chrono::steady_clock::now();
     fmt::print("Program ran for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(end-start).count());
 

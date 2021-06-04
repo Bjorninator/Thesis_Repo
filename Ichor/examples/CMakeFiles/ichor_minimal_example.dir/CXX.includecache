@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/bjorn/Thesis/Ichor/examples/minimal_example/main.cpp
+/home/bjorn/Thesis/git_repo/Ichor/examples/minimal_example/main.cpp
 ichor/DependencyManager.h
 -
 ichor/Service.h

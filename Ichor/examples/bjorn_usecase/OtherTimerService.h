@@ -18,7 +18,11 @@ public:
         reg.registerDependency<ILogger>(this, true);
     }
     ~OtherTimerService() final = default;
+    uint64_t _yolo{0};
 
+    uint64_t extractYolo(){
+        return _yolo;
+    }
     bool start() final {
         ICHOR_LOG_INFO(_logger, "OtherTimerService started");
         _timerManager = getManager()->createServiceManager<Timer, ITimer>();
@@ -49,17 +53,11 @@ public:
         _timerTriggerCount++;
         for(uint32_t i = 0; i < 5; i++) {
             //simulate long task
+            
             std::this_thread::sleep_for(std::chrono::milliseconds(40));
             ICHOR_LOG_INFO(_logger, "Timer {} completed other 'long' task {} times", getServiceId(), i);
             // schedule us again later in the event loop for the next iteration, don't let other handlers handle this event.
-            co_yield (bool)PreventOthersHandling;
         }
-
-        if(_timerTriggerCount == 2) {
-            getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-        }
-
-        ICHOR_LOG_INFO(_logger, "Timer {} completed other 'long' task", getServiceId());
         co_return (bool)PreventOthersHandling;
     }
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/bjorn/Thesis/Ichor/test/DependencyManagerTests.cpp
+/home/bjorn/Thesis/git_repo/Ichor/test/DependencyManagerTests.cpp
 catch2/catch_test_macros.hpp
 -
 ichor/DependencyManager.h
@@ -14,31 +14,31 @@ ichor/DependencyManager.h
 ichor/optional_bundles/logging_bundle/NullFrameworkLogger.h
 -
 UselessService.h
-/home/bjorn/Thesis/Ichor/test/UselessService.h
+/home/bjorn/Thesis/git_repo/Ichor/test/UselessService.h
 
-/home/bjorn/Thesis/Ichor/test/DependencyService.h
+/home/bjorn/Thesis/git_repo/Ichor/test/DependencyService.h
 UselessService.h
-/home/bjorn/Thesis/Ichor/test/UselessService.h
+/home/bjorn/Thesis/git_repo/Ichor/test/UselessService.h
 
-/home/bjorn/Thesis/Ichor/test/DependencyServicesTests.cpp
+/home/bjorn/Thesis/git_repo/Ichor/test/DependencyServicesTests.cpp
 catch2/catch_test_macros.hpp
-/home/bjorn/Thesis/Ichor/test/catch2/catch_test_macros.hpp
+/home/bjorn/Thesis/git_repo/Ichor/test/catch2/catch_test_macros.hpp
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/NullFrameworkLogger.h
 -
 UselessService.h
-/home/bjorn/Thesis/Ichor/test/UselessService.h
+/home/bjorn/Thesis/git_repo/Ichor/test/UselessService.h
 QuitOnStartWithDependenciesService.h
-/home/bjorn/Thesis/Ichor/test/QuitOnStartWithDependenciesService.h
+/home/bjorn/Thesis/git_repo/Ichor/test/QuitOnStartWithDependenciesService.h
 DependencyService.h
-/home/bjorn/Thesis/Ichor/test/DependencyService.h
+/home/bjorn/Thesis/git_repo/Ichor/test/DependencyService.h
 
-/home/bjorn/Thesis/Ichor/test/QuitOnStartWithDependenciesService.h
+/home/bjorn/Thesis/git_repo/Ichor/test/QuitOnStartWithDependenciesService.h
 UselessService.h
-/home/bjorn/Thesis/Ichor/test/UselessService.h
+/home/bjorn/Thesis/git_repo/Ichor/test/UselessService.h
 
-/home/bjorn/Thesis/Ichor/test/UselessService.h
+/home/bjorn/Thesis/git_repo/Ichor/test/UselessService.h
 ichor/Service.h
 -
 

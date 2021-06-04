@@ -23,6 +23,7 @@ namespace Ichor {
         requires Derived<EventT, Event>
         void broadcastEvent(DependencyManager *originatingManager, Args&&... args) {
             std::shared_lock l(_mutex);
+            
             for(auto &[key, manager] : _managers) {
                 if(manager->getId() == originatingManager->getId()) {
                     continue;
@@ -30,12 +31,15 @@ namespace Ichor {
 
 #if 0
                 std::cout << "Inserting event " << typeName<EventT>() << " from manager " << originatingManager->getId() << " into manager " << manager->getId() << std::endl;
-#endif
+#endif          
+                
                 manager->template pushEvent<EventT>(std::forward<Args>(args)...);
+               
 #if 0
                 std::cout << "Inserted event " << typeName<EventT>() << " from manager " << originatingManager->getId() << " into manager " << manager->getId() << std::endl;
 #endif
             }
+
         }
 
         template <typename EventT, typename... Args>

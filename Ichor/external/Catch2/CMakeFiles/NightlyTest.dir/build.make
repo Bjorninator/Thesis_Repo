@@ -46,10 +46,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/bjorn/Thesis/Ichor
+CMAKE_SOURCE_DIR = /home/bjorn/Thesis/git_repo/Ichor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/bjorn/Thesis/Ichor
+CMAKE_BINARY_DIR = /home/bjorn/Thesis/git_repo/Ichor
 
 # Utility rule file for NightlyTest.
 
@@ -57,7 +57,7 @@ CMAKE_BINARY_DIR = /home/bjorn/Thesis/Ichor
 include external/Catch2/CMakeFiles/NightlyTest.dir/progress.make
 
 external/Catch2/CMakeFiles/NightlyTest:
-	cd /home/bjorn/Thesis/Ichor/external/Catch2 && /usr/bin/ctest -D NightlyTest
+	cd /home/bjorn/Thesis/git_repo/Ichor/external/Catch2 && /usr/bin/ctest -D NightlyTest
 
 NightlyTest: external/Catch2/CMakeFiles/NightlyTest
 NightlyTest: external/Catch2/CMakeFiles/NightlyTest.dir/build.make
@@ -70,10 +70,10 @@ external/Catch2/CMakeFiles/NightlyTest.dir/build: NightlyTest
 .PHONY : external/Catch2/CMakeFiles/NightlyTest.dir/build
 
 external/Catch2/CMakeFiles/NightlyTest.dir/clean:
-	cd /home/bjorn/Thesis/Ichor/external/Catch2 && $(CMAKE_COMMAND) -P CMakeFiles/NightlyTest.dir/cmake_clean.cmake
+	cd /home/bjorn/Thesis/git_repo/Ichor/external/Catch2 && $(CMAKE_COMMAND) -P CMakeFiles/NightlyTest.dir/cmake_clean.cmake
 .PHONY : external/Catch2/CMakeFiles/NightlyTest.dir/clean
 
 external/Catch2/CMakeFiles/NightlyTest.dir/depend:
-	cd /home/bjorn/Thesis/Ichor && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bjorn/Thesis/Ichor /home/bjorn/Thesis/Ichor/external/Catch2 /home/bjorn/Thesis/Ichor /home/bjorn/Thesis/Ichor/external/Catch2 /home/bjorn/Thesis/Ichor/external/Catch2/CMakeFiles/NightlyTest.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bjorn/Thesis/git_repo/Ichor /home/bjorn/Thesis/git_repo/Ichor/external/Catch2 /home/bjorn/Thesis/git_repo/Ichor /home/bjorn/Thesis/git_repo/Ichor/external/Catch2 /home/bjorn/Thesis/git_repo/Ichor/external/Catch2/CMakeFiles/NightlyTest.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : external/Catch2/CMakeFiles/NightlyTest.dir/depend
 

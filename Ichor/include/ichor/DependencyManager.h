@@ -401,7 +401,8 @@ namespace Ichor {
 
         [[nodiscard]] std::optional<std::string_view> getImplementationNameFor(uint64_t serviceId) const noexcept;
 
-        void start();
+        void startFP();
+        void startEDF();
 
     private:
         template <typename EventT>

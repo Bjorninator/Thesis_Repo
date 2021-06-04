@@ -47,16 +47,12 @@ public:
         ICHOR_LOG_INFO(_logger, "Timer {} starting 'long' task", getServiceId());
 
         _timerTriggerCount++;
-        for(uint32_t i = 0; i < 5; i++) {
+        for(uint32_t i = 0; i < 1; i++) {
             //simulate long task
             std::this_thread::sleep_for(std::chrono::milliseconds(40));
             ICHOR_LOG_INFO(_logger, "Timer {} completed 'long' task {} times", getServiceId(), i);
             // schedule us again later in the event loop for the next iteration, don't let other handlers handle this event.
             co_yield (bool)PreventOthersHandling;
-        }
-
-        if(_timerTriggerCount == 2) {
-            getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
         }
 
         ICHOR_LOG_INFO(_logger, "Timer {} completed 'long' task", getServiceId());

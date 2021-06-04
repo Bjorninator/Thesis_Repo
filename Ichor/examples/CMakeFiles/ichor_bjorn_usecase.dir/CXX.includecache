@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/bjorn/Thesis/Ichor/examples/bjorn_usecase/OtherTimerService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/bjorn_usecase/CalculationService.h
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/Logger.h
@@ -18,7 +18,7 @@ ichor/Service.h
 ichor/LifecycleManager.h
 -
 
-/home/bjorn/Thesis/Ichor/examples/bjorn_usecase/UsingTimerService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/bjorn_usecase/OtherTimerService.h
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/Logger.h
@@ -30,11 +30,27 @@ ichor/Service.h
 ichor/LifecycleManager.h
 -
 
-/home/bjorn/Thesis/Ichor/examples/bjorn_usecase/main.cpp
-UsingTimerService.h
-/home/bjorn/Thesis/Ichor/examples/bjorn_usecase/UsingTimerService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/bjorn_usecase/UsingTimerService.h
+ichor/DependencyManager.h
+-
+ichor/optional_bundles/logging_bundle/Logger.h
+-
+ichor/optional_bundles/timer_bundle/TimerService.h
+-
+ichor/Service.h
+-
+ichor/LifecycleManager.h
+-
 OtherTimerService.h
-/home/bjorn/Thesis/Ichor/examples/bjorn_usecase/OtherTimerService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/bjorn_usecase/OtherTimerService.h
+
+/home/bjorn/Thesis/git_repo/Ichor/examples/bjorn_usecase/main.cpp
+UsingTimerService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/bjorn_usecase/UsingTimerService.h
+OtherTimerService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/bjorn_usecase/OtherTimerService.h
+CalculationService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/bjorn_usecase/CalculationService.h
 ichor/optional_bundles/logging_bundle/LoggerAdmin.h
 -
 ichor/optional_bundles/logging_bundle/SpdlogFrameworkLogger.h

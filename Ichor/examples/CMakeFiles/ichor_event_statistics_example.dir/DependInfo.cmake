@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/bjorn/Thesis/Ichor/examples/event_statistics_example/main.cpp" "/home/bjorn/Thesis/Ichor/examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o"
+  "/home/bjorn/Thesis/git_repo/Ichor/examples/event_statistics_example/main.cpp" "/home/bjorn/Thesis/git_repo/Ichor/examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -20,7 +20,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/bjorn/Thesis/Ichor/CMakeFiles/ichor.dir/DependInfo.cmake"
+  "/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles/ichor.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

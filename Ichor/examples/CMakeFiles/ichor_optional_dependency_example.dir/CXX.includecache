@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/bjorn/Thesis/Ichor/examples/optional_dependency_example/OptionalService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/optional_dependency_example/OptionalService.h
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/Logger.h
@@ -16,7 +16,7 @@ ichor/Service.h
 ichor/LifecycleManager.h
 -
 
-/home/bjorn/Thesis/Ichor/examples/optional_dependency_example/TestService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/optional_dependency_example/TestService.h
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/Logger.h
@@ -26,15 +26,15 @@ ichor/Service.h
 ichor/LifecycleManager.h
 -
 OptionalService.h
-/home/bjorn/Thesis/Ichor/examples/optional_dependency_example/OptionalService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/optional_dependency_example/OptionalService.h
 
-/home/bjorn/Thesis/Ichor/examples/optional_dependency_example/main.cpp
+/home/bjorn/Thesis/git_repo/Ichor/examples/optional_dependency_example/main.cpp
 TestService.h
-/home/bjorn/Thesis/Ichor/examples/optional_dependency_example/TestService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/optional_dependency_example/TestService.h
 OptionalService.h
-/home/bjorn/Thesis/Ichor/examples/optional_dependency_example/OptionalService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/optional_dependency_example/OptionalService.h
 OptionalService.h
-/home/bjorn/Thesis/Ichor/examples/optional_dependency_example/OptionalService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/optional_dependency_example/OptionalService.h
 ichor/optional_bundles/logging_bundle/LoggerAdmin.h
 -
 ichor/optional_bundles/logging_bundle/SpdlogFrameworkLogger.h

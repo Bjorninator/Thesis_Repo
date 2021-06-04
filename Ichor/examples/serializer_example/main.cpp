@@ -31,7 +31,7 @@ int main() {
     dm.createServiceManager<SerializationAdmin, ISerializationAdmin>();
     dm.createServiceManager<TestMsgJsonSerializer, ISerializer>();
     dm.createServiceManager<TestService>();
-    dm.start();
+    dm.startFP();
     auto end = std::chrono::steady_clock::now();
     fmt::print("Program ran for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(end-start).count());
 

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/bjorn/Thesis/Ichor/examples/timer_example/UsingTimerService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/timer_example/UsingTimerService.h
 ichor/DependencyManager.h
 -
 ichor/optional_bundles/logging_bundle/Logger.h
@@ -18,9 +18,9 @@ ichor/Service.h
 ichor/LifecycleManager.h
 -
 
-/home/bjorn/Thesis/Ichor/examples/timer_example/main.cpp
+/home/bjorn/Thesis/git_repo/Ichor/examples/timer_example/main.cpp
 UsingTimerService.h
-/home/bjorn/Thesis/Ichor/examples/timer_example/UsingTimerService.h
+/home/bjorn/Thesis/git_repo/Ichor/examples/timer_example/UsingTimerService.h
 ichor/optional_bundles/logging_bundle/LoggerAdmin.h
 -
 ichor/optional_bundles/logging_bundle/SpdlogFrameworkLogger.h

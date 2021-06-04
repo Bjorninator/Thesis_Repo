@@ -18,10 +18,8 @@ void on_sigint([[maybe_unused]] int sig) {
     sigintQuit.store(true, std::memory_order_release);
 }
 
-
-
-void Ichor::DependencyManager::start() {
-    setThreadLocalMemoryResource(_memResource);
+void Ichor::DependencyManager::startFP() {
+setThreadLocalMemoryResource(_memResource);
 
     if(_logger == nullptr) {
         throw std::runtime_error("Trying to start without a framework logger");
@@ -48,7 +46,9 @@ void Ichor::DependencyManager::start() {
         std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
             TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
+        
             auto evtNode = _eventQueue.extract(_eventQueue.begin());
+            // ICHOR_LOG_TRACE(_logger, "manager id {} evt id {} type {} has {}-{} prio and runtime {} period {} deadline {}", getId() ,evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority, evtNode.mapped().get()->runtime, evtNode.mapped().get()->period, evtNode.mapped().get()->deadline);
             lck.unlock();
             _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
 
@@ -329,6 +329,7 @@ void Ichor::DependencyManager::start() {
                     }
                         break;
                     case ContinuableEvent<Generator<bool>>::TYPE: {
+                        // ICHOR_LOG_TRACE(_logger, "CUSTOM EVENT");
                         SPDLOG_DEBUG("ContinuableEvent");
                         auto continuableEvt = static_cast<ContinuableEvent<Generator<bool>> *>(evtNode.mapped().get());
 
@@ -374,7 +375,6 @@ void Ichor::DependencyManager::start() {
             _wakeUp.wait_for(lck, std::chrono::milliseconds(1), [this] { return !_eventQueue.empty(); });
         }
 
-        lck.unlock();
     }
 
     for(auto &[key, manager] : _services) {
@@ -388,6 +388,387 @@ void Ichor::DependencyManager::start() {
     }
 
     _started = false;
+
+}
+
+void Ichor::DependencyManager::startEDF() {
+setThreadLocalMemoryResource(_memResource);
+
+    if(_logger == nullptr) {
+        throw std::runtime_error("Trying to start without a framework logger");
+    }
+
+    if(_services.size() < 2) {
+        throw std::runtime_error("Trying to start without any registered services");
+    }
+
+    ICHOR_LOG_DEBUG(_logger, "starting dm");
+
+    ::signal(SIGINT, on_sigint);
+
+    ICHOR_LOG_TRACE(_logger, "depman {} has {} events", _id, _eventQueue.size());
+
+    _started = true;
+
+#ifdef __linux__
+    pthread_setname_np(pthread_self(), fmt::format("DepMan #{}", _id).c_str());
+#endif
+
+    while(!_quit.load(std::memory_order_acquire)) {
+        _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
+        std::shared_lock lck(_eventQueueMutex);
+        while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
+            TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
+            
+            for (auto nodes = _eventQueue.begin(); nodes != _eventQueue.end(); ++nodes){
+               // std::cout<< nodes->first << ": " <<std::endl; //Do something with iterator
+               // std::cout<< nodes->second.get()->priority <<std::endl; 
+                nodes->second.get()->priority = nodes->second.get()->runtime + nodes->second.get()->deadline;
+                
+            }
+
+            auto evtNode = _eventQueue.extract(_eventQueue.begin());
+            // ICHOR_LOG_TRACE(_logger, "manager id {} evt id {} type {} has {}-{} prio and runtime {} period {} deadline {}", getId() ,evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority, evtNode.mapped().get()->runtime, evtNode.mapped().get()->period, evtNode.mapped().get()->deadline);
+            lck.unlock();
+            _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
+
+//            ICHOR_LOG_ERROR(_logger, "evt id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
+
+            bool allowProcessing = true;
+            uint32_t handlerAmount = 1; // for the non-default case below, the DepMan handles the event
+            auto interceptorsForAllEvents = _eventInterceptors.find(0);
+            auto interceptorsForEvent = _eventInterceptors.find(evtNode.mapped().getType());
+
+            if(interceptorsForAllEvents != end(_eventInterceptors)) {
+                for(const EventInterceptInfo &info : interceptorsForAllEvents->second) {
+                    if(!info.preIntercept(evtNode.mapped().get())) {
+                        allowProcessing = false;
+                    }
+                }
+            }
+
+            if(interceptorsForEvent != end(_eventInterceptors)) {
+                for(const EventInterceptInfo &info : interceptorsForEvent->second) {
+                    if(!info.preIntercept(evtNode.mapped().get())) {
+                        allowProcessing = false;
+                    }
+                }
+            }
+
+            if(allowProcessing) {
+                switch (evtNode.mapped().getType()) {
+                    case DependencyOnlineEvent::TYPE: {
+                        SPDLOG_DEBUG("DependencyOnlineEvent");
+                        auto depOnlineEvt = static_cast<DependencyOnlineEvent *>(evtNode.mapped().get());
+                        auto managerIt = _services.find(depOnlineEvt->originatingService);
+
+                        if(managerIt == end(_services)) {
+                            break;
+                        }
+
+                        auto &manager = managerIt->second;
+
+                        auto filterProp = manager->getProperties()->find("Filter");
+                        const Filter *filter = nullptr;
+                        if (filterProp != end(*manager->getProperties())) {
+                            filter = Ichor::any_cast<Filter * const>(&filterProp->second);
+                        }
+
+                        std::pmr::vector<ILifecycleManager*> interestedManagers{_memResource};
+                        interestedManagers.reserve(_services.size());
+                        for (auto const &[key, possibleDependentLifecycleManager] : _services) {
+                            if (filter != nullptr && !filter->compareTo(possibleDependentLifecycleManager)) {
+                                continue;
+                            }
+
+                            if(possibleDependentLifecycleManager->dependencyOnline(manager.get())) {
+                                interestedManagers.emplace_back(possibleDependentLifecycleManager.get());
+                            }
+                        }
+
+                        for(auto const &interestedManager : interestedManagers) {
+                            if (interestedManager->start()) {
+                                pushEventInternal<DependencyOnlineEvent>(interestedManager->serviceId(), interestedManager->getPriority());
+                            }
+                        }
+                    }
+                        break;
+                    case DependencyOfflineEvent::TYPE: {
+                        SPDLOG_DEBUG("DependencyOfflineEvent");
+                        auto depOfflineEvt = static_cast<DependencyOfflineEvent *>(evtNode.mapped().get());
+                        auto managerIt = _services.find(depOfflineEvt->originatingService);
+
+                        if(managerIt == end(_services)) {
+                            break;
+                        }
+
+                        auto &manager = managerIt->second;
+
+                        auto filterProp = manager->getProperties()->find("Filter");
+                        const Filter *filter = nullptr;
+                        if (filterProp != end(*manager->getProperties())) {
+                            filter = Ichor::any_cast<Filter * const>(&filterProp->second);
+                        }
+
+                        std::pmr::vector<ILifecycleManager*> interestedManagers{_memResource};
+                        interestedManagers.reserve(_services.size());
+                        for (auto const &[key, possibleDependentLifecycleManager] : _services) {
+                            if (filter != nullptr && !filter->compareTo(possibleDependentLifecycleManager)) {
+                                continue;
+                            }
+
+                            if(possibleDependentLifecycleManager->dependencyOffline(manager.get())) {
+                                interestedManagers.emplace_back(possibleDependentLifecycleManager.get());
+                            }
+                        }
+
+                        for(auto const &interestedManager : interestedManagers) {
+                            if (interestedManager->stop()) {
+                                pushEventInternal<DependencyOfflineEvent>(interestedManager->serviceId(), interestedManager->getPriority());
+                            }
+                        }
+                    }
+                        break;
+                    case DependencyRequestEvent::TYPE: {
+                        auto depReqEvt = static_cast<DependencyRequestEvent *>(evtNode.mapped().get());
+
+                        auto trackers = _dependencyRequestTrackers.find(depReqEvt->dependency.interfaceNameHash);
+                        if (trackers == end(_dependencyRequestTrackers)) {
+                            break;
+                        }
+
+                        for (DependencyTrackerInfo const &info : trackers->second) {
+                            info.trackFunc(depReqEvt);
+                        }
+                    }
+                        break;
+                    case DependencyUndoRequestEvent::TYPE: {
+                        auto depUndoReqEvt = static_cast<DependencyUndoRequestEvent *>(evtNode.mapped().get());
+
+                        auto trackers = _dependencyUndoRequestTrackers.find(depUndoReqEvt->dependency.interfaceNameHash);
+                        if (trackers == end(_dependencyUndoRequestTrackers)) {
+                            break;
+                        }
+
+                        for (DependencyTrackerInfo const &info : trackers->second) {
+                            info.trackFunc(depUndoReqEvt);
+                        }
+                    }
+                        break;
+                    case QuitEvent::TYPE: {
+                        SPDLOG_DEBUG("QuitEvent");
+                        auto _quitEvt = static_cast<QuitEvent *>(evtNode.mapped().get());
+                        if (!_quitEvt->dependenciesStopped) {
+                            for (auto const &[key, possibleManager] : _services) {
+                                pushEventInternal<StopServiceEvent>(_quitEvt->originatingService, possibleManager->getPriority(), possibleManager->serviceId());
+                            }
+
+                            pushEventInternal<QuitEvent>(_quitEvt->originatingService, INTERNAL_EVENT_PRIORITY + 1, true);
+                        } else {
+                            bool canFinally_quit = true;
+                            for (auto const &[key, manager] : _services) {
+                                if (manager->getServiceState() != ServiceState::INSTALLED) {
+                                    canFinally_quit = false;
+                                    break;
+                                }
+                            }
+
+                            if (canFinally_quit) {
+                                _quit.store(true, std::memory_order_release);
+                            } else {
+                                pushEventInternal<QuitEvent>(_quitEvt->originatingService, INTERNAL_EVENT_PRIORITY + 1, false);
+                            }
+                        }
+                    }
+                        break;
+                    case StopServiceEvent::TYPE: {
+                        SPDLOG_DEBUG("StopServiceEvent");
+                        auto stopServiceEvt = static_cast<StopServiceEvent *>(evtNode.mapped().get());
+
+                        auto toStopServiceIt = _services.find(stopServiceEvt->serviceId);
+
+                        if (toStopServiceIt == end(_services)) {
+                            ICHOR_LOG_ERROR(_logger, "Couldn't stop service {}, missing from known services", stopServiceEvt->serviceId);
+                            handleEventError(stopServiceEvt);
+                            break;
+                        }
+
+                        auto &toStopService = toStopServiceIt->second;
+                        if (stopServiceEvt->dependenciesStopped) {
+                            if (toStopService->getServiceState() == ServiceState::ACTIVE && !toStopService->stop()) {
+                                ICHOR_LOG_ERROR(_logger, "Couldn't stop service {}: {} but all dependencies stopped", stopServiceEvt->serviceId,
+                                          toStopService->implementationName());
+                                handleEventError(stopServiceEvt);
+                            } else {
+                                handleEventCompletion(stopServiceEvt);
+                            }
+                        } else {
+                            pushEventInternal<DependencyOfflineEvent>(toStopService->serviceId(), stopServiceEvt->priority);
+                            pushEventInternal<StopServiceEvent>(stopServiceEvt->originatingService, stopServiceEvt->priority, stopServiceEvt->serviceId, true);
+                        }
+                    }
+                        break;
+                    case RemoveServiceEvent::TYPE: {
+                        SPDLOG_DEBUG("RemoveServiceEvent");
+                        auto removeServiceEvt = static_cast<RemoveServiceEvent *>(evtNode.mapped().get());
+
+                        auto toRemoveServiceIt = _services.find(removeServiceEvt->serviceId);
+
+                        if (toRemoveServiceIt == end(_services)) {
+                            ICHOR_LOG_ERROR(_logger, "Couldn't remove service {}, missing from known services", removeServiceEvt->serviceId);
+                            handleEventError(removeServiceEvt);
+                            break;
+                        }
+
+                        auto &toRemoveService = toRemoveServiceIt->second;
+                        if (removeServiceEvt->dependenciesStopped) {
+                            if (toRemoveService->getServiceState() == ServiceState::ACTIVE && !toRemoveService->stop()) {
+                                ICHOR_LOG_ERROR(_logger, "Couldn't remove service {}: {} but all dependencies stopped", removeServiceEvt->serviceId,
+                                          toRemoveService->implementationName());
+                                handleEventError(removeServiceEvt);
+                            } else {
+                                handleEventCompletion(removeServiceEvt);
+                                _services.erase(toRemoveServiceIt);
+                            }
+                        } else {
+                            pushEventInternal<DependencyOfflineEvent>(toRemoveService->serviceId(), removeServiceEvt->priority);
+                            pushEventInternal<RemoveServiceEvent>(removeServiceEvt->originatingService, removeServiceEvt->priority, removeServiceEvt->serviceId,
+                                                                  true);
+                        }
+                    }
+                        break;
+                    case StartServiceEvent::TYPE: {
+                        SPDLOG_DEBUG("StartServiceEvent");
+                        auto startServiceEvt = static_cast<StartServiceEvent *>(evtNode.mapped().get());
+
+                        auto toStartServiceIt = _services.find(startServiceEvt->serviceId);
+
+                        if (toStartServiceIt == end(_services)) {
+                            ICHOR_LOG_ERROR(_logger, "Couldn't start service {}, missing from known services", startServiceEvt->serviceId);
+                            handleEventError(startServiceEvt);
+                            break;
+                        }
+
+                        auto &toStartService = toStartServiceIt->second;
+                        if(toStartService->getServiceState() == ServiceState::ACTIVE) {
+                            handleEventCompletion(startServiceEvt);
+                        } else if (!toStartService->start()) {
+//                            ICHOR_LOG_TRACE(_logger, "Couldn't start service {}: {}", startServiceEvt->serviceId, toStartService->implementationName());
+                            handleEventError(startServiceEvt);
+                        } else {
+                            pushEventInternal<DependencyOnlineEvent>(toStartService->serviceId(), startServiceEvt->priority);
+                            handleEventCompletion(startServiceEvt);
+                        }
+                    }
+                        break;
+                    case DoWorkEvent::TYPE: {
+                        SPDLOG_DEBUG("DoWorkEvent");
+                        handleEventCompletion(evtNode.mapped().get());
+                    }
+                        break;
+                    case RemoveCompletionCallbacksEvent::TYPE: {
+                        SPDLOG_DEBUG("RemoveCompletionCallbacksEvent");
+                        auto removeCallbacksEvt = static_cast<RemoveCompletionCallbacksEvent *>(evtNode.mapped().get());
+
+                        _completionCallbacks.erase(removeCallbacksEvt->key);
+                        _errorCallbacks.erase(removeCallbacksEvt->key);
+                    }
+                        break;
+                    case RemoveEventHandlerEvent::TYPE: {
+                        SPDLOG_DEBUG("RemoveEventHandlerEvent");
+                        auto removeEventHandlerEvt = static_cast<RemoveEventHandlerEvent *>(evtNode.mapped().get());
+
+                        // key.id = service id, key.type == event id
+                        auto existingHandlers = _eventCallbacks.find(removeEventHandlerEvt->key.type);
+                        if (existingHandlers != end(_eventCallbacks)) {
+                            std::erase_if(existingHandlers->second, [removeEventHandlerEvt](const EventCallbackInfo &info) noexcept {
+                                return info.listeningServiceId == removeEventHandlerEvt->key.id;
+                            });
+                        }
+                    }
+                        break;
+                    case RemoveEventInterceptorEvent::TYPE: {
+                        SPDLOG_DEBUG("RemoveEventInterceptorEvent");
+                        auto removeEventHandlerEvt = static_cast<RemoveEventInterceptorEvent *>(evtNode.mapped().get());
+
+                        // key.id = service id, key.type == event id
+                        auto existingHandlers = _eventInterceptors.find(removeEventHandlerEvt->key.type);
+                        if (existingHandlers != end(_eventInterceptors)) {
+                            std::erase_if(existingHandlers->second, [removeEventHandlerEvt](const EventInterceptInfo &info) noexcept {
+                                return info.listeningServiceId == removeEventHandlerEvt->key.id;
+                            });
+                        }
+                    }
+                        break;
+                    case RemoveTrackerEvent::TYPE: {
+                        SPDLOG_DEBUG("RemoveTrackerEvent");
+                        auto removeTrackerEvt = static_cast<RemoveTrackerEvent *>(evtNode.mapped().get());
+
+                        _dependencyRequestTrackers.erase(removeTrackerEvt->interfaceNameHash);
+                        _dependencyUndoRequestTrackers.erase(removeTrackerEvt->interfaceNameHash);
+                    }
+                        break;
+                    case ContinuableEvent<Generator<bool>>::TYPE: {
+                        // ICHOR_LOG_TRACE(_logger, "CUSTOM EVENT");
+                        SPDLOG_DEBUG("ContinuableEvent");
+                        auto continuableEvt = static_cast<ContinuableEvent<Generator<bool>> *>(evtNode.mapped().get());
+
+                        auto it = continuableEvt->generator.begin();
+
+                        if (it != continuableEvt->generator.end()) {
+                            pushEventInternal<ContinuableEvent<Generator<bool>>>(continuableEvt->originatingService, evtNode.key(), std::move(continuableEvt->generator));
+                        }
+                    }
+                        break;
+                    case RunFunctionEvent::TYPE: {
+                        SPDLOG_DEBUG("RunFunctionEvent");
+                        auto runFunctionEvt = static_cast<RunFunctionEvent *>(evtNode.mapped().get());
+                        runFunctionEvt->fun(this);
+                    }
+                        break;
+                    default: {
+                        SPDLOG_DEBUG("broadcastEvent");
+                        handlerAmount = broadcastEvent(evtNode.mapped().get());
+                    }
+                        break;
+                }
+            }
+
+            if(interceptorsForAllEvents != end(_eventInterceptors)) {
+                for(const EventInterceptInfo &info : interceptorsForAllEvents->second) {
+                    info.postIntercept(evtNode.mapped().get(), allowProcessing && handlerAmount > 0);
+                }
+            }
+
+            if(interceptorsForEvent != end(_eventInterceptors)) {
+                for(const EventInterceptInfo &info : interceptorsForEvent->second) {
+                    info.postIntercept(evtNode.mapped().get(), allowProcessing && handlerAmount > 0);
+                }
+            }
+
+            lck.lock();
+        }
+
+        _emptyQueue = true;
+
+        if(!_quit.load(std::memory_order_acquire)) {
+            _wakeUp.wait_for(lck, std::chrono::milliseconds(1), [this] { return !_eventQueue.empty(); });
+        }
+
+    }
+
+    for(auto &[key, manager] : _services) {
+        manager->stop();
+    }
+
+    _services.clear();
+
+    if(_communicationChannel != nullptr) {
+        _communicationChannel->removeManager(this);
+    }
+
+    _started = false;
+
 }
 
 void Ichor::DependencyManager::handleEventCompletion(const Ichor::Event *const evt) const  {

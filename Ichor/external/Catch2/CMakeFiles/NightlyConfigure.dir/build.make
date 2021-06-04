@@ -46,10 +46,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/bjorn/Thesis/Ichor
+CMAKE_SOURCE_DIR = /home/bjorn/Thesis/git_repo/Ichor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/bjorn/Thesis/Ichor
+CMAKE_BINARY_DIR = /home/bjorn/Thesis/git_repo/Ichor
 
 # Utility rule file for NightlyConfigure.
 
@@ -57,7 +57,7 @@ CMAKE_BINARY_DIR = /home/bjorn/Thesis/Ichor
 include external/Catch2/CMakeFiles/NightlyConfigure.dir/progress.make
 
 external/Catch2/CMakeFiles/NightlyConfigure:
-	cd /home/bjorn/Thesis/Ichor/external/Catch2 && /usr/bin/ctest -D NightlyConfigure
+	cd /home/bjorn/Thesis/git_repo/Ichor/external/Catch2 && /usr/bin/ctest -D NightlyConfigure
 
 NightlyConfigure: external/Catch2/CMakeFiles/NightlyConfigure
 NightlyConfigure: external/Catch2/CMakeFiles/NightlyConfigure.dir/build.make
@@ -70,10 +70,10 @@ external/Catch2/CMakeFiles/NightlyConfigure.dir/build: NightlyConfigure
 .PHONY : external/Catch2/CMakeFiles/NightlyConfigure.dir/build
 
 external/Catch2/CMakeFiles/NightlyConfigure.dir/clean:
-	cd /home/bjorn/Thesis/Ichor/external/Catch2 && $(CMAKE_COMMAND) -P CMakeFiles/NightlyConfigure.dir/cmake_clean.cmake
+	cd /home/bjorn/Thesis/git_repo/Ichor/external/Catch2 && $(CMAKE_COMMAND) -P CMakeFiles/NightlyConfigure.dir/cmake_clean.cmake
 .PHONY : external/Catch2/CMakeFiles/NightlyConfigure.dir/clean
 
 external/Catch2/CMakeFiles/NightlyConfigure.dir/depend:
-	cd /home/bjorn/Thesis/Ichor && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bjorn/Thesis/Ichor /home/bjorn/Thesis/Ichor/external/Catch2 /home/bjorn/Thesis/Ichor /home/bjorn/Thesis/Ichor/external/Catch2 /home/bjorn/Thesis/Ichor/external/Catch2/CMakeFiles/NightlyConfigure.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/bjorn/Thesis/git_repo/Ichor /home/bjorn/Thesis/git_repo/Ichor/external/Catch2 /home/bjorn/Thesis/git_repo/Ichor /home/bjorn/Thesis/git_repo/Ichor/external/Catch2 /home/bjorn/Thesis/git_repo/Ichor/external/Catch2/CMakeFiles/NightlyConfigure.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : external/Catch2/CMakeFiles/NightlyConfigure.dir/depend
 

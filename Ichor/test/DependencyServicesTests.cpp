@@ -14,7 +14,7 @@ TEST_CASE("DependencyServices") {
             dm.createServiceManager<NullFrameworkLogger, IFrameworkLogger>();
             dm.createServiceManager<UselessService>();
             dm.createServiceManager<QuitOnStartWithDependenciesService>();
-            dm.start();
+            dm.startFP();
         });
 
         t.join();
@@ -29,7 +29,7 @@ TEST_CASE("DependencyServices") {
             dm.createServiceManager<NullFrameworkLogger, IFrameworkLogger>();
             dm.createServiceManager<UselessService, IUselessService>();
             dm.createServiceManager<DependencyService<true>, ICountService>();
-            dm.start();
+            dm.startFP();
         });
 
         dm.waitForEmptyQueue();
@@ -58,7 +58,7 @@ TEST_CASE("DependencyServices") {
             auto secondSvc = dm.createServiceManager<UselessService, IUselessService>();
             secondUselessServiceId = secondSvc->getServiceId();
             dm.createServiceManager<DependencyService<false>, ICountService>();
-            dm.start();
+            dm.startFP();
         });
 
         dm.waitForEmptyQueue();

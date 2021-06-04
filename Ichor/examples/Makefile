@@ -51,10 +51,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/bjorn/Thesis/Ichor
+CMAKE_SOURCE_DIR = /home/bjorn/Thesis/git_repo/Ichor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/bjorn/Thesis/Ichor
+CMAKE_BINARY_DIR = /home/bjorn/Thesis/git_repo/Ichor
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -83,14 +83,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/bjorn/Thesis/Ichor && $(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/Ichor/CMakeFiles /home/bjorn/Thesis/Ichor/examples/CMakeFiles/progress.marks
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/Ichor/CMakeFiles 0
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles /home/bjorn/Thesis/git_repo/Ichor/examples/CMakeFiles/progress.marks
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/clean
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/clean
 .PHONY : clean
 
 # The main clean target
@@ -100,22 +100,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/bjorn/Thesis/Ichor && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 examples/CMakeFiles/ichor_event_statistics_example.dir/rule:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_event_statistics_example.dir/rule
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_event_statistics_example.dir/rule
 .PHONY : examples/CMakeFiles/ichor_event_statistics_example.dir/rule
 
 # Convenience name for target.
@@ -125,12 +125,12 @@ ichor_event_statistics_example: examples/CMakeFiles/ichor_event_statistics_examp
 
 # fast build rule for target.
 ichor_event_statistics_example/fast:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/build
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/build
 .PHONY : ichor_event_statistics_example/fast
 
 # Convenience name for target.
 examples/CMakeFiles/ichor_multithreaded_example.dir/rule:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_multithreaded_example.dir/rule
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_multithreaded_example.dir/rule
 .PHONY : examples/CMakeFiles/ichor_multithreaded_example.dir/rule
 
 # Convenience name for target.
@@ -140,12 +140,12 @@ ichor_multithreaded_example: examples/CMakeFiles/ichor_multithreaded_example.dir
 
 # fast build rule for target.
 ichor_multithreaded_example/fast:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_multithreaded_example.dir/build.make examples/CMakeFiles/ichor_multithreaded_example.dir/build
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_multithreaded_example.dir/build.make examples/CMakeFiles/ichor_multithreaded_example.dir/build
 .PHONY : ichor_multithreaded_example/fast
 
 # Convenience name for target.
 examples/CMakeFiles/ichor_yielding_timer_example.dir/rule:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_yielding_timer_example.dir/rule
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_yielding_timer_example.dir/rule
 .PHONY : examples/CMakeFiles/ichor_yielding_timer_example.dir/rule
 
 # Convenience name for target.
@@ -155,12 +155,12 @@ ichor_yielding_timer_example: examples/CMakeFiles/ichor_yielding_timer_example.d
 
 # fast build rule for target.
 ichor_yielding_timer_example/fast:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_yielding_timer_example.dir/build.make examples/CMakeFiles/ichor_yielding_timer_example.dir/build
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_yielding_timer_example.dir/build.make examples/CMakeFiles/ichor_yielding_timer_example.dir/build
 .PHONY : ichor_yielding_timer_example/fast
 
 # Convenience name for target.
 examples/CMakeFiles/ichor_timer_example.dir/rule:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_timer_example.dir/rule
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_timer_example.dir/rule
 .PHONY : examples/CMakeFiles/ichor_timer_example.dir/rule
 
 # Convenience name for target.
@@ -170,12 +170,12 @@ ichor_timer_example: examples/CMakeFiles/ichor_timer_example.dir/rule
 
 # fast build rule for target.
 ichor_timer_example/fast:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_timer_example.dir/build.make examples/CMakeFiles/ichor_timer_example.dir/build
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_timer_example.dir/build.make examples/CMakeFiles/ichor_timer_example.dir/build
 .PHONY : ichor_timer_example/fast
 
 # Convenience name for target.
 examples/CMakeFiles/ichor_bjorn_usecase.dir/rule:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_bjorn_usecase.dir/rule
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_bjorn_usecase.dir/rule
 .PHONY : examples/CMakeFiles/ichor_bjorn_usecase.dir/rule
 
 # Convenience name for target.
@@ -185,12 +185,12 @@ ichor_bjorn_usecase: examples/CMakeFiles/ichor_bjorn_usecase.dir/rule
 
 # fast build rule for target.
 ichor_bjorn_usecase/fast:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_bjorn_usecase.dir/build.make examples/CMakeFiles/ichor_bjorn_usecase.dir/build
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_bjorn_usecase.dir/build.make examples/CMakeFiles/ichor_bjorn_usecase.dir/build
 .PHONY : ichor_bjorn_usecase/fast
 
 # Convenience name for target.
 examples/CMakeFiles/ichor_optional_dependency_example.dir/rule:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_optional_dependency_example.dir/rule
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_optional_dependency_example.dir/rule
 .PHONY : examples/CMakeFiles/ichor_optional_dependency_example.dir/rule
 
 # Convenience name for target.
@@ -200,12 +200,12 @@ ichor_optional_dependency_example: examples/CMakeFiles/ichor_optional_dependency
 
 # fast build rule for target.
 ichor_optional_dependency_example/fast:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/build
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/build
 .PHONY : ichor_optional_dependency_example/fast
 
 # Convenience name for target.
 examples/CMakeFiles/ichor_tracker_example.dir/rule:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_tracker_example.dir/rule
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_tracker_example.dir/rule
 .PHONY : examples/CMakeFiles/ichor_tracker_example.dir/rule
 
 # Convenience name for target.
@@ -215,12 +215,12 @@ ichor_tracker_example: examples/CMakeFiles/ichor_tracker_example.dir/rule
 
 # fast build rule for target.
 ichor_tracker_example/fast:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_tracker_example.dir/build.make examples/CMakeFiles/ichor_tracker_example.dir/build
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_tracker_example.dir/build.make examples/CMakeFiles/ichor_tracker_example.dir/build
 .PHONY : ichor_tracker_example/fast
 
 # Convenience name for target.
 examples/CMakeFiles/ichor_minimal_example.dir/rule:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_minimal_example.dir/rule
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_minimal_example.dir/rule
 .PHONY : examples/CMakeFiles/ichor_minimal_example.dir/rule
 
 # Convenience name for target.
@@ -230,7 +230,7 @@ ichor_minimal_example: examples/CMakeFiles/ichor_minimal_example.dir/rule
 
 # fast build rule for target.
 ichor_minimal_example/fast:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/build
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/build
 .PHONY : ichor_minimal_example/fast
 
 bjorn_usecase/main.o: bjorn_usecase/main.cpp.o
@@ -239,7 +239,7 @@ bjorn_usecase/main.o: bjorn_usecase/main.cpp.o
 
 # target to build an object file
 bjorn_usecase/main.cpp.o:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_bjorn_usecase.dir/build.make examples/CMakeFiles/ichor_bjorn_usecase.dir/bjorn_usecase/main.cpp.o
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_bjorn_usecase.dir/build.make examples/CMakeFiles/ichor_bjorn_usecase.dir/bjorn_usecase/main.cpp.o
 .PHONY : bjorn_usecase/main.cpp.o
 
 bjorn_usecase/main.i: bjorn_usecase/main.cpp.i
@@ -248,7 +248,7 @@ bjorn_usecase/main.i: bjorn_usecase/main.cpp.i
 
 # target to preprocess a source file
 bjorn_usecase/main.cpp.i:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_bjorn_usecase.dir/build.make examples/CMakeFiles/ichor_bjorn_usecase.dir/bjorn_usecase/main.cpp.i
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_bjorn_usecase.dir/build.make examples/CMakeFiles/ichor_bjorn_usecase.dir/bjorn_usecase/main.cpp.i
 .PHONY : bjorn_usecase/main.cpp.i
 
 bjorn_usecase/main.s: bjorn_usecase/main.cpp.s
@@ -257,7 +257,7 @@ bjorn_usecase/main.s: bjorn_usecase/main.cpp.s
 
 # target to generate assembly for a file
 bjorn_usecase/main.cpp.s:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_bjorn_usecase.dir/build.make examples/CMakeFiles/ichor_bjorn_usecase.dir/bjorn_usecase/main.cpp.s
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_bjorn_usecase.dir/build.make examples/CMakeFiles/ichor_bjorn_usecase.dir/bjorn_usecase/main.cpp.s
 .PHONY : bjorn_usecase/main.cpp.s
 
 event_statistics_example/main.o: event_statistics_example/main.cpp.o
@@ -266,7 +266,7 @@ event_statistics_example/main.o: event_statistics_example/main.cpp.o
 
 # target to build an object file
 event_statistics_example/main.cpp.o:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o
 .PHONY : event_statistics_example/main.cpp.o
 
 event_statistics_example/main.i: event_statistics_example/main.cpp.i
@@ -275,7 +275,7 @@ event_statistics_example/main.i: event_statistics_example/main.cpp.i
 
 # target to preprocess a source file
 event_statistics_example/main.cpp.i:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.i
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.i
 .PHONY : event_statistics_example/main.cpp.i
 
 event_statistics_example/main.s: event_statistics_example/main.cpp.s
@@ -284,7 +284,7 @@ event_statistics_example/main.s: event_statistics_example/main.cpp.s
 
 # target to generate assembly for a file
 event_statistics_example/main.cpp.s:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.s
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.s
 .PHONY : event_statistics_example/main.cpp.s
 
 minimal_example/main.o: minimal_example/main.cpp.o
@@ -293,7 +293,7 @@ minimal_example/main.o: minimal_example/main.cpp.o
 
 # target to build an object file
 minimal_example/main.cpp.o:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/minimal_example/main.cpp.o
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/minimal_example/main.cpp.o
 .PHONY : minimal_example/main.cpp.o
 
 minimal_example/main.i: minimal_example/main.cpp.i
@@ -302,7 +302,7 @@ minimal_example/main.i: minimal_example/main.cpp.i
 
 # target to preprocess a source file
 minimal_example/main.cpp.i:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/minimal_example/main.cpp.i
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/minimal_example/main.cpp.i
 .PHONY : minimal_example/main.cpp.i
 
 minimal_example/main.s: minimal_example/main.cpp.s
@@ -311,7 +311,7 @@ minimal_example/main.s: minimal_example/main.cpp.s
 
 # target to generate assembly for a file
 minimal_example/main.cpp.s:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/minimal_example/main.cpp.s
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/minimal_example/main.cpp.s
 .PHONY : minimal_example/main.cpp.s
 
 multithreaded_example/main.o: multithreaded_example/main.cpp.o
@@ -320,7 +320,7 @@ multithreaded_example/main.o: multithreaded_example/main.cpp.o
 
 # target to build an object file
 multithreaded_example/main.cpp.o:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_multithreaded_example.dir/build.make examples/CMakeFiles/ichor_multithreaded_example.dir/multithreaded_example/main.cpp.o
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_multithreaded_example.dir/build.make examples/CMakeFiles/ichor_multithreaded_example.dir/multithreaded_example/main.cpp.o
 .PHONY : multithreaded_example/main.cpp.o
 
 multithreaded_example/main.i: multithreaded_example/main.cpp.i
@@ -329,7 +329,7 @@ multithreaded_example/main.i: multithreaded_example/main.cpp.i
 
 # target to preprocess a source file
 multithreaded_example/main.cpp.i:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_multithreaded_example.dir/build.make examples/CMakeFiles/ichor_multithreaded_example.dir/multithreaded_example/main.cpp.i
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_multithreaded_example.dir/build.make examples/CMakeFiles/ichor_multithreaded_example.dir/multithreaded_example/main.cpp.i
 .PHONY : multithreaded_example/main.cpp.i
 
 multithreaded_example/main.s: multithreaded_example/main.cpp.s
@@ -338,7 +338,7 @@ multithreaded_example/main.s: multithreaded_example/main.cpp.s
 
 # target to generate assembly for a file
 multithreaded_example/main.cpp.s:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_multithreaded_example.dir/build.make examples/CMakeFiles/ichor_multithreaded_example.dir/multithreaded_example/main.cpp.s
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_multithreaded_example.dir/build.make examples/CMakeFiles/ichor_multithreaded_example.dir/multithreaded_example/main.cpp.s
 .PHONY : multithreaded_example/main.cpp.s
 
 optional_dependency_example/main.o: optional_dependency_example/main.cpp.o
@@ -347,7 +347,7 @@ optional_dependency_example/main.o: optional_dependency_example/main.cpp.o
 
 # target to build an object file
 optional_dependency_example/main.cpp.o:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/optional_dependency_example/main.cpp.o
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/optional_dependency_example/main.cpp.o
 .PHONY : optional_dependency_example/main.cpp.o
 
 optional_dependency_example/main.i: optional_dependency_example/main.cpp.i
@@ -356,7 +356,7 @@ optional_dependency_example/main.i: optional_dependency_example/main.cpp.i
 
 # target to preprocess a source file
 optional_dependency_example/main.cpp.i:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/optional_dependency_example/main.cpp.i
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/optional_dependency_example/main.cpp.i
 .PHONY : optional_dependency_example/main.cpp.i
 
 optional_dependency_example/main.s: optional_dependency_example/main.cpp.s
@@ -365,7 +365,7 @@ optional_dependency_example/main.s: optional_dependency_example/main.cpp.s
 
 # target to generate assembly for a file
 optional_dependency_example/main.cpp.s:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/optional_dependency_example/main.cpp.s
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/optional_dependency_example/main.cpp.s
 .PHONY : optional_dependency_example/main.cpp.s
 
 timer_example/main.o: timer_example/main.cpp.o
@@ -374,7 +374,7 @@ timer_example/main.o: timer_example/main.cpp.o
 
 # target to build an object file
 timer_example/main.cpp.o:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_timer_example.dir/build.make examples/CMakeFiles/ichor_timer_example.dir/timer_example/main.cpp.o
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_timer_example.dir/build.make examples/CMakeFiles/ichor_timer_example.dir/timer_example/main.cpp.o
 .PHONY : timer_example/main.cpp.o
 
 timer_example/main.i: timer_example/main.cpp.i
@@ -383,7 +383,7 @@ timer_example/main.i: timer_example/main.cpp.i
 
 # target to preprocess a source file
 timer_example/main.cpp.i:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_timer_example.dir/build.make examples/CMakeFiles/ichor_timer_example.dir/timer_example/main.cpp.i
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_timer_example.dir/build.make examples/CMakeFiles/ichor_timer_example.dir/timer_example/main.cpp.i
 .PHONY : timer_example/main.cpp.i
 
 timer_example/main.s: timer_example/main.cpp.s
@@ -392,7 +392,7 @@ timer_example/main.s: timer_example/main.cpp.s
 
 # target to generate assembly for a file
 timer_example/main.cpp.s:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_timer_example.dir/build.make examples/CMakeFiles/ichor_timer_example.dir/timer_example/main.cpp.s
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_timer_example.dir/build.make examples/CMakeFiles/ichor_timer_example.dir/timer_example/main.cpp.s
 .PHONY : timer_example/main.cpp.s
 
 tracker_example/main.o: tracker_example/main.cpp.o
@@ -401,7 +401,7 @@ tracker_example/main.o: tracker_example/main.cpp.o
 
 # target to build an object file
 tracker_example/main.cpp.o:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_tracker_example.dir/build.make examples/CMakeFiles/ichor_tracker_example.dir/tracker_example/main.cpp.o
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_tracker_example.dir/build.make examples/CMakeFiles/ichor_tracker_example.dir/tracker_example/main.cpp.o
 .PHONY : tracker_example/main.cpp.o
 
 tracker_example/main.i: tracker_example/main.cpp.i
@@ -410,7 +410,7 @@ tracker_example/main.i: tracker_example/main.cpp.i
 
 # target to preprocess a source file
 tracker_example/main.cpp.i:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_tracker_example.dir/build.make examples/CMakeFiles/ichor_tracker_example.dir/tracker_example/main.cpp.i
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_tracker_example.dir/build.make examples/CMakeFiles/ichor_tracker_example.dir/tracker_example/main.cpp.i
 .PHONY : tracker_example/main.cpp.i
 
 tracker_example/main.s: tracker_example/main.cpp.s
@@ -419,7 +419,7 @@ tracker_example/main.s: tracker_example/main.cpp.s
 
 # target to generate assembly for a file
 tracker_example/main.cpp.s:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_tracker_example.dir/build.make examples/CMakeFiles/ichor_tracker_example.dir/tracker_example/main.cpp.s
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_tracker_example.dir/build.make examples/CMakeFiles/ichor_tracker_example.dir/tracker_example/main.cpp.s
 .PHONY : tracker_example/main.cpp.s
 
 yielding_timer_example/main.o: yielding_timer_example/main.cpp.o
@@ -428,7 +428,7 @@ yielding_timer_example/main.o: yielding_timer_example/main.cpp.o
 
 # target to build an object file
 yielding_timer_example/main.cpp.o:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_yielding_timer_example.dir/build.make examples/CMakeFiles/ichor_yielding_timer_example.dir/yielding_timer_example/main.cpp.o
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_yielding_timer_example.dir/build.make examples/CMakeFiles/ichor_yielding_timer_example.dir/yielding_timer_example/main.cpp.o
 .PHONY : yielding_timer_example/main.cpp.o
 
 yielding_timer_example/main.i: yielding_timer_example/main.cpp.i
@@ -437,7 +437,7 @@ yielding_timer_example/main.i: yielding_timer_example/main.cpp.i
 
 # target to preprocess a source file
 yielding_timer_example/main.cpp.i:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_yielding_timer_example.dir/build.make examples/CMakeFiles/ichor_yielding_timer_example.dir/yielding_timer_example/main.cpp.i
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_yielding_timer_example.dir/build.make examples/CMakeFiles/ichor_yielding_timer_example.dir/yielding_timer_example/main.cpp.i
 .PHONY : yielding_timer_example/main.cpp.i
 
 yielding_timer_example/main.s: yielding_timer_example/main.cpp.s
@@ -446,7 +446,7 @@ yielding_timer_example/main.s: yielding_timer_example/main.cpp.s
 
 # target to generate assembly for a file
 yielding_timer_example/main.cpp.s:
-	cd /home/bjorn/Thesis/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_yielding_timer_example.dir/build.make examples/CMakeFiles/ichor_yielding_timer_example.dir/yielding_timer_example/main.cpp.s
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(MAKE) -f examples/CMakeFiles/ichor_yielding_timer_example.dir/build.make examples/CMakeFiles/ichor_yielding_timer_example.dir/yielding_timer_example/main.cpp.s
 .PHONY : yielding_timer_example/main.cpp.s
 
 # Help Target
@@ -500,6 +500,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/bjorn/Thesis/Ichor && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/bjorn/Thesis/git_repo/Ichor && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

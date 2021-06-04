@@ -44,6 +44,7 @@ public:
 
         _injectionCount++;
         if(_started && _injectionCount == 2) {
+            sleep(30);
             getManager()->pushEvent<QuitEvent>(getServiceId());
         }
     }
