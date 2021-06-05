@@ -3,15 +3,17 @@
 #include <memory>
 #include <ichor/Dependency.h>
 #include <ichor/Callbacks.h>
+#include <chrono>
 
 namespace Ichor {
     class ILifecycleManager;
     class DependencyManager;
 
     constexpr uint64_t INTERNAL_EVENT_PRIORITY = 1000;
+    typedef std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> MyTimePoint;
 
     struct Event {
-        Event(uint64_t _type, std::string_view _name, uint64_t _id, uint64_t _originatingService, uint64_t _priority, uint64_t _runtime = 0, uint64_t _period = 0, uint64_t _deadline = 0) noexcept : type{_type}, name{_name}, id{_id}, originatingService{_originatingService}, priority{_priority}, runtime{_runtime} , period{_period}, deadline{_deadline} {}
+        Event(uint64_t _type, std::string_view _name, uint64_t _id, uint64_t _originatingService, uint64_t _priority, uint64_t _runtime = 0, uint64_t _period = 0, MyTimePoint _deadline = std::chrono::time_point_cast<MyTimePoint::duration>(std::chrono::steady_clock::time_point(std::chrono::steady_clock::now()))) noexcept : type{_type}, name{_name}, id{_id}, originatingService{_originatingService}, priority{_priority}, runtime{_runtime} , period{_period}, deadline{_deadline} {}
         virtual ~Event() = default;
         const uint64_t type;
         const std::string_view name;
@@ -20,7 +22,7 @@ namespace Ichor {
         uint64_t priority;
         uint64_t runtime;
         uint64_t period;
-        uint64_t deadline;
+        MyTimePoint deadline;
     };
 
     struct DependencyOnlineEvent final : public Event {

@@ -9,7 +9,7 @@
 
 namespace Ichor {
 
-    // Rather shoddy implementation, setting the interval does not reset the insertEventLoop function and the sleep_for is sketchy at best.
+    // Rather shaddy implementation, setting the interval does not reset the insertEventLoop function and the sleep_for is sketchy at best.
     class Timer final : public ITimer, public Service<Timer> {
     public:
         Timer() noexcept : _intervalNanosec(0), _eventInsertionThread(nullptr), _quit(true), _priority(INTERNAL_EVENT_PRIORITY) {
@@ -69,15 +69,21 @@ namespace Ichor {
                     std::this_thread::sleep_for(std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire)/10));
                     now = std::chrono::steady_clock::now();
                 }
-                auto time_point = std::chrono::system_clock::now();
-                std::time_t now_c = std::chrono::system_clock::to_time_t(time_point);
-                std::cout << std::ctime(&now_c) << "\n";
-                getManager()->pushPrioritisedEvent<TimerEvent>(getServiceId(), _priority.load(std::memory_order_acquire), 10, 11, 15);
+
+                MyTimePoint startTimePoint = std::chrono::time_point_cast<MyTimePoint::duration>(std::chrono::steady_clock::time_point(std::chrono::steady_clock::now()));
+                MyTimePoint endTimePoint = startTimePoint;
+                startTimePoint += std::chrono::milliseconds(15);
+
+                // auto time_point = std::chrono::system_clock::now();
+                // std::time_t now_c = std::chrono::system_clock::to_time_t(time_point);
+                // std::cout << std::ctime(&now_c) << "\n";
+                getManager()->pushPrioritisedEvent<TimerEvent>(getServiceId(), _priority.load(std::memory_order_acquire), 10, 11, startTimePoint);
 
                 next += std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
             }
         }
 
+        typedef std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> MyTimePoint;
         std::atomic<uint64_t> _intervalNanosec;
         std::unique_ptr<std::thread> _eventInsertionThread;
         std::atomic<bool> _quit;

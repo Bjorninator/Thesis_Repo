@@ -269,6 +269,8 @@ ichor/Dependency.h
 -
 ichor/Callbacks.h
 -
+chrono
+-
 
 include/ichor/Filter.h
 ichor/Common.h

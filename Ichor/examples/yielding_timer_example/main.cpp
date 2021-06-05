@@ -32,7 +32,7 @@ int main() {
     dm.createServiceManager<UsingTimerService, IUsingTimerService>();
     dm.createServiceManager<OtherTimerService, IOtherTimerService>();
     
-    dm.startFP();
+    dm.startEDF();
     auto end = std::chrono::steady_clock::now();
     fmt::print("Program ran for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(end-start).count());
 
