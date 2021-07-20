@@ -24,8 +24,10 @@ benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: incl
 benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/GetThreadLocalMemoryResource.h
 benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/LifecycleManager.h
 benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/Service.h
+benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/bst.h
 benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/interfaces/IFrameworkLogger.h
 benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/interfaces/LogLevel.h
+benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/lock_free_bst.h
 benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/optional_bundles/logging_bundle/CoutFrameworkLogger.h
 benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/optional_bundles/logging_bundle/CoutLogger.h
 benchmarks/CMakeFiles/ichor_event_benchmark.dir/event_benchmark/main.cpp.o: include/ichor/optional_bundles/logging_bundle/Logger.h

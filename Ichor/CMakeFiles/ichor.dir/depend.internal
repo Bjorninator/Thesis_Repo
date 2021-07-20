@@ -36,8 +36,10 @@ CMakeFiles/ichor.dir/src/ichor/DependencyManager.cpp.o
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/sole.hpp
  include/ichor/stl/Any.h
  include/ichor/stl/ConditionVariable.h
@@ -73,8 +75,10 @@ CMakeFiles/ichor.dir/src/ichor/LifecycleManager.cpp.o
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/sole.hpp
  include/ichor/stl/Any.h
  include/ichor/stl/ConditionVariable.h
@@ -107,8 +111,10 @@ CMakeFiles/ichor.dir/src/ichor/Service.cpp.o
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/sole.hpp
  include/ichor/stl/Any.h
  include/ichor/stl/ConditionVariable.h
@@ -190,8 +196,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogFrameworkLogger.c
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/SpdlogFrameworkLogger.h
  include/ichor/sole.hpp
  include/ichor/stl/Any.h
@@ -225,8 +233,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogLogger.cpp.o
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/Logger.h
  include/ichor/optional_bundles/logging_bundle/SpdlogLogger.h
  include/ichor/optional_bundles/logging_bundle/SpdlogSharedService.h
@@ -262,8 +272,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/logging_bundle/SpdlogSharedService.cpp
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/SpdlogSharedService.h
  include/ichor/sole.hpp
  include/ichor/stl/Any.h
@@ -297,8 +309,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/metrics_bundle/EventStatisticsService.
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/Logger.h
  include/ichor/optional_bundles/metrics_bundle/EventStatisticsService.h
  include/ichor/optional_bundles/timer_bundle/ITimer.h
@@ -337,8 +351,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpConnectionServ
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/Logger.h
  include/ichor/optional_bundles/network_bundle/http/HttpCommon.h
  include/ichor/optional_bundles/network_bundle/http/HttpConnectionService.h
@@ -375,8 +391,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/http/HttpHostService.cp
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/Logger.h
  include/ichor/optional_bundles/network_bundle/http/HttpCommon.h
  include/ichor/optional_bundles/network_bundle/http/HttpHostService.h
@@ -413,8 +431,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpConnectionServic
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/Logger.h
  include/ichor/optional_bundles/network_bundle/IConnectionService.h
  include/ichor/optional_bundles/network_bundle/NetworkDataEvent.h
@@ -451,8 +471,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/tcp/TcpHostService.cpp.
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/Logger.h
  include/ichor/optional_bundles/network_bundle/IConnectionService.h
  include/ichor/optional_bundles/network_bundle/IHostService.h
@@ -494,8 +516,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsConnectionService.
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/Logger.h
  include/ichor/optional_bundles/network_bundle/IConnectionService.h
  include/ichor/optional_bundles/network_bundle/IHostService.h
@@ -535,8 +559,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/network_bundle/ws/WsHostService.cpp.o
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/Logger.h
  include/ichor/optional_bundles/network_bundle/IConnectionService.h
  include/ichor/optional_bundles/network_bundle/IHostService.h
@@ -577,8 +603,10 @@ CMakeFiles/ichor.dir/src/optional_bundles/serialization_bundle/SerializationAdmi
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/Logger.h
  include/ichor/optional_bundles/serialization_bundle/ISerializationAdmin.h
  include/ichor/optional_bundles/serialization_bundle/SerializationAdmin.h

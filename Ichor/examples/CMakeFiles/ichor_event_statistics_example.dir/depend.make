@@ -24,8 +24,10 @@ examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/
 examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/GetThreadLocalMemoryResource.h
 examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/LifecycleManager.h
 examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/Service.h
+examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/bst.h
 examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/interfaces/IFrameworkLogger.h
 examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/interfaces/LogLevel.h
+examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/lock_free_bst.h
 examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/optional_bundles/logging_bundle/CoutFrameworkLogger.h
 examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/optional_bundles/logging_bundle/CoutLogger.h
 examples/CMakeFiles/ichor_event_statistics_example.dir/event_statistics_example/main.cpp.o: include/ichor/optional_bundles/logging_bundle/Logger.h

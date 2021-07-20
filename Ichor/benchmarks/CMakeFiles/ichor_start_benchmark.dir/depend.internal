@@ -25,8 +25,10 @@ benchmarks/CMakeFiles/ichor_start_benchmark.dir/start_benchmark/main.cpp.o
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/CoutFrameworkLogger.h
  include/ichor/optional_bundles/logging_bundle/CoutLogger.h
  include/ichor/optional_bundles/logging_bundle/Logger.h

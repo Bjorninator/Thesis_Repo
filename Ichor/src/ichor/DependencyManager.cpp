@@ -419,12 +419,13 @@ setThreadLocalMemoryResource(_memResource);
         std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
             TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
+
             auto HighestNode = _eventQueue.begin();
             for (auto nodes = _eventQueue.begin(); nodes != _eventQueue.end(); ++nodes){
                std::chrono::duration<double, std::milli> elap {nodes->second.get()->deadline - std::chrono::steady_clock::now()};
                if(elap.count() > 0){
                    nodes->second.get()-> priority = elap.count(); 
-                   if(HighestNode->second.get()->priority < elap.count() ) {std::cout << HighestNode->second.get()->priority << " it happened :" << elap.count() << "\n"; HighestNode = nodes; }
+                   if(HighestNode->second.get()->priority > round(elap.count()) ) {std::cout << HighestNode->second.get()->priority << " it happened :" << round(elap.count()) << "\n"; HighestNode = nodes; }
                    }
             }
 

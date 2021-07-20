@@ -11,6 +11,9 @@
 /home/bjorn/Thesis/git_repo/Ichor/examples/CMakeFiles/ichor_optional_dependency_example.dir
 /home/bjorn/Thesis/git_repo/Ichor/examples/CMakeFiles/ichor_tracker_example.dir
 /home/bjorn/Thesis/git_repo/Ichor/examples/CMakeFiles/ichor_minimal_example.dir
+/home/bjorn/Thesis/git_repo/Ichor/CyclicTest/CMakeFiles/edit_cache.dir
+/home/bjorn/Thesis/git_repo/Ichor/CyclicTest/CMakeFiles/rebuild_cache.dir
+/home/bjorn/Thesis/git_repo/Ichor/CyclicTest/CMakeFiles/Cyclic_test_ichor.dir
 /home/bjorn/Thesis/git_repo/Ichor/benchmarks/CMakeFiles/rebuild_cache.dir
 /home/bjorn/Thesis/git_repo/Ichor/benchmarks/CMakeFiles/edit_cache.dir
 /home/bjorn/Thesis/git_repo/Ichor/benchmarks/CMakeFiles/ichor_event_benchmark.dir

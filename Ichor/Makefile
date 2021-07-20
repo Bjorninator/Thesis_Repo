@@ -231,6 +231,19 @@ ichor_minimal_example/fast:
 .PHONY : ichor_minimal_example/fast
 
 #=============================================================================
+# Target rules for targets named Cyclic_test_ichor
+
+# Build rule for target.
+Cyclic_test_ichor: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Cyclic_test_ichor
+.PHONY : Cyclic_test_ichor
+
+# fast build rule for target.
+Cyclic_test_ichor/fast:
+	$(MAKE) -f CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/build.make CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/build
+.PHONY : Cyclic_test_ichor/fast
+
+#=============================================================================
 # Target rules for targets named ichor_event_benchmark
 
 # Build rule for target.
@@ -1283,6 +1296,7 @@ help:
 	@echo "... ichor_optional_dependency_example"
 	@echo "... ichor_tracker_example"
 	@echo "... ichor_minimal_example"
+	@echo "... Cyclic_test_ichor"
 	@echo "... ichor_event_benchmark"
 	@echo "... ichor_start_benchmark"
 	@echo "... ichor_start_stop_benchmark"

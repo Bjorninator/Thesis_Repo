@@ -56,8 +56,10 @@ test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/Gener
 test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/GetThreadLocalMemoryResource.h
 test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/LifecycleManager.h
 test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/Service.h
+test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/bst.h
 test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/interfaces/IFrameworkLogger.h
 test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/interfaces/LogLevel.h
+test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/lock_free_bst.h
 test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/optional_bundles/logging_bundle/NullFrameworkLogger.h
 test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/sole.hpp
 test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o: include/ichor/stl/Any.h
@@ -126,8 +128,10 @@ test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/Gene
 test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/GetThreadLocalMemoryResource.h
 test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/LifecycleManager.h
 test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/Service.h
+test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/bst.h
 test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/interfaces/IFrameworkLogger.h
 test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/interfaces/LogLevel.h
+test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/lock_free_bst.h
 test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/optional_bundles/logging_bundle/NullFrameworkLogger.h
 test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/sole.hpp
 test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o: include/ichor/stl/Any.h

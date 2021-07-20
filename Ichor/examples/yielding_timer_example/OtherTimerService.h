@@ -23,6 +23,7 @@ public:
         ICHOR_LOG_INFO(_logger, "OtherTimerService started");
         _timerManager = getManager()->createServiceManager<Timer, ITimer>();
         _timerManager->setChronoInterval(std::chrono::milliseconds(500));
+        _timerManager->setDeadlineInterval(std::chrono::milliseconds(20));
         _timerEventRegistration = getManager()->registerEventHandler<TimerEvent>(this, _timerManager->getServiceId());
         _timerManager->startTimer();
         return true;

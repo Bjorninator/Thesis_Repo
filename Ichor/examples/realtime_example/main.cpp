@@ -50,7 +50,7 @@ void* run_example(void*) {
         dm.createServiceManager<OptionalService, IOptionalService>();
         dm.createServiceManager<OptionalService, IOptionalService>();
         dm.createServiceManager<TestService>();
-        dm.startFP();
+        dm.startEDF();
     }
     auto end = std::chrono::steady_clock::now();
 #ifndef NDEBUG

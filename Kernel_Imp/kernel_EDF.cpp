@@ -132,7 +132,7 @@ int main (int argc, char **argv)
 	printf("main thread [%ld]\n", gettid());
 	pthread_create (&thread, NULL, run_deadline, NULL);
     pthread_create (&thread, NULL, run_deadline2, NULL);
- 	sleep(1);
+ 	sleep(60);
 	done = 1;
 	pthread_join (thread, NULL);
 	

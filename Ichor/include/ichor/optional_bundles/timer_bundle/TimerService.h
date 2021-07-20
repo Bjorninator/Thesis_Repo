@@ -5,6 +5,7 @@
 #include <ichor/DependencyManager.h>
 #include <chrono>
 #include <thread>
+#include <sched.h>
 #include <ichor/optional_bundles/timer_bundle/ITimer.h>
 
 namespace Ichor {
@@ -12,7 +13,7 @@ namespace Ichor {
     // Rather shaddy implementation, setting the interval does not reset the insertEventLoop function and the sleep_for is sketchy at best.
     class Timer final : public ITimer, public Service<Timer> {
     public:
-        Timer() noexcept : _intervalNanosec(0), _eventInsertionThread(nullptr), _quit(true), _priority(INTERNAL_EVENT_PRIORITY) {
+        Timer() noexcept : _intervalNanosec(0), _eventInsertionThread(nullptr), _quit(true), _priority(INTERNAL_EVENT_PRIORITY), _intervalDeadline(0) {
         }
 
         ~Timer() noexcept final {
@@ -51,6 +52,9 @@ namespace Ichor {
             _intervalNanosec.store(nanoseconds, std::memory_order_release);
         }
 
+        void setDeadline(uint64_t milliseconds) noexcept final {
+            _intervalDeadline.store(milliseconds, std::memory_order_release);
+        }
 
         void setPriority(uint64_t priority) noexcept final {
             _priority.store(priority, std::memory_order_release);
@@ -60,33 +64,66 @@ namespace Ichor {
             return _priority.load(std::memory_order_acquire);
         }
 
+    typedef std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> MyTimePoint;
+
     private:
+        typedef unsigned long long u64;
+        std::atomic<uint64_t> _intervalNanosec;
+        std::unique_ptr<std::thread> _eventInsertionThread;
+        std::atomic<bool> _quit;
+        std::atomic<uint64_t> _priority;
+        std::atomic<uint64_t> period;
+        std::atomic<uint64_t> runtimeStart;
+        std::atomic<uint64_t> runtimeEnd;
+        std::atomic<uint64_t> _intervalDeadline;
+        struct sched_param sp;
+
         void insertEventLoop() {
-            auto now = std::chrono::steady_clock::now();
-            auto next = now + std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
+
+            sp.sched_priority = sched_get_priority_min(SCHED_FIFO);
+                if (sched_setscheduler(0, SCHED_FIFO, &sp) == -1)
+                    perror("sched_setscheduler");
+
             while(!_quit.load(std::memory_order_acquire)) {
+                // runtimeStart = get_time_us();
+                auto now = std::chrono::steady_clock::now();
+                auto next = now + std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
+
+                period = get_time_us() + 500000;
+
                 while(now < next && !_quit.load(std::memory_order_acquire)) {
                     std::this_thread::sleep_for(std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire)/10));
                     now = std::chrono::steady_clock::now();
+                    // period = get_time_us();
                 }
-
                 MyTimePoint startTimePoint = std::chrono::time_point_cast<MyTimePoint::duration>(std::chrono::steady_clock::time_point(std::chrono::steady_clock::now()));
                 MyTimePoint endTimePoint = startTimePoint;
-                startTimePoint += std::chrono::milliseconds(15);
+                startTimePoint += std::chrono::milliseconds(_intervalDeadline.load(std::memory_order_acquire));
 
                 // auto time_point = std::chrono::system_clock::now();
                 // std::time_t now_c = std::chrono::system_clock::to_time_t(time_point);
                 // std::cout << std::ctime(&now_c) << "\n";
-                getManager()->pushPrioritisedEvent<TimerEvent>(getServiceId(), _priority.load(std::memory_order_acquire), 10, 11, startTimePoint);
+                // runtimeEnd = get_time_us();
+                // std::cout << "Takes so long: " << (runtimeEnd - runtimeStart) << "\n";
+
+                // std::cout << "YO what is it: "<< get_time_us() - period << "\n";
+                // period += (get_time_us() - period);
+                getManager()->pushPrioritisedEvent<TimerEvent>(getServiceId(), _priority.load(std::memory_order_acquire), 10, period, startTimePoint);
 
                 next += std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
             }
         }
 
-        typedef std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> MyTimePoint;
-        std::atomic<uint64_t> _intervalNanosec;
-        std::unique_ptr<std::thread> _eventInsertionThread;
-        std::atomic<bool> _quit;
-        std::atomic<uint64_t> _priority;
+        static u64 get_time_us(void)
+        {
+            struct timespec ts;
+            u64 time;
+
+            clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+            time = ts.tv_sec * 1000000;
+            time += ts.tv_nsec / 1000;
+
+            return time;
+        }
     };
 }

@@ -3,12 +3,15 @@
 #include <vector>
 #include <unordered_map>
 #include <map>
+#include <iostream>
+#include <string>
 #include <memory>
 #include <cassert>
 #include <thread>
 #include <chrono>
 #include <atomic>
 #include <csignal>
+#include <typeinfo>
 #include <condition_variable>
 #include <ichor/interfaces/IFrameworkLogger.h>
 #include <ichor/Service.h>
@@ -22,6 +25,8 @@
 #include <ichor/stl/ConditionVariable.h>
 #include <ichor/stl/ConditionVariableAny.h>
 #include <ichor/stl/EventStackUniquePtr.h>
+#include <ichor/lock_free_bst.h>
+#include <ichor/bst.h>
 
 // prevent false positives by TSAN
 // See "ThreadSanitizer – data race detection in practice" by Serebryany et al. for more info: https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/35604.pdf
@@ -170,7 +175,7 @@ namespace Ichor {
             static_assert(sizeof(EventT) <= 128, "event type cannot be larger than 128 bytes");
 
             if(_quit.load(std::memory_order_acquire)) {
-                ICHOR_LOG_TRACE(_logger, "inserting event of type {} into manager {}, but have to quit", typeName<EventT>(), getId());
+                // ICHOR_LOG_TRACE(_logger, "inserting event of type {} into manager {}, but have to quit", typeName<EventT>(), getId());
                 return 0;
             }
 
@@ -178,10 +183,18 @@ namespace Ichor {
             _eventQueueMutex.lock();
             _emptyQueue = false;
             [[maybe_unused]] auto it = _eventQueue.emplace(priority, EventStackUniquePtr::create<EventT>(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...));
+            
+            EventStackUniquePtr test = EventStackUniquePtr::create<EventT>(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...);
+            uint64_t first = test.get()->priority;
+            std::cout << first;
+            // _eventQueueBst->insert(first.mapped());
+            //_eventQueueBst->insert(0);
+           //  bool Test1 = _eventQueueBst->contains(0)
+
             TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*it));
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
-            ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
+            // ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
             return eventId;
         }
 
@@ -200,7 +213,6 @@ namespace Ichor {
                 ICHOR_LOG_TRACE(_logger, "inserting event of type {} into manager {}, but have to quit", typeName<EventT>(), getId());
                 return 0;
             }
-
             uint64_t eventId = _eventIdCounter.fetch_add(1, std::memory_order_acq_rel);
             _eventQueueMutex.lock();
             _emptyQueue = false;
@@ -483,6 +495,7 @@ namespace Ichor {
         IFrameworkLogger *_logger{nullptr};
         std::shared_ptr<ILifecycleManager> _preventEarlyDestructionOfFrameworkLogger{nullptr};
         std::pmr::multimap<uint64_t, EventStackUniquePtr> _eventQueue{_eventMemResource};
+        std::unique_ptr<BinarySearchTree> _eventQueueBst{std::make_unique<BST>()};
         RealtimeReadWriteMutex _eventQueueMutex{};
         ConditionVariableAny<RealtimeReadWriteMutex> _wakeUp{_eventQueueMutex};
         std::atomic<uint64_t> _eventIdCounter{0};

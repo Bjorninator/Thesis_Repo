@@ -160,6 +160,7 @@ endif()
 
 if(BUILD_EXAMPLES)
     add_subdirectory(examples)
+    add_subdirectory(CyclicTest)
 endif()
 if(BUILD_BENCHMARKS)
     add_subdirectory(benchmarks)

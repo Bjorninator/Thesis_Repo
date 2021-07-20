@@ -40,6 +40,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/bjorn/Thesis/git_repo/Ichor/examples/cmake_install.cmake")
+  include("/home/bjorn/Thesis/git_repo/Ichor/CyclicTest/cmake_install.cmake")
   include("/home/bjorn/Thesis/git_repo/Ichor/benchmarks/cmake_install.cmake")
   include("/home/bjorn/Thesis/git_repo/Ichor/external/Catch2/cmake_install.cmake")
   include("/home/bjorn/Thesis/git_repo/Ichor/test/cmake_install.cmake")

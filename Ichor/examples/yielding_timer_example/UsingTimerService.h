@@ -22,7 +22,8 @@ public:
     bool start() final {
         ICHOR_LOG_INFO(_logger, "UsingTimerService started");
         _timerManager = getManager()->createServiceManager<Timer, ITimer>();
-        _timerManager->setChronoInterval(std::chrono::milliseconds(400));
+        _timerManager->setChronoInterval(std::chrono::milliseconds(200));
+        _timerManager->setDeadlineInterval(std::chrono::milliseconds(15));
         _timerEventRegistration = getManager()->registerEventHandler<TimerEvent>(this, _timerManager->getServiceId());
         _timerManager->startTimer();
         return true;

@@ -57,8 +57,10 @@ test/CMakeFiles/ichor_test.dir/DependencyManagerTests.cpp.o
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/NullFrameworkLogger.h
  include/ichor/sole.hpp
  include/ichor/stl/Any.h
@@ -127,8 +129,10 @@ test/CMakeFiles/ichor_test.dir/DependencyServicesTests.cpp.o
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/NullFrameworkLogger.h
  include/ichor/sole.hpp
  include/ichor/stl/Any.h

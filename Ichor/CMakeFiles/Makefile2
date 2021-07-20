@@ -58,6 +58,7 @@ CMAKE_BINARY_DIR = /home/bjorn/Thesis/git_repo/Ichor
 # The main recursive "all" target.
 all: CMakeFiles/ichor.dir/all
 all: examples/all
+all: CyclicTest/all
 all: benchmarks/all
 all: external/Catch2/all
 all: test/all
@@ -66,6 +67,7 @@ all: test/all
 
 # The main recursive "preinstall" target.
 preinstall: examples/preinstall
+preinstall: CyclicTest/preinstall
 preinstall: benchmarks/preinstall
 preinstall: external/Catch2/preinstall
 preinstall: test/preinstall
@@ -75,11 +77,30 @@ preinstall: test/preinstall
 # The main recursive "clean" target.
 clean: CMakeFiles/ichor.dir/clean
 clean: examples/clean
+clean: CyclicTest/clean
 clean: benchmarks/clean
 clean: external/Catch2/clean
 clean: test/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory CyclicTest
+
+# Recursive "all" directory target.
+CyclicTest/all: CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/all
+
+.PHONY : CyclicTest/all
+
+# Recursive "preinstall" directory target.
+CyclicTest/preinstall:
+
+.PHONY : CyclicTest/preinstall
+
+# Recursive "clean" directory target.
+CyclicTest/clean: CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/clean
+
+.PHONY : CyclicTest/clean
 
 #=============================================================================
 # Directory level rules for directory benchmarks
@@ -226,12 +247,12 @@ test/clean: test/CMakeFiles/ichor_test.dir/clean
 CMakeFiles/ichor.dir/all:
 	$(MAKE) -f CMakeFiles/ichor.dir/build.make CMakeFiles/ichor.dir/depend
 	$(MAKE) -f CMakeFiles/ichor.dir/build.make CMakeFiles/ichor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78 "Built target ichor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78 "Built target ichor"
 .PHONY : CMakeFiles/ichor.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ichor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 19
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/ichor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : CMakeFiles/ichor.dir/rule
@@ -253,12 +274,12 @@ CMakeFiles/ichor.dir/clean:
 examples/CMakeFiles/ichor_event_statistics_example.dir/all: CMakeFiles/ichor.dir/all
 	$(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/depend
 	$(MAKE) -f examples/CMakeFiles/ichor_event_statistics_example.dir/build.make examples/CMakeFiles/ichor_event_statistics_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=82,83 "Built target ichor_event_statistics_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=83,84 "Built target ichor_event_statistics_example"
 .PHONY : examples/CMakeFiles/ichor_event_statistics_example.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/ichor_event_statistics_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_event_statistics_example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : examples/CMakeFiles/ichor_event_statistics_example.dir/rule
@@ -285,7 +306,7 @@ examples/CMakeFiles/ichor_multithreaded_example.dir/all: CMakeFiles/ichor.dir/al
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/ichor_multithreaded_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_multithreaded_example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : examples/CMakeFiles/ichor_multithreaded_example.dir/rule
@@ -312,7 +333,7 @@ examples/CMakeFiles/ichor_yielding_timer_example.dir/all: CMakeFiles/ichor.dir/a
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/ichor_yielding_timer_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_yielding_timer_example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : examples/CMakeFiles/ichor_yielding_timer_example.dir/rule
@@ -339,7 +360,7 @@ examples/CMakeFiles/ichor_timer_example.dir/all: CMakeFiles/ichor.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/ichor_timer_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_timer_example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : examples/CMakeFiles/ichor_timer_example.dir/rule
@@ -366,7 +387,7 @@ examples/CMakeFiles/ichor_bjorn_usecase.dir/all: CMakeFiles/ichor.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/ichor_bjorn_usecase.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_bjorn_usecase.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : examples/CMakeFiles/ichor_bjorn_usecase.dir/rule
@@ -388,7 +409,7 @@ examples/CMakeFiles/ichor_bjorn_usecase.dir/clean:
 examples/CMakeFiles/ichor_optional_dependency_example.dir/all: CMakeFiles/ichor.dir/all
 	$(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/depend
 	$(MAKE) -f examples/CMakeFiles/ichor_optional_dependency_example.dir/build.make examples/CMakeFiles/ichor_optional_dependency_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=88 "Built target ichor_optional_dependency_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=88,89 "Built target ichor_optional_dependency_example"
 .PHONY : examples/CMakeFiles/ichor_optional_dependency_example.dir/all
 
 # Build rule for subdir invocation for target.
@@ -420,7 +441,7 @@ examples/CMakeFiles/ichor_tracker_example.dir/all: CMakeFiles/ichor.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/ichor_tracker_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_tracker_example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : examples/CMakeFiles/ichor_tracker_example.dir/rule
@@ -442,12 +463,12 @@ examples/CMakeFiles/ichor_tracker_example.dir/clean:
 examples/CMakeFiles/ichor_minimal_example.dir/all: CMakeFiles/ichor.dir/all
 	$(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/depend
 	$(MAKE) -f examples/CMakeFiles/ichor_minimal_example.dir/build.make examples/CMakeFiles/ichor_minimal_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=84,85 "Built target ichor_minimal_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=85 "Built target ichor_minimal_example"
 .PHONY : examples/CMakeFiles/ichor_minimal_example.dir/all
 
 # Build rule for subdir invocation for target.
 examples/CMakeFiles/ichor_minimal_example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 20
 	$(MAKE) -f CMakeFiles/Makefile2 examples/CMakeFiles/ichor_minimal_example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : examples/CMakeFiles/ichor_minimal_example.dir/rule
@@ -463,13 +484,40 @@ examples/CMakeFiles/ichor_minimal_example.dir/clean:
 .PHONY : examples/CMakeFiles/ichor_minimal_example.dir/clean
 
 #=============================================================================
+# Target rules for target CyclicTest/CMakeFiles/Cyclic_test_ichor.dir
+
+# All Build rule for target.
+CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/all: CMakeFiles/ichor.dir/all
+	$(MAKE) -f CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/build.make CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/depend
+	$(MAKE) -f CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/build.make CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=58,59 "Built target Cyclic_test_ichor"
+.PHONY : CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/all
+
+# Build rule for subdir invocation for target.
+CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 21
+	$(MAKE) -f CMakeFiles/Makefile2 CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
+.PHONY : CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/rule
+
+# Convenience name for target.
+Cyclic_test_ichor: CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/rule
+
+.PHONY : Cyclic_test_ichor
+
+# clean rule for target.
+CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/clean:
+	$(MAKE) -f CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/build.make CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/clean
+.PHONY : CyclicTest/CMakeFiles/Cyclic_test_ichor.dir/clean
+
+#=============================================================================
 # Target rules for target benchmarks/CMakeFiles/ichor_event_benchmark.dir
 
 # All Build rule for target.
 benchmarks/CMakeFiles/ichor_event_benchmark.dir/all: CMakeFiles/ichor.dir/all
 	$(MAKE) -f benchmarks/CMakeFiles/ichor_event_benchmark.dir/build.make benchmarks/CMakeFiles/ichor_event_benchmark.dir/depend
 	$(MAKE) -f benchmarks/CMakeFiles/ichor_event_benchmark.dir/build.make benchmarks/CMakeFiles/ichor_event_benchmark.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=81 "Built target ichor_event_benchmark"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=81,82 "Built target ichor_event_benchmark"
 .PHONY : benchmarks/CMakeFiles/ichor_event_benchmark.dir/all
 
 # Build rule for subdir invocation for target.
@@ -496,12 +544,12 @@ benchmarks/CMakeFiles/ichor_event_benchmark.dir/clean:
 benchmarks/CMakeFiles/ichor_start_benchmark.dir/all: CMakeFiles/ichor.dir/all
 	$(MAKE) -f benchmarks/CMakeFiles/ichor_start_benchmark.dir/build.make benchmarks/CMakeFiles/ichor_start_benchmark.dir/depend
 	$(MAKE) -f benchmarks/CMakeFiles/ichor_start_benchmark.dir/build.make benchmarks/CMakeFiles/ichor_start_benchmark.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=89,90 "Built target ichor_start_benchmark"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=90 "Built target ichor_start_benchmark"
 .PHONY : benchmarks/CMakeFiles/ichor_start_benchmark.dir/all
 
 # Build rule for subdir invocation for target.
 benchmarks/CMakeFiles/ichor_start_benchmark.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 20
 	$(MAKE) -f CMakeFiles/Makefile2 benchmarks/CMakeFiles/ichor_start_benchmark.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : benchmarks/CMakeFiles/ichor_start_benchmark.dir/rule
@@ -528,7 +576,7 @@ benchmarks/CMakeFiles/ichor_start_stop_benchmark.dir/all: CMakeFiles/ichor.dir/a
 
 # Build rule for subdir invocation for target.
 benchmarks/CMakeFiles/ichor_start_stop_benchmark.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 22
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 21
 	$(MAKE) -f CMakeFiles/Makefile2 benchmarks/CMakeFiles/ichor_start_stop_benchmark.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : benchmarks/CMakeFiles/ichor_start_stop_benchmark.dir/rule
@@ -1306,12 +1354,12 @@ external/Catch2/CMakeFiles/NightlyMemCheck.dir/clean:
 external/Catch2/src/CMakeFiles/Catch2WithMain.dir/all: external/Catch2/src/CMakeFiles/Catch2.dir/all
 	$(MAKE) -f external/Catch2/src/CMakeFiles/Catch2WithMain.dir/build.make external/Catch2/src/CMakeFiles/Catch2WithMain.dir/depend
 	$(MAKE) -f external/Catch2/src/CMakeFiles/Catch2WithMain.dir/build.make external/Catch2/src/CMakeFiles/Catch2WithMain.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=57,58 "Built target Catch2WithMain"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=56,57 "Built target Catch2WithMain"
 .PHONY : external/Catch2/src/CMakeFiles/Catch2WithMain.dir/all
 
 # Build rule for subdir invocation for target.
 external/Catch2/src/CMakeFiles/Catch2WithMain.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 58
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 57
 	$(MAKE) -f CMakeFiles/Makefile2 external/Catch2/src/CMakeFiles/Catch2WithMain.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : external/Catch2/src/CMakeFiles/Catch2WithMain.dir/rule
@@ -1333,12 +1381,12 @@ external/Catch2/src/CMakeFiles/Catch2WithMain.dir/clean:
 external/Catch2/src/CMakeFiles/Catch2.dir/all:
 	$(MAKE) -f external/Catch2/src/CMakeFiles/Catch2.dir/build.make external/Catch2/src/CMakeFiles/Catch2.dir/depend
 	$(MAKE) -f external/Catch2/src/CMakeFiles/Catch2.dir/build.make external/Catch2/src/CMakeFiles/Catch2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56 "Built target Catch2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/bjorn/Thesis/git_repo/Ichor/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55 "Built target Catch2"
 .PHONY : external/Catch2/src/CMakeFiles/Catch2.dir/all
 
 # Build rule for subdir invocation for target.
 external/Catch2/src/CMakeFiles/Catch2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 56
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 55
 	$(MAKE) -f CMakeFiles/Makefile2 external/Catch2/src/CMakeFiles/Catch2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : external/Catch2/src/CMakeFiles/Catch2.dir/rule
@@ -1367,7 +1415,7 @@ test/CMakeFiles/ichor_test.dir/all: external/Catch2/src/CMakeFiles/Catch2.dir/al
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/ichor_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 80
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 78
 	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/ichor_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/bjorn/Thesis/git_repo/Ichor/CMakeFiles 0
 .PHONY : test/CMakeFiles/ichor_test.dir/rule

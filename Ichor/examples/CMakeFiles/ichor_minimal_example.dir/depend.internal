@@ -24,8 +24,10 @@ examples/CMakeFiles/ichor_minimal_example.dir/minimal_example/main.cpp.o
  include/ichor/GetThreadLocalMemoryResource.h
  include/ichor/LifecycleManager.h
  include/ichor/Service.h
+ include/ichor/bst.h
  include/ichor/interfaces/IFrameworkLogger.h
  include/ichor/interfaces/LogLevel.h
+ include/ichor/lock_free_bst.h
  include/ichor/optional_bundles/logging_bundle/CoutFrameworkLogger.h
  include/ichor/optional_bundles/timer_bundle/ITimer.h
  include/ichor/optional_bundles/timer_bundle/TimerService.h
