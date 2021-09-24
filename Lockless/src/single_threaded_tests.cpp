@@ -28,8 +28,7 @@ bool test_single_add() {
     INIT_TEST;
     std::unique_ptr<BinarySearchTree> bst = std::make_unique<BST>();
     EXPECT(bst->insert(1));
-    EXPECT_NOT(bst->contains(1));
-    std::cout << "Yo\n";
+    EXPECT(bst->contains(1));
     EXIT_TEST;
 }
 

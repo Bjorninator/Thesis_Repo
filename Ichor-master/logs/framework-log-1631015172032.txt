@@ -1,0 +1,26 @@
+[21-09-07 13:46:12.074] [SpdlogFrameworkLogger.cpp:39] [T] SpdlogFrameworkLogger constructor
+[21-09-07 13:46:12.123] [DependencyManager.h:433] [D] added ServiceManager<Ichor::IFrameworkLogger, Ichor::SpdlogFrameworkLogger>
+[21-09-07 13:46:12.126] [SpdlogFrameworkLogger.cpp:78] [T] SpdlogFrameworkLogger started
+[21-09-07 13:46:12.135] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ISpdlogSharedService, Ichor::SpdlogSharedService>
+[21-09-07 13:46:12.146] [LifecycleManager.h:284] [D] Started Ichor::SpdlogSharedService
+[21-09-07 13:46:12.155] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ILoggerAdmin, Ichor::LoggerAdmin<Ichor::SpdlogLogger>>
+[21-09-07 13:46:12.159] [LoggerAdmin.h:32] [T] Inserted logger
+[21-09-07 13:46:12.168] [LifecycleManager.h:168] [D] Started Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-09-07 13:46:12.175] [DependencyManager.h:433] [D] added ServiceManager<IUsingTimerService, UsingTimerService>
+[21-09-07 13:46:12.185] [DependencyManager.h:433] [D] added ServiceManager<IOtherTimerService, OtherTimerService>
+[21-09-07 13:46:12.190] [DependencyManager.cpp:393] [D] starting dm
+[21-09-07 13:46:12.192] [DependencyManager.cpp:397] [T] depman 0 has 8 events
+[21-09-07 13:46:12.217] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ILogger, Ichor::SpdlogLogger>
+[21-09-07 13:46:12.228] [LifecycleManager.h:168] [D] Started Ichor::SpdlogLogger
+[21-09-07 13:46:12.233] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ILogger, Ichor::SpdlogLogger>
+[21-09-07 13:46:12.235] [LifecycleManager.h:168] [D] Started Ichor::SpdlogLogger
+[21-09-07 13:46:12.240] [UsingTimerService.h:23] [I] UsingTimerService started
+[21-09-07 13:46:12.243] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ITimer, Ichor::Timer>
+[21-09-07 13:46:12.243] [LifecycleManager.h:284] [D] Started Ichor::Timer
+[21-09-07 13:46:12.293] [LifecycleManager.h:168] [D] Started UsingTimerService
+[21-09-07 13:46:12.297] [OtherTimerService.h:23] [I] OtherTimerService started
+[21-09-07 13:46:12.298] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ITimer, Ichor::Timer>
+[21-09-07 13:46:12.298] [LifecycleManager.h:284] [D] Started Ichor::Timer
+[21-09-07 13:46:12.343] [LifecycleManager.h:168] [D] Started OtherTimerService
+[21-09-07 13:46:12.857] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-09-07 13:46:12.858] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0

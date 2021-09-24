@@ -1,0 +1,147 @@
+[21-07-26 13:46:30.133] [SpdlogFrameworkLogger.cpp:39] [T] SpdlogFrameworkLogger constructor
+[21-07-26 13:46:30.133] [DependencyManager.h:433] [D] added ServiceManager<Ichor::IFrameworkLogger, Ichor::SpdlogFrameworkLogger>
+[21-07-26 13:46:30.133] [SpdlogFrameworkLogger.cpp:78] [T] SpdlogFrameworkLogger started
+[21-07-26 13:46:30.133] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ISpdlogSharedService, Ichor::SpdlogSharedService>
+[21-07-26 13:46:30.133] [LifecycleManager.h:284] [D] Started Ichor::SpdlogSharedService
+[21-07-26 13:46:30.133] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ILoggerAdmin, Ichor::LoggerAdmin<Ichor::SpdlogLogger>>
+[21-07-26 13:46:30.133] [LoggerAdmin.h:32] [T] Inserted logger
+[21-07-26 13:46:30.133] [LifecycleManager.h:168] [D] Started Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-07-26 13:46:30.134] [DependencyManager.h:433] [D] added ServiceManager<IUsingTimerService, UsingTimerService>
+[21-07-26 13:46:30.134] [DependencyManager.h:433] [D] added ServiceManager<IOtherTimerService, OtherTimerService>
+[21-07-26 13:46:30.134] [DependencyManager.cpp:32] [D] starting dm
+[21-07-26 13:46:30.134] [DependencyManager.cpp:36] [T] depman 0 has 8 events
+[21-07-26 13:46:30.134] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ILogger, Ichor::SpdlogLogger>
+[21-07-26 13:46:30.135] [LifecycleManager.h:168] [D] Started Ichor::SpdlogLogger
+[21-07-26 13:46:30.135] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ILogger, Ichor::SpdlogLogger>
+[21-07-26 13:46:30.135] [LifecycleManager.h:168] [D] Started Ichor::SpdlogLogger
+[21-07-26 13:46:30.135] [UsingTimerService.h:23] [I] UsingTimerService started
+[21-07-26 13:46:30.135] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ITimer, Ichor::Timer>
+[21-07-26 13:46:30.135] [LifecycleManager.h:284] [D] Started Ichor::Timer
+[21-07-26 13:46:30.135] [LifecycleManager.h:168] [D] Started UsingTimerService
+[21-07-26 13:46:30.136] [OtherTimerService.h:23] [I] OtherTimerService started
+[21-07-26 13:46:30.136] [DependencyManager.h:433] [D] added ServiceManager<Ichor::ITimer, Ichor::Timer>
+[21-07-26 13:46:30.136] [LifecycleManager.h:284] [D] Started Ichor::Timer
+[21-07-26 13:46:30.136] [LifecycleManager.h:168] [D] Started OtherTimerService
+[21-07-26 13:46:30.636] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:30.636] [UsingTimerService.h:48] [I] Timer 4 starting 'long' task
+[21-07-26 13:46:30.637] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:30.677] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 0 times
+[21-07-26 13:46:30.717] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 1 times
+[21-07-26 13:46:30.757] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 2 times
+[21-07-26 13:46:30.797] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 3 times
+[21-07-26 13:46:30.837] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 4 times
+[21-07-26 13:46:30.837] [UsingTimerService.h:59] [I] Timer 4 completed 'long' task
+[21-07-26 13:46:30.837] [OtherTimerService.h:48] [I] Timer 5 starting other 'long' task
+[21-07-26 13:46:30.878] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 0 times
+[21-07-26 13:46:30.918] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 1 times
+[21-07-26 13:46:30.918] [OtherTimerService.h:63] [I] Timer 5 completed other 'long' task
+[21-07-26 13:46:31.137] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:31.137] [UsingTimerService.h:48] [I] Timer 4 starting 'long' task
+[21-07-26 13:46:31.137] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:31.177] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 0 times
+[21-07-26 13:46:31.217] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 1 times
+[21-07-26 13:46:31.258] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 2 times
+[21-07-26 13:46:31.298] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 3 times
+[21-07-26 13:46:31.338] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 4 times
+[21-07-26 13:46:31.339] [UsingTimerService.h:59] [I] Timer 4 completed 'long' task
+[21-07-26 13:46:31.339] [OtherTimerService.h:48] [I] Timer 5 starting other 'long' task
+[21-07-26 13:46:31.379] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 0 times
+[21-07-26 13:46:31.419] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 1 times
+[21-07-26 13:46:31.419] [OtherTimerService.h:63] [I] Timer 5 completed other 'long' task
+[21-07-26 13:46:31.638] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:31.638] [UsingTimerService.h:48] [I] Timer 4 starting 'long' task
+[21-07-26 13:46:31.638] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:31.678] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 0 times
+[21-07-26 13:46:31.718] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 1 times
+[21-07-26 13:46:31.758] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 2 times
+[21-07-26 13:46:31.799] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 3 times
+[21-07-26 13:46:31.839] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 4 times
+[21-07-26 13:46:31.839] [UsingTimerService.h:59] [I] Timer 4 completed 'long' task
+[21-07-26 13:46:31.839] [OtherTimerService.h:48] [I] Timer 5 starting other 'long' task
+[21-07-26 13:46:31.879] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 0 times
+[21-07-26 13:46:31.919] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 1 times
+[21-07-26 13:46:31.919] [OtherTimerService.h:63] [I] Timer 5 completed other 'long' task
+[21-07-26 13:46:32.139] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:32.139] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:32.139] [OtherTimerService.h:48] [I] Timer 5 starting other 'long' task
+[21-07-26 13:46:32.179] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 0 times
+[21-07-26 13:46:32.219] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 1 times
+[21-07-26 13:46:32.219] [OtherTimerService.h:63] [I] Timer 5 completed other 'long' task
+[21-07-26 13:46:32.219] [UsingTimerService.h:48] [I] Timer 4 starting 'long' task
+[21-07-26 13:46:32.260] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 0 times
+[21-07-26 13:46:32.300] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 1 times
+[21-07-26 13:46:32.340] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 2 times
+[21-07-26 13:46:32.380] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 3 times
+[21-07-26 13:46:32.421] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 4 times
+[21-07-26 13:46:32.421] [UsingTimerService.h:59] [I] Timer 4 completed 'long' task
+[21-07-26 13:46:32.640] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:32.640] [UsingTimerService.h:48] [I] Timer 4 starting 'long' task
+[21-07-26 13:46:32.640] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:32.680] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 0 times
+[21-07-26 13:46:32.720] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 1 times
+[21-07-26 13:46:32.760] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 2 times
+[21-07-26 13:46:32.801] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 3 times
+[21-07-26 13:46:32.841] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 4 times
+[21-07-26 13:46:32.841] [UsingTimerService.h:59] [I] Timer 4 completed 'long' task
+[21-07-26 13:46:32.841] [OtherTimerService.h:48] [I] Timer 5 starting other 'long' task
+[21-07-26 13:46:32.881] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 0 times
+[21-07-26 13:46:32.922] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 1 times
+[21-07-26 13:46:32.922] [OtherTimerService.h:63] [I] Timer 5 completed other 'long' task
+[21-07-26 13:46:33.140] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:33.141] [UsingTimerService.h:48] [I] Timer 4 starting 'long' task
+[21-07-26 13:46:33.140] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:33.181] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 0 times
+[21-07-26 13:46:33.221] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 1 times
+[21-07-26 13:46:33.261] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 2 times
+[21-07-26 13:46:33.302] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 3 times
+[21-07-26 13:46:33.342] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 4 times
+[21-07-26 13:46:33.342] [UsingTimerService.h:59] [I] Timer 4 completed 'long' task
+[21-07-26 13:46:33.342] [OtherTimerService.h:48] [I] Timer 5 starting other 'long' task
+[21-07-26 13:46:33.382] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 0 times
+[21-07-26 13:46:33.422] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 1 times
+[21-07-26 13:46:33.422] [OtherTimerService.h:63] [I] Timer 5 completed other 'long' task
+[21-07-26 13:46:33.641] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:33.641] [UsingTimerService.h:48] [I] Timer 4 starting 'long' task
+[21-07-26 13:46:33.641] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:33.682] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 0 times
+[21-07-26 13:46:33.722] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 1 times
+[21-07-26 13:46:33.762] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 2 times
+[21-07-26 13:46:33.802] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 3 times
+[21-07-26 13:46:33.843] [UsingTimerService.h:54] [I] Timer 4 completed 'long' task 4 times
+[21-07-26 13:46:33.843] [UsingTimerService.h:59] [I] Timer 4 completed 'long' task
+[21-07-26 13:46:33.843] [OtherTimerService.h:48] [I] Timer 5 starting other 'long' task
+[21-07-26 13:46:33.883] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 0 times
+[21-07-26 13:46:33.923] [OtherTimerService.h:54] [I] Timer 5 completed other 'long' task 1 times
+[21-07-26 13:46:33.923] [DependencyManager.h:207] [T] inserted event of type Ichor::QuitEvent into manager 0
+[21-07-26 13:46:33.923] [OtherTimerService.h:63] [I] Timer 5 completed other 'long' task
+[21-07-26 13:46:33.924] [LifecycleManager.h:181] [D] Stopped Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-07-26 13:46:33.924] [SpdlogFrameworkLogger.cpp:83] [T] SpdlogFrameworkLogger stopped
+[21-07-26 13:46:33.942] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:33.942] [LifecycleManager.h:296] [D] Stopped Ichor::Timer
+[21-07-26 13:46:33.992] [DependencyManager.h:182] [T] inserted event of type Ichor::TimerEvent into manager 0
+[21-07-26 13:46:33.992] [LifecycleManager.h:296] [D] Stopped Ichor::Timer
+[21-07-26 13:46:33.993] [LifecycleManager.h:181] [D] Stopped OtherTimerService
+[21-07-26 13:46:33.993] [LifecycleManager.h:181] [D] Stopped Ichor::SpdlogLogger
+[21-07-26 13:46:33.993] [LifecycleManager.h:181] [D] Stopped UsingTimerService
+[21-07-26 13:46:33.993] [LifecycleManager.h:181] [D] Stopped Ichor::SpdlogLogger
+[21-07-26 13:46:33.993] [LifecycleManager.h:185] [D] Couldn't stop Ichor::SpdlogLogger
+[21-07-26 13:46:33.993] [LifecycleManager.h:185] [D] Couldn't stop Ichor::SpdlogLogger
+[21-07-26 13:46:33.993] [LifecycleManager.h:296] [D] Stopped Ichor::SpdlogSharedService
+[21-07-26 13:46:33.993] [LifecycleManager.h:300] [D] Couldn't stop Ichor::Timer
+[21-07-26 13:46:33.994] [LifecycleManager.h:300] [D] Couldn't stop Ichor::Timer
+[21-07-26 13:46:33.994] [LifecycleManager.h:185] [D] Couldn't stop Ichor::SpdlogLogger
+[21-07-26 13:46:33.994] [LifecycleManager.h:185] [D] Couldn't stop Ichor::SpdlogLogger
+[21-07-26 13:46:33.994] [LifecycleManager.h:185] [D] Couldn't stop OtherTimerService
+[21-07-26 13:46:33.994] [LifecycleManager.h:185] [D] Couldn't stop UsingTimerService
+[21-07-26 13:46:33.994] [LifecycleManager.h:185] [D] Couldn't stop Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-07-26 13:46:33.994] [LifecycleManager.h:300] [D] Couldn't stop Ichor::SpdlogSharedService
+[21-07-26 13:46:33.994] [LifecycleManager.h:55] [T] destroying Ichor::SpdlogLogger, id 7
+[21-07-26 13:46:33.995] [DependencyManager.h:171] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 0, but have to quit
+[21-07-26 13:46:33.995] [LifecycleManager.h:55] [T] destroying Ichor::SpdlogLogger, id 6
+[21-07-26 13:46:33.995] [DependencyManager.h:171] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 0, but have to quit
+[21-07-26 13:46:33.995] [LifecycleManager.h:55] [T] destroying OtherTimerService, id 5
+[21-07-26 13:46:33.995] [DependencyManager.h:171] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 0, but have to quit
+[21-07-26 13:46:33.995] [LifecycleManager.h:55] [T] destroying UsingTimerService, id 4
+[21-07-26 13:46:33.996] [DependencyManager.h:171] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 0, but have to quit
+[21-07-26 13:46:33.996] [LifecycleManager.h:55] [T] destroying Ichor::LoggerAdmin<Ichor::SpdlogLogger>, id 3
+[21-07-26 13:46:33.996] [DependencyManager.h:171] [T] inserting event of type Ichor::DependencyUndoRequestEvent into manager 0, but have to quit
