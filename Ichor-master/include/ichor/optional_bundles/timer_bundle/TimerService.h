@@ -85,7 +85,7 @@ namespace Ichor {
                     perror("sched_setscheduler");
 
             while(!_quit.load(std::memory_order_acquire)) {
-                // runtimeStart = get_time_us();
+                runtimeStart = get_time_us();
                 auto now = std::chrono::steady_clock::now();
                 auto next = now + std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
 

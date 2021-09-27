@@ -20,6 +20,7 @@ void on_sigint([[maybe_unused]] int sig) {
 
 void Ichor::DependencyManager::startBST() {
     setThreadLocalMemoryResource(_memResource);
+    _BSTQueue = true;
 
     if(_logger == nullptr) {
         throw std::runtime_error("Trying to start without a framework logger");
@@ -48,10 +49,10 @@ void Ichor::DependencyManager::startBST() {
             TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
             // auto evtNode = _eventQueue.extract(_eventQueue.begin());
 
-            // ICHOR_LOG_TRACE(_logger, "Picking up event now");
+            // ICHOR_LOG_TRACE(_logger, "Trying to pick up event now");
             auto event = _eventQueueBst->extract(0);
             if(event != nullptr) {
-               // ICHOR_LOG_TRACE(_logger, "Picking up event now");
+                //  ICHOR_LOG_TRACE(_logger, "Picking up event now");
                 auto evtNode = std::move(event->event);
                 // std::cout << "custom event met: \n";
                 // std::cout << "treeId: " << event->value.value << "\n";
@@ -381,6 +382,7 @@ void Ichor::DependencyManager::startBST() {
 
            // lck.lock();
         }
+       
         }
         _emptyQueue = true;
 
@@ -807,17 +809,19 @@ void Ichor::DependencyManager::startEDF() {
         std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
             TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
-             auto HighestNode = _eventQueue.begin();
-             for (auto nodes = _eventQueue.begin(); nodes != _eventQueue.end(); ++nodes){
-                std::chrono::duration<double, std::milli> elap {nodes->second.get()->deadline - std::chrono::steady_clock::now()};
-                if(elap.count() > 0){
-                    nodes->second.get()-> priority = elap.count(); 
-                    if(HighestNode->second.get()->priority > round(elap.count()) ) {std::cout << HighestNode->second.get()->priority << " it happened :" << round(elap.count()) << "\n"; HighestNode = nodes; }
-                    }
-             }
-
+            auto HighestNode = _eventQueue.begin();
+            // if(_unchangedQueue == true) {std::cout <<"UNCHANGED! \n"; }else {std::cout <<"CHANGED! \n";}
+            if(_unchangedQueue == false) {
+                for (auto nodes = _eventQueue.begin(); nodes != _eventQueue.end(); ++nodes){
+                    std::chrono::duration<double, std::milli> elap {nodes->second.get()->deadline - std::chrono::steady_clock::now()};
+                    if(elap.count() > 0){
+                        nodes->second.get()-> priority = elap.count(); 
+                        if(HighestNode->second.get()->priority > round(elap.count()) ) {std::cout << HighestNode->second.get()->priority << " it happened :" << round(elap.count()) << "\n"; HighestNode = nodes; }
+                        }
+                }
+            }
              auto evtNode = _eventQueue.extract(HighestNode);
-
+             _unchangedQueue = true;
              lck.unlock();
             _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
 

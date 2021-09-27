@@ -24,6 +24,14 @@ namespace Ichor {
         MyTimePoint deadline;
     };
 
+    struct TimerEvent final : public Event {
+        TimerEvent(uint64_t _id, uint64_t _originatingService, uint64_t _priority, uint64_t _runtime, uint64_t _period, MyTimePoint _deadline) noexcept : Event(TYPE, NAME, _id, _originatingService, _priority, _runtime, _period, _deadline) {}
+        ~TimerEvent() final = default;
+
+        static constexpr uint64_t TYPE = typeNameHash<TimerEvent>();
+        static constexpr std::string_view NAME = typeName<TimerEvent>();
+    };
+
 
     struct DependencyOnlineEvent final : public Event {
         explicit DependencyOnlineEvent(uint64_t _id, uint64_t _originatingService, uint64_t _priority) noexcept :

@@ -80,20 +80,19 @@ void* run_example(void*) {
 
     auto start = std::chrono::steady_clock::now();
 
-       // disable usage of default std::pmr resource, as that would allocate.
+    // disable usage of default std::pmr resource, as that would allocate.
     terminating_resource terminatingResource{};
     std::pmr::set_default_resource(&terminatingResource);
 
     {
         buffer_resource<1024 * 1024> resourceOne{};
         buffer_resource<1024 * 1024> resourceTwo{};
-
         DependencyManager dm{&resourceOne, &resourceTwo};
         dm.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         // dm.createServiceManager<UsingTimerService, IUsingTimerService>();
-        dm.createServiceManager<OtherTimerService, IOtherTimerService>();
-        dm.startEDF();
+        // dm.createServiceManager<OtherTimerService, IOtherTimerService>();
+        dm.startFP();
     }
     auto end = std::chrono::steady_clock::now();
 

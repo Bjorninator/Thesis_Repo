@@ -22,11 +22,11 @@ public:
         std::this_thread::sleep_for(std::chrono::milliseconds(40));
         std::cout << "Oneservice" << getServiceId() << "\n";
         getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
-        std::cout << "after sending message \n";
         getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),8, 15);
         getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
         getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
-          std::cout << "after sending messages \n";
+        getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
+        getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
         return true;
     }
 

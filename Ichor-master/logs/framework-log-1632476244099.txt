@@ -1,0 +1,40 @@
+[21-09-24 11:37:24.101] [SpdlogFrameworkLogger.cpp:39] [T] SpdlogFrameworkLogger constructor
+[21-09-24 11:37:24.101] [DependencyManager.h:480] [D] added ServiceManager<Ichor::IFrameworkLogger, Ichor::SpdlogFrameworkLogger>
+[21-09-24 11:37:24.101] [SpdlogFrameworkLogger.cpp:78] [T] SpdlogFrameworkLogger started
+[21-09-24 11:37:24.102] [DependencyManager.h:480] [D] added ServiceManager<Ichor::ILoggerAdmin, Ichor::LoggerAdmin<Ichor::SpdlogLogger>>
+[21-09-24 11:37:24.102] [LoggerAdmin.h:32] [T] Inserted logger
+[21-09-24 11:37:24.102] [LifecycleManager.h:168] [D] Started Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-09-24 11:37:24.102] [DependencyManager.h:487] [D] added ServiceManager<OneService>
+[21-09-24 11:37:24.103] [DependencyManager.cpp:419] [D] starting dm
+[21-09-24 11:37:24.104] [DependencyManager.cpp:423] [T] depman 0 has 5 events
+[21-09-24 11:37:24.105] [DependencyManager.cpp:441] [T] picked up: id 0 type Ichor::DependencyOnlineEvent has 10-10 prio
+[21-09-24 11:37:24.105] [DependencyManager.cpp:441] [T] picked up: id 1 type Ichor::DependencyRequestEvent has 1000-1000 prio
+[21-09-24 11:37:24.105] [DependencyManager.cpp:441] [T] picked up: id 2 type Ichor::DependencyOnlineEvent has 1000-1000 prio
+[21-09-24 11:37:24.105] [DependencyManager.cpp:441] [T] picked up: id 3 type Ichor::DependencyRequestEvent has 1000-1000 prio
+[21-09-24 11:37:24.105] [DependencyManager.h:480] [D] added ServiceManager<Ichor::ILogger, Ichor::SpdlogLogger>
+[21-09-24 11:37:24.104] [SpdlogFrameworkLogger.cpp:39] [T] SpdlogFrameworkLogger constructor
+[21-09-24 11:37:24.105] [DependencyManager.h:480] [D] added ServiceManager<Ichor::IFrameworkLogger, Ichor::SpdlogFrameworkLogger>
+[21-09-24 11:37:24.105] [SpdlogFrameworkLogger.cpp:78] [T] SpdlogFrameworkLogger started
+[21-09-24 11:37:24.105] [DependencyManager.cpp:441] [T] picked up: id 4 type Ichor::StartServiceEvent has 1000-1000 prio
+[21-09-24 11:37:24.105] [DependencyManager.cpp:441] [T] picked up: id 5 type Ichor::DependencyRequestEvent has 1000-1000 prio
+[21-09-24 11:37:24.105] [DependencyManager.cpp:441] [T] picked up: id 6 type Ichor::StartServiceEvent has 1000-1000 prio
+[21-09-24 11:37:24.106] [DependencyManager.h:480] [D] added ServiceManager<Ichor::ILoggerAdmin, Ichor::LoggerAdmin<Ichor::SpdlogLogger>>
+[21-09-24 11:37:24.106] [LoggerAdmin.h:32] [T] Inserted logger
+[21-09-24 11:37:24.106] [LifecycleManager.h:168] [D] Started Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-09-24 11:37:24.106] [DependencyManager.h:487] [D] added ServiceManager<OtherService>
+[21-09-24 11:37:24.106] [DependencyManager.cpp:419] [D] starting dm
+[21-09-24 11:37:24.106] [DependencyManager.cpp:423] [T] depman 1 has 5 events
+[21-09-24 11:37:24.106] [DependencyManager.cpp:441] [T] picked up: id 0 type Ichor::DependencyOnlineEvent has 10-10 prio
+[21-09-24 11:37:24.107] [DependencyManager.cpp:441] [T] picked up: id 1 type Ichor::DependencyRequestEvent has 1000-1000 prio
+[21-09-24 11:37:24.107] [DependencyManager.cpp:441] [T] picked up: id 2 type Ichor::DependencyOnlineEvent has 1000-1000 prio
+[21-09-24 11:37:24.107] [DependencyManager.cpp:441] [T] picked up: id 3 type Ichor::DependencyRequestEvent has 1000-1000 prio
+[21-09-24 11:37:24.107] [DependencyManager.h:480] [D] added ServiceManager<Ichor::ILogger, Ichor::SpdlogLogger>
+[21-09-24 11:37:24.107] [DependencyManager.cpp:441] [T] picked up: id 4 type Ichor::StartServiceEvent has 1000-1000 prio
+[21-09-24 11:37:24.107] [DependencyManager.cpp:441] [T] picked up: id 5 type Ichor::DependencyRequestEvent has 1000-1000 prio
+[21-09-24 11:37:24.107] [DependencyManager.cpp:441] [T] picked up: id 6 type Ichor::StartServiceEvent has 1000-1000 prio
+[21-09-24 11:41:40.748] [LifecycleManager.h:185] [D] Couldn't stop Ichor::SpdlogLogger
+[21-09-24 11:41:40.748] [LifecycleManager.h:185] [D] Couldn't stop OtherService
+[21-09-24 11:41:40.748] [LifecycleManager.h:185] [D] Couldn't stop Ichor::SpdlogLogger
+[21-09-24 11:41:40.748] [LifecycleManager.h:181] [D] Stopped Ichor::LoggerAdmin<Ichor::SpdlogLogger>
+[21-09-24 11:41:40.749] [SpdlogFrameworkLogger.cpp:83] [T] SpdlogFrameworkLogger stopped
+[2

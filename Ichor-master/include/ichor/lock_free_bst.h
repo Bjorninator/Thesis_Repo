@@ -44,15 +44,23 @@ public:
         int id = x.get()->id;
         int priority = x.get()->priority;
         val v((priority * 1000), id);
-
        
         seek_record record;
         while (true) {
             record = seek(v);
             if (record.leaf->value == v) {
-             //   std::cout << "already exists\n";
-                v.value++; 
+                if(priority == 1000){
+                    idCounter++;
+                    v.value = v.value + idCounter; 
+                }else {
+                   // std::cout << v.value << " already exists\n";
+                    v.value++; 
+
+                }
             } else {
+                if(priority == 1000){
+                    idCounter= 0;
+                }
                 node* parent = record.parent;
                 node* leaf = record.leaf;
 
@@ -229,6 +237,7 @@ public:
 
 private:
     std::atomic<uint64_t> treeIdCounter{0};
+    int idCounter{0};
     struct seek_record {
         node* ancestor;
         node* successor;

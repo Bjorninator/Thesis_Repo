@@ -169,23 +169,24 @@ namespace Ichor {
         template <typename EventT, typename... Args>
         requires Derived<EventT, Event>
         uint64_t pushPrioritisedEvent(uint64_t originatingServiceId, uint64_t priority, Args&&... args){
-              
+           _unchangedQueue = false;
+           //  std::cout <<"HELLOO PRIO EVENT! \n";
             if(_quit.load(std::memory_order_acquire)) {
                 ICHOR_LOG_TRACE(_logger, "inserting event of type {} into manager {}, but have to quit", typeName<EventT>(), getId());
                 return 0;
             }
 
             uint64_t eventId = _eventIdCounter.fetch_add(1, std::memory_order_acq_rel);
-
             _eventQueueMutex.lock();
             _emptyQueue = false;
-
-            [[maybe_unused]] auto it = _eventQueue.emplace(priority, std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
-        
+            if(_BSTQueue == false) {
+                [[maybe_unused]] auto it = _eventQueue.emplace(priority, std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
+                TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*it));
+            }
+            else{
+                _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
+            }
           // std::unique_ptr<Event, Deleter> test = std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)});
-
-          _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
-
             // if(treeId == 3){
             //     auto event = _eventQueueBst->extract(0);
             //     std::cout << "custom event met: \n";
@@ -216,11 +217,10 @@ namespace Ichor {
             //     std::cout << first << "\n";
             // }
            // ICHOR_LOG_TRACE(_logger, "it works! id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
-           
-            TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*it));
+        
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
-            ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
+            // ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
             return eventId;
         }
 
@@ -233,7 +233,8 @@ namespace Ichor {
         template <typename EventT, typename... Args>
         requires Derived<EventT, Event>
         uint64_t pushEvent(uint64_t originatingServiceId, Args&&... args){
-            std::cout <<"HELLOO EVENT! \n";
+            // std::cout <<"HELLOO EVENT! \n";
+            _unchangedQueue = false;
             if(_quit.load(std::memory_order_acquire)) {
                 ICHOR_LOG_TRACE(_logger, "inserting event of type {} into manager {}, but have to quit", typeName<EventT>(), getId());
                 return 0;
@@ -242,15 +243,18 @@ namespace Ichor {
             uint64_t eventId = _eventIdCounter.fetch_add(1, std::memory_order_acq_rel);
             _eventQueueMutex.lock();
             _emptyQueue = false;
-             [[maybe_unused]] auto it = _eventQueue.emplace(INTERNAL_EVENT_PRIORITY, std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), INTERNAL_EVENT_PRIORITY, std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
-            
-            _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), INTERNAL_EVENT_PRIORITY, std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
 
-           
-            TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*it));
+            if(_BSTQueue == false) {
+                [[maybe_unused]] auto it = _eventQueue.emplace(INTERNAL_EVENT_PRIORITY, std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), INTERNAL_EVENT_PRIORITY, std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
+                TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*it));
+            }
+            else{
+                _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), INTERNAL_EVENT_PRIORITY, std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
+            }
+
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
-            ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
+             // ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
             return eventId;
         }
 
@@ -497,15 +501,17 @@ namespace Ichor {
         template <typename EventT, typename... Args>
         requires Derived<EventT, Event>
         uint64_t pushEventInternal(uint64_t originatingServiceId, uint64_t priority, Args&&... args) {
+
+            _unchangedQueue = false;
             uint64_t eventId = _eventIdCounter.fetch_add(1, std::memory_order_acq_rel);
             _eventQueueMutex.lock();
             _emptyQueue = false;
-            
+
             [[maybe_unused]] auto it = _eventQueue.emplace(priority, std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
-            
-            _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
-         
             TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*it));
+
+
+            _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
             return eventId;
@@ -532,6 +538,8 @@ namespace Ichor {
         std::atomic<bool> _quit{false};
         std::atomic<bool> _started{false};
         bool _emptyQueue{false}; // only true when all events are done processing, as opposed to having an empty _eventQueue. The latter can be empty before processing due to the usage of extract()
+        bool _unchangedQueue{true};
+        bool _BSTQueue{false};
         CommunicationChannel *_communicationChannel{nullptr};
         uint64_t _id{_managerIdCounter++};
         static std::atomic<uint64_t> _managerIdCounter;

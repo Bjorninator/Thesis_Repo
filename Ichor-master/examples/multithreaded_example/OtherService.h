@@ -40,7 +40,7 @@ public:
         ICHOR_LOG_INFO(_logger, "Handling custom event");
         std::cout <<"Otherservice: " <<getServiceId() << "\n";
         counter++;
-        if(counter == 4){
+        if(counter == 6){
             getManager()->pushEvent<QuitEvent>(getServiceId());
             getManager()->getCommunicationChannel()->broadcastEvent<QuitEvent>(getManager(), getServiceId(), INTERNAL_EVENT_PRIORITY+1);
         }
