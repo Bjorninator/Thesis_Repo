@@ -53,9 +53,7 @@ public:
                     idCounter++;
                     v.value = v.value + idCounter; 
                 }else {
-                   // std::cout << v.value << " already exists\n";
                     v.value++; 
-
                 }
             } else {
                 if(priority == 1000){
@@ -97,6 +95,12 @@ public:
                 }
             }
         }
+    }
+
+    bool empty(){
+        seek_record record = seek(0);
+        if(record.leaf->value.value == 0) {return true;}
+        return false;
     }
 
     bool remove(int x) {

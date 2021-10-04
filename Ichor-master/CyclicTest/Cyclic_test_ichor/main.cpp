@@ -1,28 +1,3 @@
-#include <pthread.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <sched.h>
-#include <ctype.h>
-#include <errno.h>
-#include <signal.h>
-#include <getopt.h>
-
-#include <sys/syscall.h>
-#include <sys/types.h>
-#include <sys/mount.h>
-#include <sys/mman.h>
-#include <sys/time.h>
-#include <sys/stat.h>
-#include <sys/vfs.h>
-
-#include <linux/unistd.h>
-#include <linux/magic.h>
-#include <error.h>
-
 #include "UsingTimerService.h"
 #include "UsingTimerService1.h"
 #include "OtherTimerService.h"
@@ -47,17 +22,6 @@
 
 using namespace std::string_literals;
 
-static pthread_barrier_t barrier;
-
-static int cpu_count;
-static int all_cpus;
-
-static int nr_threads;
-
-static int quiet;
-
-using namespace std::string_literals;
-
 std::atomic<uint64_t> idCounter = 0;
 
 void* run_example(void*) {
@@ -67,33 +31,22 @@ void* run_example(void*) {
     CPU_SET(1, &lock_to_core_set);
     sched_setaffinity(0, sizeof(cpu_set_t), &lock_to_core_set);
 
-    unsigned int interval = 1000;
-	unsigned int step = 500;
-	int percent = 60;
-	int duration = 0;
-	int i;
-	int c;
-
-	if (!nr_threads){
-		nr_threads = 1;
-	}
-
     auto start = std::chrono::steady_clock::now();
 
     // disable usage of default std::pmr resource, as that would allocate.
     terminating_resource terminatingResource{};
     std::pmr::set_default_resource(&terminatingResource);
 
-    {
+    
         buffer_resource<1024 * 1024> resourceOne{};
         buffer_resource<1024 * 1024> resourceTwo{};
         DependencyManager dm{&resourceOne, &resourceTwo};
         dm.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         // dm.createServiceManager<UsingTimerService, IUsingTimerService>();
-        // dm.createServiceManager<OtherTimerService, IOtherTimerService>();
-        dm.startFP();
-    }
+        dm.createServiceManager<OtherTimerService, IOtherTimerService>();
+        dm.startBST();
+    
     auto end = std::chrono::steady_clock::now();
 
     fmt::print("Program ran for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(end-start).count());
@@ -118,7 +71,7 @@ int main() {
     sched_param param{};
     pthread_attr_t attr{};
     pthread_attr_init (&attr);
-    pthread_attr_setinheritsched (&attr, PTHREAD_EXPLICIT_SCHED);
+    // pthread_attr_setinheritsched (&attr, PTHREAD_EXPLICIT_SCHED);
     pthread_attr_setschedpolicy (&attr, SCHED_FIFO);
     param.sched_priority = 99;
     pthread_attr_setschedparam (&attr, &param);

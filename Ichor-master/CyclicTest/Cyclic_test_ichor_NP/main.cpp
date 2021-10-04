@@ -47,16 +47,25 @@
 
 using namespace std::string_literals;
 
+
+std::atomic<uint64_t> idCounter = 0;
+
 int main() {
     std::locale::global(std::locale("en_US.UTF-8"));
 
     auto start = std::chrono::steady_clock::now();
-    DependencyManager dm{};
+
+    terminating_resource terminatingResource{};
+    std::pmr::set_default_resource(&terminatingResource);
+
+    buffer_resource<1024 * 1024> resourceOne{};
+    buffer_resource<1024 * 1024> resourceTwo{};
+    DependencyManager dm{&resourceOne, &resourceTwo};
     dm.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
     dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
     // dm.createServiceManager<UsingTimerService, IUsingTimerService>();
     dm.createServiceManager<OtherTimerService, IOtherTimerService>();
-    dm.startFP();
+    dm.startBST();
 
     auto end = std::chrono::steady_clock::now();
     fmt::print("Program ran for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(end-start).count());

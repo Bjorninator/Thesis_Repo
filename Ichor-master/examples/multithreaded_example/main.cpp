@@ -34,14 +34,14 @@ int main() {
         dmOne.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dmOne.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dmOne.createServiceManager<OneService>();
-        dmOne.startEDF();
+        dmOne.startBST();
     });
 
     std::thread t2([&dmTwo] {
         dmTwo.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dmTwo.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dmTwo.createServiceManager<OtherService>();
-        dmTwo.startEDF();
+        dmTwo.startBST();
     });
 
     t1.join();

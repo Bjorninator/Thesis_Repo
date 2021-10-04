@@ -46,20 +46,16 @@ public:
     Generator<bool> handleEvent(TimerEvent const * const evt) {
         period = evt->period;
         now = (get_time_us() - period);
-        std::cout << now << "\n";
+       // std::cout << now << "\n";
         average += now;
         if (now < min){ min = now;}
 
         if (now > 0 && now > max) {max = now;}
         _timerTriggerCount++;
-        for(uint32_t i = 0; i < 2; i++) {
-            //simulate long task
-            std::this_thread::sleep_for(std::chrono::milliseconds(40));
-        }
 
-        if(_timerTriggerCount == 100) {
+        if(_timerTriggerCount == 200) {
             getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-            average = average / 100; 
+            average = average / 200; 
              std::cout << "average: " << average  <<"\n";
              std::cout << "minimum: " << min  <<"\n";
              std::cout << "maximum: " << max  <<"\n";
