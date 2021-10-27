@@ -6,6 +6,7 @@
 #include <ichor/Service.h>
 #include <ichor/LifecycleManager.h>
 
+
 using namespace Ichor;
 
 
@@ -21,9 +22,10 @@ public:
 
     bool start() final {
         ICHOR_LOG_INFO(_logger, "OtherTimerService started");
+        std::cout << getServiceId() << "\n";
         _timerManager = getManager()->createServiceManager<Timer, ITimer>();
-        _timerManager->setChronoInterval(std::chrono::milliseconds(500));
-        _timerManager->setDeadlineInterval(std::chrono::milliseconds(80));
+        _timerManager->setChronoInterval(std::chrono::milliseconds(5));
+        _timerManager->setDeadlineInterval(std::chrono::milliseconds(5));
         _timerEventRegistration = getManager()->registerEventHandler<TimerEvent>(this, _timerManager->getServiceId());
         _timerManager->startTimer();
         return true;
@@ -46,21 +48,27 @@ public:
     Generator<bool> handleEvent(TimerEvent const * const evt) {
         period = evt->period;
         now = (get_time_us() - period);
-       // std::cout << now << "\n";
-        average += now;
-        if (now < min){ min = now;}
+        if(startup){
+            startup = false;
+        }
+        else {
+            //std::cout <<"Overal,"<<_timerTriggerCount << "," << now << "\n";
+            average += now;
+            if (now < min){ min = now;}
 
-        if (now > 0 && now > max) {max = now;}
-        _timerTriggerCount++;
-
-        if(_timerTriggerCount == 200) {
-            getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-            average = average / 200; 
-             std::cout << "average: " << average  <<"\n";
-             std::cout << "minimum: " << min  <<"\n";
-             std::cout << "maximum: " << max  <<"\n";
+            if (now > 0 && now > max) {max = now;}
+            _timerTriggerCount++;
+                                    
+            if(_timerTriggerCount == 1000) {
+                getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
+                average = average / 1000; 
+                std::cout << "average: " << average  <<"\n";
+                std::cout << "minimum: " << min  <<"\n";
+                std::cout << "maximum: " << max  <<"\n";
+            }
         }
         co_return (bool)PreventOthersHandling;
+        
     }
 
     typedef unsigned long long u64;
@@ -89,6 +97,7 @@ private:
     ILogger *_logger{nullptr};
     std::unique_ptr<EventHandlerRegistration, Deleter> _timerEventRegistration{nullptr};
     uint64_t _timerTriggerCount{0};
+    bool startup{true};
     Timer* _timerManager{nullptr};
 
 };

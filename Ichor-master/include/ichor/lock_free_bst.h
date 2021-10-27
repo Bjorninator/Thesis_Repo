@@ -15,26 +15,14 @@
 #define LNG(x) (reinterpret_cast<unsigned long>(x))
 #define BL(x)  (LNG(x) != 0)
 
-#define PACK_CHILD(p,c,d) ((p)->d = PTR(LNG(c) | (LNG((p)->d) & 3)))
-#define PACK_LEFT(p,c) PACK_CHILD(p,c,left)
-#define PACK_RIGHT(p,c) PACK_CHILD(p,c,right)
-
-#define GET_ADDR(nodeptr) (PTR(LNG(nodeptr) & (~(TAG_BIT | FLAG_BIT))))
+#define GET_ADDR(nodeptr) (PTR(LNG(nodeptr) & (~(1 | 2))))
 #define GET_LEFT(nodeptr) (GET_ADDR(nodeptr)->left)
 #define GET_RIGHT(nodeptr) (GET_ADDR(nodeptr)->right)
 
-#define GET_TAG(nodeptr) (BL(LNG(nodeptr) & TAG_BIT))
-#define GET_FLAG(nodeptr) (BL(LNG(nodeptr) & FLAG_BIT))
-#define TAGGED(nodeptr) (PTR(LNG(nodeptr) | TAG_BIT))
-#define FLAGGED(nodeptr) (PTR(LNG(nodeptr) | FLAG_BIT))
-#define UNTAGGED(nodeptr) (PTR(LNG(nodeptr) & (~TAG_BIT)))
-#define UNFLAGGED(nodeptr) (PTR(LNG(nodeptr) & (~FLAG_BIT)))
-
-#define TAG(x) ((x) = TAGGED(x));
-#define FLAG(x) ((x) = FLAGGED(x));
-
-#define TAG_BIT 1
-#define FLAG_BIT 2
+#define GET_TAG(nodeptr) (BL(LNG(nodeptr) & 1))
+#define GET_FLAG(nodeptr) (BL(LNG(nodeptr) & 2))
+#define FLAGGED(nodeptr) (PTR(LNG(nodeptr) | 2))
+#define UNTAGGED(nodeptr) (PTR(LNG(nodeptr) & (~1)))
 
 class BST {
 public:
@@ -242,6 +230,7 @@ public:
 private:
     std::atomic<uint64_t> treeIdCounter{0};
     int idCounter{0};
+
     struct seek_record {
         node* ancestor;
         node* successor;
@@ -310,7 +299,7 @@ private:
         if (!GET_FLAG(*child_addr))
             sibling_addr = child_addr;
 
-        (void) __sync_fetch_and_or(sibling_addr, TAG_BIT);
+        (void) __sync_fetch_and_or(sibling_addr, 1);
 
         bool result = __sync_bool_compare_and_swap(successor_addr,
             GET_ADDR(successor), UNTAGGED(*sibling_addr));

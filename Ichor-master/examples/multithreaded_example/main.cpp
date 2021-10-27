@@ -1,19 +1,12 @@
 #include "OneService.h"
 #include "OtherService.h"
 #include <ichor/optional_bundles/logging_bundle/LoggerAdmin.h>
-#ifdef USE_SPDLOG
-#include <ichor/optional_bundles/logging_bundle/SpdlogFrameworkLogger.h>
-#include <ichor/optional_bundles/logging_bundle/SpdlogLogger.h>
-
-#define FRAMEWORK_LOGGER_TYPE SpdlogFrameworkLogger
-#define LOGGER_TYPE SpdlogLogger
-#else
 #include <ichor/optional_bundles/logging_bundle/CoutFrameworkLogger.h>
 #include <ichor/optional_bundles/logging_bundle/CoutLogger.h>
 
 #define FRAMEWORK_LOGGER_TYPE CoutFrameworkLogger
 #define LOGGER_TYPE CoutLogger
-#endif
+
 #include <ichor/CommunicationChannel.h>
 #include <chrono>
 #include <iostream>
@@ -34,14 +27,14 @@ int main() {
         dmOne.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dmOne.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dmOne.createServiceManager<OneService>();
-        dmOne.startBST();
+        dmOne.startFP();
     });
 
     std::thread t2([&dmTwo] {
         dmTwo.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dmTwo.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dmTwo.createServiceManager<OtherService>();
-        dmTwo.startBST();
+        dmTwo.startFP();
     });
 
     t1.join();

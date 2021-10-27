@@ -19,14 +19,10 @@ public:
     bool start() final {
         ICHOR_LOG_INFO(_logger, "OneService started with dependency");
         // this component sometimes starts up before the other thread has started the OtherService
-        std::this_thread::sleep_for(std::chrono::milliseconds(40));
-        std::cout << "Oneservice" << getServiceId() << "\n";
-        getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
-        getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),8, 15);
-        getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
-        getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
-        getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
-        getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        // std::cout << "Oneservice" << getServiceId() << "\n";
+         getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, 15);
+         getManager()->pushEvent<QuitEvent>(getServiceId());
         return true;
     }
 

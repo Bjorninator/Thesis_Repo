@@ -33,7 +33,7 @@ namespace Ichor {
 #ifdef DEBUG_CHANNEL
                 std::cout << "Inserting event " << typeName<EventT>() << " from manager " << originatingManager->getId() << " into manager " << manager->getId() << std::endl;
 #endif
-                manager->template pushPrioritisedEvent<EventT>(std::forward<Args>(args)...,10);
+                manager->template pushEvent<EventT>(std::forward<Args>(args)...);
 #ifdef DEBUG_CHANNEL
                 std::cout << "Inserted event " << typeName<EventT>() << " from manager " << originatingManager->getId() << " into manager " << manager->getId() << std::endl;
 #endif

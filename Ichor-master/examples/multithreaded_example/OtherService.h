@@ -17,6 +17,7 @@ public:
     bool start() final {
         ICHOR_LOG_INFO(_logger, "OtherService started with dependency");
         _customEventHandler = getManager()->registerEventHandler<CustomEvent>(this);
+        // getManager()->pushEvent<QuitEvent>(getServiceId());
         return true;
     }
 
@@ -38,12 +39,12 @@ public:
 
     Generator<bool> handleEvent(CustomEvent const * const evt) {
         ICHOR_LOG_INFO(_logger, "Handling custom event");
-        std::cout <<"Otherservice: " <<getServiceId() << "\n";
-        counter++;
-        if(counter == 6){
-            getManager()->pushEvent<QuitEvent>(getServiceId());
-            getManager()->getCommunicationChannel()->broadcastEvent<QuitEvent>(getManager(), getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-        }
+        // std::cout <<"Otherservice: " <<getServiceId() << "\n";
+        // counter++;
+        // if(counter == 6){
+            // getManager()->pushEvent<QuitEvent>(getServiceId());
+            // getManager()->getCommunicationChannel()->broadcastEvent<QuitEvent>(getManager(), getServiceId(), INTERNAL_EVENT_PRIORITY+1);
+        // }
         // we dealt with it, don't let other services handle this event
         co_return (bool)PreventOthersHandling;
     }

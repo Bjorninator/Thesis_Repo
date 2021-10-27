@@ -20,21 +20,18 @@ public:
     ~UsingTimerService() final = default;
 
     bool start() final {
-        // _timerManager = getManager()->createServiceManager<Timer, ITimer>();
-        // _timerManager->setChronoInterval(std::chrono::milliseconds(200));
-        // _timerManager->setDeadlineInterval(std::chrono::milliseconds(15));
-        // _timerEventRegistration = getManager()->registerEventHandler<TimerEvent>(this, _timerManager->getServiceId());
-        // _timerManager->startTimer();
+        _customEventHandler = getManager()->registerEventHandler<Custom1Event>(this);
 
-        // _timerManager->setChronoInterval(std::chrono::milliseconds(500));
-        // _timerManager->setDeadlineInterval(std::chrono::milliseconds(80));
-        // _timerEventRegistration = getManager()->registerEventHandler<TimerEvent>(this, _timerManager->getServiceId());
-        // _timerManager->startTimer();
+        u64 period = get_time_us();
+        typedef std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> MyTimePoint;
+        MyTimePoint startTimePoint = std::chrono::time_point_cast<MyTimePoint::duration>(std::chrono::steady_clock::time_point(std::chrono::steady_clock::now()));
+        startTimePoint += std::chrono::milliseconds(15);
+        getManager()->pushPrioritisedEvent<Custom1Event>(getServiceId(),10 , 15, period, startTimePoint);
         return true;
     }
 
     bool stop() final {
-        _timerEventRegistration.reset();
+        _customEventHandler.reset();
         _timerManager = nullptr;
         return true;
     }
@@ -47,25 +44,38 @@ public:
         _logger = nullptr;
     }
 
-    Generator<bool> handleEvent(TimerEvent const * const evt) {
-        _timerTriggerCount++;
-        for(uint32_t i = 0; i < 1; i++) {
-            //simulate long task
-            std::this_thread::sleep_for(std::chrono::milliseconds(40));
-            // schedule us again later in the event loop for the next iteration, don't let other handlers handle this event.
-           // co_yield (bool)PreventOthersHandling;
-        }
+    Generator<bool> handleEvent(Custom1Event const * const evt) {
+        u64 period = evt->period;
+        u64 check = get_time_us();
 
-        if(_timerTriggerCount == 3){
-            getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-        }
+        int speed = check - period;
+        std::cout << speed << "\n";
+        
+        
+        getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
+        
         
         co_return (bool)PreventOthersHandling;
     }
 
 private:
+    typedef unsigned long long u64;
     ILogger *_logger{nullptr};
-    std::unique_ptr<EventHandlerRegistration, Deleter> _timerEventRegistration{nullptr};
+    std::unique_ptr<EventHandlerRegistration, Deleter> _customEventHandler{nullptr};
     uint64_t _timerTriggerCount{0};
     Timer* _timerManager{nullptr};
+     
+    // geeft micro terug
+    static u64 get_time_us(void)
+    {
+        struct timespec ts;
+        u64 time;
+
+        clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+        time = ts.tv_sec * 1000000;
+        time += ts.tv_nsec / 1000;
+
+        return time;
+    }
+
 };

@@ -57,7 +57,7 @@ public:
         }
 
         if(_timerTriggerCount == 7) {
-            getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
+         //   getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
         }
 
         ICHOR_LOG_INFO(_logger, "Timer {} completed other 'long' task", getServiceId());

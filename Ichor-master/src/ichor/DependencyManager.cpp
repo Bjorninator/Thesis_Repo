@@ -442,7 +442,7 @@ void Ichor::DependencyManager::startFP() {
             lck.unlock();
             _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
 
-            // ICHOR_LOG_TRACE(_logger, "picked up: id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
+            ICHOR_LOG_TRACE(_logger, "picked up: id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
 
             bool allowProcessing = true;
             uint32_t handlerAmount = 1; // for the non-default case below, the DepMan handles the event
@@ -763,7 +763,7 @@ void Ichor::DependencyManager::startFP() {
         _emptyQueue = true;
 
         if(!_quit.load(std::memory_order_acquire)) {
-            _wakeUp.wait_for(lck, std::chrono::milliseconds(1), [this] { return !_eventQueue.empty(); });
+            _wakeUp.wait_for(lck, std::chrono::nanoseconds(1), [this] { return !_eventQueue.empty(); });
         }
 
         lck.unlock();
@@ -1146,7 +1146,7 @@ void Ichor::DependencyManager::startEDF() {
         _emptyQueue = true;
 
         if(!_quit.load(std::memory_order_acquire)) {
-            _wakeUp.wait_for(lck, std::chrono::milliseconds(1), [this] { return !_eventQueue.empty(); });
+            _wakeUp.wait_for(lck, std::chrono::nanoseconds(1), [this] { return !_eventQueue.empty(); });
         }
 
         lck.unlock();

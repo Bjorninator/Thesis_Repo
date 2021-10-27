@@ -1,15 +1,33 @@
+#include <mutex>
 #include <iostream>
-#include <boost/asio.hpp>
-#include <boost/date_time/posix_time/posix_time.hpp>
 
+ typedef std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> MyTimePoint;
+ typedef unsigned long long u64;
+ 
 int main()
 {
-  boost::asio::io_service io;
+   while(true) {
 
-  boost::asio::deadline_timer t(io, boost::posix_time::seconds(5));
-  t.wait();
+    clock_gettime(CLOCK_REALTIME, &time1);
 
-  std::cout << "Hello, world!" << std::endl;
+    loopRate.sleep();
 
-  return 0;
+    clock_gettime(CLOCK_REALTIME, &time2);
+    
+    time_between = ((double)time2.tv_sec*SEC2NANOSEC + (double)time2.tv_nsec) - ((double)time1.tv_sec*SEC2NANOSEC + (double)time1.tv_nsec);  
+
+    printf("frequency measured with gettime is %f Hz\n", 1/(time_between/1000000000));
 }
+}
+
+ static u64 get_time_us(void)
+        {
+            struct timespec ts;
+            u64 time;
+
+            clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+            time = ts.tv_sec * 1000000;
+            time += ts.tv_nsec / 1000;
+
+            return time;
+        }

@@ -4,6 +4,7 @@
 #include <ichor/optional_bundles/logging_bundle/Logger.h>
 #include <ichor/optional_bundles/timer_bundle/TimerService.h>
 #include <ichor/Service.h>
+#include <chrono>
 #include <ichor/LifecycleManager.h>
 
 using namespace Ichor;
@@ -20,16 +21,12 @@ public:
     ~CalculationService() final = default;
 
     bool start() final {
-        ICHOR_LOG_INFO(_logger, "CalculationService started");
-        _timerManager = getManager()->createServiceManager<Timer, ITimer>();
-        _timerManager->setChronoInterval(std::chrono::milliseconds(500));
-        _timerEventRegistration = getManager()->registerEventHandler<TimerEvent>(this, _timerManager->getServiceId());
-        _timerManager->startTimer();
+         _customEventHandler = getManager()->registerEventHandler<Custom1Event>(this);
         return true;
     }
 
     bool stop() final {
-        _timerEventRegistration.reset();
+        _customEventHandler.reset();
         _timerManager = nullptr;
         ICHOR_LOG_INFO(_logger, "CalculationService stopped");
         return true;
@@ -43,19 +40,40 @@ public:
         _logger = nullptr;
     }
 
-    Generator<bool> handleEvent(TimerEvent const * const evt) {
+    Generator<bool> handleEvent(Custom1Event const * const evt) {
         ICHOR_LOG_INFO(_logger, "Timer {} starting other 'long' task", getServiceId());
-
-            int yi = 0; 
+            u64 period = evt->period;
+            
             std::this_thread::sleep_for(std::chrono::milliseconds(40));
+            std::cout << "Calculating the sensor data \n";
             ICHOR_LOG_INFO(_logger, "Timer {} completed calculation task", getServiceId());
-            getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
+
+            u64 check = get_time_us();
+            // std::cout << "period: " << period << "\n";
+            // std::cout << "check: " << check << "\n";
+            if(period < check){
+                std::cout << "did not make it\n";
+            } 
+            // getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
             co_return (bool)PreventOthersHandling;
     }
 
 private:
+    typedef unsigned long long u64;
     ILogger *_logger{nullptr};
-    std::unique_ptr<EventHandlerRegistration, Deleter> _timerEventRegistration{nullptr};
+    std::unique_ptr<EventHandlerRegistration, Deleter> _customEventHandler{nullptr};
     uint64_t _timerTriggerCount{0};
     Timer* _timerManager{nullptr};
+
+    static u64 get_time_us(void)
+    {
+        struct timespec ts;
+        u64 time;
+
+        clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+        time = ts.tv_sec * 1000000;
+        time += ts.tv_nsec / 1000;
+
+        return time;
+    }
 };

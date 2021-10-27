@@ -32,6 +32,13 @@ namespace Ichor {
         static constexpr std::string_view NAME = typeName<TimerEvent>();
     };
 
+    struct Custom1Event final : public Event {
+        Custom1Event(uint64_t _id, uint64_t _originatingService, uint64_t _priority, uint64_t _runtime, uint64_t _period, MyTimePoint _deadline) noexcept : Event(TYPE, NAME, _id, _originatingService, _priority, _runtime, _period, _deadline) {}
+        ~Custom1Event() final = default;
+
+        static constexpr uint64_t TYPE = typeNameHash<Custom1Event>();
+        static constexpr std::string_view NAME = typeName<Custom1Event>();
+    };
 
     struct DependencyOnlineEvent final : public Event {
         explicit DependencyOnlineEvent(uint64_t _id, uint64_t _originatingService, uint64_t _priority) noexcept :

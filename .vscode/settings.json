@@ -78,7 +78,12 @@
         "any": "cpp",
         "strstream": "cpp",
         "source_location": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "mman.h": "c",
+        "stat.h": "c",
+        "string.h": "c",
+        "ctype.h": "c",
+        "sched.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

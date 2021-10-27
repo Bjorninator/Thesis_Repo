@@ -186,41 +186,12 @@ namespace Ichor {
             else{
                 _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
             }
-          // std::unique_ptr<Event, Deleter> test = std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)});
-            // if(treeId == 3){
-            //     auto event = _eventQueueBst->extract(0);
-            //     std::cout << "custom event met: \n";
-            //     std::cout << "treeId: " << event->value.value << "\n";
-            //     std::cout << "eventId: " << event->value.ID << "\n";
-            //     int first = event->event.get()->priority; 
-            //     std::cout << first << "\n";
-
-            //     event = _eventQueueBst->extract(0);
-            //     std::cout << "custom event met: \n";
-            //     std::cout << "treeId: " << event->value.value << "\n";
-            //     std::cout << "eventId: " << event->value.ID << "\n";
-            //     first = event->event.get()->priority; 
-            //     std::cout << first << "\n";
-
-            //     event = _eventQueueBst->extract(0);
-            //     std::cout << "custom event met: \n";
-            //     std::cout << "treeId: " << event->value.value << "\n";
-            //     std::cout << "eventId: " << event->value.ID << "\n";
-            //     first = event->event.get()->priority; 
-            //     std::cout << first << "\n";
-
-            //     event = _eventQueueBst->extract(0);
-            //     std::cout << "custom event met: \n";
-            //     std::cout << "treeId: " << event->value.value << "\n";
-            //     std::cout << "eventId: " << event->value.ID << "\n";
-            //     first = event->event.get()->priority; 
-            //     std::cout << first << "\n";
-            // }
+           // std::unique_ptr<Event, Deleter> test = std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)});
            // ICHOR_LOG_TRACE(_logger, "it works! id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
         
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
-            // ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
+            ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
             return eventId;
         }
 
@@ -254,7 +225,7 @@ namespace Ichor {
 
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
-             // ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
+            ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
             return eventId;
         }
 
@@ -445,6 +416,7 @@ namespace Ichor {
         void startFP();
         void startBST();
         void startEDF();
+        RealtimeReadWriteMutex _eventQueueMutex{};
 
     private:
         template <typename EventT>
@@ -531,7 +503,6 @@ namespace Ichor {
         std::pmr::multimap<uint64_t, std::unique_ptr<Event, Deleter>> _eventQueue{_eventMemResource};
         std::unique_ptr<BST> _eventQueueBst{std::make_unique<BST>()};
 
-        RealtimeReadWriteMutex _eventQueueMutex{};
         ConditionVariableAny<RealtimeReadWriteMutex> _wakeUp{_eventQueueMutex};
         std::atomic<uint64_t> _eventIdCounter{0};
         std::atomic<uint64_t> _treeIdCounter{0};

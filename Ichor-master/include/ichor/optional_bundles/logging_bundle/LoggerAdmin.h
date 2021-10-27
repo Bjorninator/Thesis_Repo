@@ -29,7 +29,7 @@ namespace Ichor {
 
         void addDependencyInstance(IFrameworkLogger *logger, IService *isvc) noexcept {
             _logger = logger;
-            ICHOR_LOG_TRACE(_logger, "Inserted logger");
+            // ICHOR_LOG_TRACE(_logger, "Inserted logger");
         }
 
         void removeDependencyInstance(IFrameworkLogger *logger, IService *isvc) noexcept {
@@ -55,7 +55,7 @@ namespace Ichor {
                     props.template emplace("Filter",          Ichor::make_any<Filter>(this->getMemoryResource(), Filter{this->getMemoryResource(), ServiceIdFilterEntry{evt->originatingService}}));
                     _loggers.emplace(evt->originatingService, Service<LoggerAdmin<LogT>>::getManager()->template createServiceManager<LogT, ILogger>(std::move(props)));
             } else {
-                ICHOR_LOG_TRACE(_logger, "svcid {} already has logger", evt->originatingService);
+               // ICHOR_LOG_TRACE(_logger, "svcid {} already has logger", evt->originatingService);
             }
         }
 
