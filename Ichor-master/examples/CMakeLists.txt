@@ -3,6 +3,12 @@ add_executable(ichor_bjorn_usecase ${EXAMPLE_SOURCES})
 target_link_libraries(ichor_bjorn_usecase ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(ichor_bjorn_usecase ichor)
 
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/scheduler_queue_example/*.cpp)
+add_executable(ichor_scheduler_queue_example ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_scheduler_queue_example ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_scheduler_queue_example ichor)
+
+
 file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/yielding_timer_example/*.cpp)
 add_executable(ichor_yielding_timer_example ${EXAMPLE_SOURCES})
 target_link_libraries(ichor_yielding_timer_example ${CMAKE_THREAD_LIBS_INIT})

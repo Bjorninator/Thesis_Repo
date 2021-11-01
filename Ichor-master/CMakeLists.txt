@@ -87,7 +87,7 @@ if(NOT DEFINED USE_SANITIZERS AND NOT DEFINED USE_THREAD_SANITIZER)
     # see https://github.com/google/sanitizers/issues/856
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIE")
 endif()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fstack-clash-protection -fcf-protection")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fstack-clash-protection")
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fcoroutines")
@@ -101,7 +101,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g3 -ggdb -gdwarf-3 -Og")
 set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG")
 
-set(EXTERNAL_C_FLAGS "-fstack-protector-strong -fstack-clash-protection -fcf-protection")
+set(EXTERNAL_C_FLAGS "-fstack-protector-strong -fstack-clash-protection")
 if(USE_SANITIZERS)
     set(EXTERNAL_C_FLAGS "${EXTERNAL_C_FLAGS} -fsanitize=address,undefined -no-pie -fno-omit-frame-pointer")
     set(EXTERNAL_LINKER_FLAGS "-no-pie")

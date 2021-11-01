@@ -763,7 +763,7 @@ void Ichor::DependencyManager::startFP() {
         _emptyQueue = true;
 
         if(!_quit.load(std::memory_order_acquire)) {
-            _wakeUp.wait_for(lck, std::chrono::nanoseconds(1), [this] { return !_eventQueue.empty(); });
+            _wakeUp.wait_for(lck, std::chrono::milliseconds(1), [this] { return !_eventQueue.empty(); });
         }
 
         lck.unlock();
@@ -1146,7 +1146,7 @@ void Ichor::DependencyManager::startEDF() {
         _emptyQueue = true;
 
         if(!_quit.load(std::memory_order_acquire)) {
-            _wakeUp.wait_for(lck, std::chrono::nanoseconds(1), [this] { return !_eventQueue.empty(); });
+            _wakeUp.wait_for(lck, std::chrono::milliseconds(1), [this] { return !_eventQueue.empty(); });
         }
 
         lck.unlock();

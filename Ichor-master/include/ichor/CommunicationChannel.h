@@ -52,6 +52,7 @@ namespace Ichor {
 
             manager->second->pushEvent<EventT>(std::forward<Args>(args)...);
         }
+        
     private:
         std::unordered_map<uint64_t, DependencyManager*> _managers{};
         RealtimeReadWriteMutex _mutex{};

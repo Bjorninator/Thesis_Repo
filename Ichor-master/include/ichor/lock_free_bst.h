@@ -31,7 +31,7 @@ public:
         int treeId = treeIdCounter.fetch_add(1, std::memory_order_acq_rel);
         int id = x.get()->id;
         int priority = x.get()->priority;
-        val v((priority * 1000), id);
+        val v((priority * 1000), treeId);
        
         seek_record record;
         while (true) {
@@ -284,6 +284,7 @@ private:
 
         if (value < ancestor->value) {
             successor_addr = &(GET_LEFT(ancestor));
+          //  delete &(GET_RIGHT(ancestor));
         } else {
             successor_addr = &(GET_RIGHT(ancestor));
         }
@@ -301,8 +302,10 @@ private:
 
         (void) __sync_fetch_and_or(sibling_addr, 1);
 
-        bool result = __sync_bool_compare_and_swap(successor_addr,
-            GET_ADDR(successor), UNTAGGED(*sibling_addr));
+        bool result = __sync_bool_compare_and_swap(successor_addr, GET_ADDR(successor), UNTAGGED(*sibling_addr));
+
+        // node* current = GET_ADDR(record.ancestor);
+        // delete current;
 
         return result;
     }
