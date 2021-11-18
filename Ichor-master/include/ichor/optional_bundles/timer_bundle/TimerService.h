@@ -64,21 +64,6 @@ namespace Ichor {
             return _priority.load(std::memory_order_acquire);
         }
 
-    typedef std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> MyTimePoint;
-
-    private:
-        typedef unsigned long long u64;
-        std::atomic<uint64_t> _intervalNanosec;
-        std::unique_ptr<std::thread> _eventInsertionThread;
-        std::atomic<bool> _quit;
-        std::atomic<uint64_t> _priority;
-        std::atomic<uint64_t> period;
-        std::atomic<uint64_t> execution;
-        std::atomic<uint64_t> runtimeStart;
-        std::atomic<uint64_t> runtimeEnd;
-        std::atomic<uint64_t> _intervalDeadline;
-        struct sched_param sp;
-
         void insertEventLoop() {
             cpu_set_t lock_to_core_set;
             CPU_ZERO(&lock_to_core_set);
@@ -90,7 +75,8 @@ namespace Ichor {
                     perror("sched_setscheduler");
 
             while(!_quit.load(std::memory_order_acquire)) {
-                runtimeStart = get_time_us();
+                std::cout << "START, " << get_time_us() << "\n";
+
                 auto now = std::chrono::steady_clock::now();
                 auto next = now + std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
                // std::cout << _intervalNanosec.load(std::memory_order_acquire) / 1000 << "\n";
@@ -99,17 +85,32 @@ namespace Ichor {
                 while(now < next && !_quit.load(std::memory_order_acquire)) {
                     std::this_thread::sleep_for(std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire)/10));
                     now = std::chrono::steady_clock::now();
-                    // period = get_time_us();
                 }
+                std::cout << "WAKE UP, " << get_time_us() << "\n";
+
                 MyTimePoint startTimePoint = std::chrono::time_point_cast<MyTimePoint::duration>(std::chrono::steady_clock::time_point(std::chrono::steady_clock::now()));
                 startTimePoint += std::chrono::milliseconds(_intervalDeadline.load(std::memory_order_acquire));
 
+               // std::shared_lock lck(_eventQueueMutex);
+               std::cout << "RELEASE JOB, " << get_time_us() << "\n";
                 getManager()->pushPrioritisedEvent<TimerEvent>(getServiceId(), _priority.load(std::memory_order_acquire), 10, period, startTimePoint);
-                execution = (get_time_us() - period);
-               // std::cout <<"release job:, ," << execution << "\n";
+               std::cout << "RELEASED JOB, " << get_time_us() << "\n";
                 next += std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
             }
         }
+    typedef std::chrono::time_point<std::chrono::steady_clock, std::chrono::milliseconds> MyTimePoint;
+
+    private:
+        typedef unsigned long long u64;
+        std::atomic<uint64_t> _intervalNanosec;
+        std::unique_ptr<std::thread> _eventInsertionThread;
+        std::atomic<bool> _quit;
+        std::atomic<uint64_t> _priority;
+        std::atomic<uint64_t> period;
+        std::atomic<uint64_t> runtimeStart;
+        std::atomic<uint64_t> runtimeEnd;
+        std::atomic<uint64_t> _intervalDeadline;
+        struct sched_param sp;
 
         static u64 get_time_us(void)
         {

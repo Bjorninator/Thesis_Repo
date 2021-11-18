@@ -23,7 +23,6 @@
 #include <ichor/stl/ConditionVariable.h>
 #include <ichor/stl/ConditionVariableAny.h>
 #include <ichor/lock_free_bst.h>
-#include <ichor/bst.h>
 
 // prevent false positives by TSAN
 // See "ThreadSanitizer – data race detection in practice" by Serebryany et al. for more info: https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/35604.pdf
@@ -169,6 +168,7 @@ namespace Ichor {
         template <typename EventT, typename... Args>
         requires Derived<EventT, Event>
         uint64_t pushPrioritisedEvent(uint64_t originatingServiceId, uint64_t priority, Args&&... args){
+            std::cout << "START PUSH EVENT, " << get_time_us() << "\n";
            _unchangedQueue = false;
            //  std::cout <<"HELLOO PRIO EVENT! \n";
             if(_quit.load(std::memory_order_acquire)) {
@@ -192,6 +192,7 @@ namespace Ichor {
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
             ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
+            std::cout << "END PUSH EVENT, " << get_time_us() << "\n";
             return eventId;
         }
 
@@ -417,6 +418,20 @@ namespace Ichor {
         void startBST();
         void startEDF();
         RealtimeReadWriteMutex _eventQueueMutex{};
+        std::unique_ptr<BST> _eventQueueBst{std::make_unique<BST>()};
+        
+        typedef unsigned long long u64;
+        static u64 get_time_us(void)
+        {
+            struct timespec ts;
+            u64 time;
+
+            clock_gettime(CLOCK_MONOTONIC_RAW, &ts);
+            time = ts.tv_sec * 1000000;
+            time += ts.tv_nsec / 1000;
+
+            return time;
+        }
 
     private:
         template <typename EventT>
@@ -501,8 +516,6 @@ namespace Ichor {
         IFrameworkLogger *_logger{nullptr};
         std::shared_ptr<ILifecycleManager> _preventEarlyDestructionOfFrameworkLogger{nullptr};
         std::pmr::multimap<uint64_t, std::unique_ptr<Event, Deleter>> _eventQueue{_eventMemResource};
-        std::unique_ptr<BST> _eventQueueBst{std::make_unique<BST>()};
-
         ConditionVariableAny<RealtimeReadWriteMutex> _wakeUp{_eventQueueMutex};
         std::atomic<uint64_t> _eventIdCounter{0};
         std::atomic<uint64_t> _treeIdCounter{0};

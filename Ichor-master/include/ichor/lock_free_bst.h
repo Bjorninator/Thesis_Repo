@@ -1,6 +1,3 @@
-#ifndef LOCK_FREE_BST_H_
-#define LOCK_FREE_BST_H_
-
 #include <atomic>
 #include <vector>
 #include <memory>
@@ -24,6 +21,8 @@
 #define FLAGGED(nodeptr) (PTR(LNG(nodeptr) | 2))
 #define UNTAGGED(nodeptr) (PTR(LNG(nodeptr) & (~1)))
 
+
+namespace Ichor {
 class BST {
 public:
 
@@ -52,7 +51,7 @@ public:
 
                 node* new_leaf = new node(v);
                 new_leaf->event = std::move(x);
-               
+                
                 val k = leaf->value;
                 node* new_internal;
                 if (k < v) {
@@ -68,9 +67,10 @@ public:
                     child_addr = &(parent->right);
                 }
 
-                if (__sync_bool_compare_and_swap(child_addr, leaf, new_internal)) {
+                if (__sync_bool_compare_and_swap(child_addr, leaf, new_internal)){
                     return true;
                 } else {
+                    std::cout << "does this ever happen\n";
                     // TODO: cleanup
                     delete new_leaf;
                     delete new_internal;
@@ -89,6 +89,14 @@ public:
         seek_record record = seek(0);
         if(record.leaf->value.value == 0) {return true;}
         return false;
+    }
+
+    void deallocate_start (int x){
+        std::cout << "FREE IT\n";
+        val v(x);
+        seek_record record = seek(v);
+        node* event = record.leaf;
+        deallocate(event);
     }
 
     bool remove(int x) {
@@ -112,14 +120,49 @@ public:
                     GET_ADDR(leaf), FLAGGED(UNTAGGED(leaf)))) {
                     injecting = false;
                     if (cleanup(v, record))
+                        delete leaf;
                         return true;
                 }
-            } else if (record.leaf != leaf || cleanup(v, record)) {
+            
+            } else if (cleanup(v, record)) {
+                delete leaf;
                 return true;
             }
         }
 
     }
+
+    bool remove_event(int x, int y) {
+        val v(x,y);
+        bool injecting = true;
+        node* leaf = nullptr;
+        while (true) {
+            seek_record record = seek(v);
+            node* parent = record.parent;
+            node** child_addr;
+            if (v < parent->value) {
+                child_addr = &(parent->left);
+            } else {
+                child_addr = &(parent->right);
+            }
+            if (injecting) {
+                leaf = record.leaf;
+                if (leaf->value != v)
+                    return false;
+                if (__sync_bool_compare_and_swap(child_addr,
+                    GET_ADDR(leaf), FLAGGED(UNTAGGED(leaf)))) {
+                    injecting = false;
+                    if (cleanup(v, record))
+                        return true;
+                }
+            
+            } else if (cleanup(v, record)) {
+                return true;
+            }
+        }
+
+    }
+    
 
     bool contains(int x) {
         val v(x);
@@ -223,8 +266,45 @@ public:
         seek_record record = seek(v);
         node* event = record.leaf;
         if(event->value.value == 0) {return nullptr;}
-        else{ remove(event->value.value);}
+        // else
+        // { 
+        //     remove(event->value.value);
+        //     // bool injecting = true;
+        //     // node* leaf = nullptr;
+        //     // while (true) {
+        //     //     node* parent = record.parent;
+        //     //     node** child_addr;
+        //     //     if (v < parent->value) {
+        //     //         child_addr = &(parent->left);
+        //     //     } else {
+        //     //         child_addr = &(parent->right);
+        //     //     }
+        //     //     if (injecting) {
+        //     //         leaf = record.leaf;
+        //     //         if (leaf->value != v)
+        //     //             break;
+        //     //         if (__sync_bool_compare_and_swap(child_addr,
+        //     //             GET_ADDR(leaf), FLAGGED(UNTAGGED(leaf)))) {
+        //     //             injecting = false;
+        //     //             cleanup(v, record);
+        //     //         }
+                
+        //     //     } else{cleanup(v, record);} 
+                    
+                
+        //     // }
+        // }
         return event;
+    }
+
+    void deallocate (node* event) 
+    {
+        if(event==NULL)
+            return;
+
+        deallocate(event->right);
+        deallocate(event->left);
+        delete event;
     }
 
 private:
@@ -299,13 +379,14 @@ private:
 
         if (!GET_FLAG(*child_addr))
             sibling_addr = child_addr;
-
+            
         (void) __sync_fetch_and_or(sibling_addr, 1);
 
         bool result = __sync_bool_compare_and_swap(successor_addr, GET_ADDR(successor), UNTAGGED(*sibling_addr));
 
         // node* current = GET_ADDR(record.ancestor);
         // delete current;
+        // delete parent;
 
         return result;
     }
@@ -313,4 +394,4 @@ private:
     // static void free_node(node* node);
 };
 
-#endif
+}

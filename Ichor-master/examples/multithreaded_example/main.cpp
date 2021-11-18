@@ -13,7 +13,6 @@
 #include <thread>
 
 int main() {
-    std::locale::global(std::locale("en_US.UTF-8"));
 
     auto start = std::chrono::steady_clock::now();
 
@@ -27,14 +26,14 @@ int main() {
         dmOne.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dmOne.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dmOne.createServiceManager<OneService>();
-        dmOne.startFP();
+        dmOne.startEDF();
     });
 
     std::thread t2([&dmTwo] {
         dmTwo.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dmTwo.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dmTwo.createServiceManager<OtherService>();
-        dmTwo.startFP();
+        dmTwo.startEDF();
     });
 
     t1.join();

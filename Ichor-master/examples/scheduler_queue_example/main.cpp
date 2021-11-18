@@ -47,7 +47,7 @@ void* run_example1(void*) {
         dm.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dm.createServiceManager<PlaceService, IPlaceService>();
-        dm.startFP();
+        dm.startBST();
 
     return nullptr;
 }
@@ -72,7 +72,7 @@ void* run_example2(void*) {
         dm.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dm.createServiceManager<PlaceService, IPlaceService>();
-        dm.startFP();
+        dm.startBST();
 
     return nullptr;
 }

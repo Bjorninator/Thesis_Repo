@@ -37,7 +37,7 @@ int main() {
         dm.createServiceManager<SerializationAdmin, ISerializationAdmin>();
         dm.createServiceManager<TestMsgJsonSerializer, ISerializer>();
         dm.createServiceManager<TestService>();
-        dm.start();
+        dm.startFP();
         auto end = std::chrono::steady_clock::now();
         std::cout << fmt::format("Single Threaded Program ran for {:L} µs with {:L} peak memory usage\n", std::chrono::duration_cast<std::chrono::microseconds>(end - start).count(), getPeakRSS());
     }
@@ -62,7 +62,7 @@ int main() {
                 managers[i].createServiceManager<SerializationAdmin, ISerializationAdmin>();
                 managers[i].createServiceManager<TestMsgJsonSerializer, ISerializer>();
                 managers[i].createServiceManager<TestService>();
-                managers[i].start();
+                managers[i].startFP();
             });
         }
         for (uint_fast32_t i = 0; i < 8; i++) {

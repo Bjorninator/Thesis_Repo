@@ -1,0 +1,199 @@
+Load Avg 1.00 0.89 1.12, Freq Avg 2.49 GHz, 2 CPUs online
+2244.6 Ctxt/s, 789.1 IRQ/s, 652.5 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:27:53)
+  0.99   0.00   0.99   51039 R    0   0.01s cpustat
+  0.99   0.99   0.00   23111 S    0  10.11m /usr/share/code/code --type=renderer --disable-color-correct-rendering --field-tria
+  0.99   0.00   0.99      13 S    0   2.10m [ksoftirqd/0]
+  0.99   0.00   0.99      24 S    1   2.06m [ksoftirqd/1]
+
+Load Avg 1.00 0.89 1.12, Freq Avg 2.49 GHz, 2 CPUs online
+2529.6 Ctxt/s, 810.2 IRQ/s, 654.6 softIRQ/s, 0.0 new tasks/s, 2 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:27:54)
+  0.93   0.00   0.93    1028 S    0  11.36m /usr/lib/xorg/Xorg
+  0.93   0.00   0.93    1017 S    0   8.00m /usr/bin/pulseaudio
+  0.93   0.00   0.93   51039 R    0   0.02s cpustat
+  0.93   0.93   0.00    3897 S    0   1.11m /usr/lib/firefox/firefox
+  0.93   0.00   0.93    1333 R    1  12.13m /usr/bin/gnome-shell
+
+Load Avg 0.92 0.87 1.11, Freq Avg 2.49 GHz, 2 CPUs online
+2314.0 Ctxt/s, 838.0 IRQ/s, 659.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:27:55)
+  1.00   1.00   0.00    3814 S    1   5.54m /usr/lib/firefox/firefox
+  1.00   1.00   0.00   34293 S    0  25.84s /usr/bin/nautilus
+  1.00   1.00   0.00    1333 R    1  12.13m /usr/bin/gnome-shell
+  1.00   1.00   0.00    2111 S    0  11.18m /usr/lib/firefox/firefox
+
+Load Avg 0.92 0.87 1.11, Freq Avg 2.49 GHz, 2 CPUs online
+2212.5 Ctxt/s, 781.3 IRQ/s, 631.3 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:27:56)
+  1.04   1.04   0.00   42821 S    1   1.18m /usr/lib/firefox/firefox
+  1.04   1.04   0.00    1017 S    0   8.00m /usr/bin/pulseaudio
+  1.04   0.00   1.04   51039 R    0   0.03s cpustat
+
+Load Avg 0.92 0.87 1.11, Freq Avg 2.49 GHz, 2 CPUs online
+2488.0 Ctxt/s, 800.0 IRQ/s, 616.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:27:57)
+  2.00   2.00   0.00    2131 S    1  10.49s /usr/lib/firefox/firefox
+  1.00   1.00   0.00   34351 S    1   2.21m /snap/atom/282/usr/share/atom/atom --executed-from=/home/bjorn --pid=34323 /home/bj
+  1.00   0.00   1.00   51039 R    0   0.04s cpustat
+
+Load Avg 0.92 0.87 1.11, Freq Avg 2.49 GHz, 2 CPUs online
+2195.2 Ctxt/s, 764.4 IRQ/s, 613.5 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:27:58)
+  0.96   0.00   0.96    1017 S    0   8.00m /usr/bin/pulseaudio
+  0.96   0.96   0.00    4047 S    1   1.12m /usr/lib/firefox/firefox
+  0.96   0.96   0.00    2111 S    0  11.18m /usr/lib/firefox/firefox
+
+Load Avg 0.92 0.87 1.11, Freq Avg 2.49 GHz, 2 CPUs online
+2243.0 Ctxt/s, 792.0 IRQ/s, 628.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:27:59)
+  1.00   1.00   0.00    1804 S    1   1.49m /usr/libexec/gnome-terminal-server
+  1.00   1.00   0.00   42821 S    1   1.18m /usr/lib/firefox/firefox
+  1.00   0.00   1.00   34351 S    1   2.21m /snap/atom/282/usr/share/atom/atom --executed-from=/home/bjorn --pid=34323 /home/bj
+  1.00   0.00   1.00   51039 R    0   0.05s cpustat
+  1.00   0.00   1.00      13 S    0   2.10m [ksoftirqd/0]
+
+Load Avg 0.85 0.86 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+2326.0 Ctxt/s, 783.3 IRQ/s, 651.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:00)
+  1.04   0.00   1.04    1028 S    0  11.36m /usr/lib/xorg/Xorg
+  1.04   1.04   0.00    1017 S    0   8.00m /usr/bin/pulseaudio
+  1.04   1.04   0.00   51039 R    0   0.06s cpustat
+  1.04   0.00   1.04      23 S    1  32.01s [rcuc/1]
+  1.04   1.04   0.00    1333 R    1  12.13m /usr/bin/gnome-shell
+
+Load Avg 0.85 0.86 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+2274.0 Ctxt/s, 796.0 IRQ/s, 613.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:01)
+  2.00   2.00   0.00    1333 R    1  12.13m /usr/bin/gnome-shell
+  1.00   0.00   1.00   42821 S    1   1.18m /usr/lib/firefox/firefox
+  1.00   0.00   1.00    1017 S    0   8.00m /usr/bin/pulseaudio
+  1.00   0.00   1.00   51039 R    0   0.07s cpustat
+  1.00   0.00   1.00      24 S    1   2.06m [ksoftirqd/1]
+
+Load Avg 0.85 0.86 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+2335.0 Ctxt/s, 753.0 IRQ/s, 604.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:02)
+  1.00   0.00   1.00   51039 R    0   0.08s cpustat
+  1.00   1.00   0.00    1333 R    1  12.13m /usr/bin/gnome-shell
+  1.00   1.00   0.00    2111 S    0  11.18m /usr/lib/firefox/firefox
+
+Load Avg 0.85 0.86 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+2155.8 Ctxt/s, 756.7 IRQ/s, 625.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:03)
+  0.96   0.96   0.00    3814 S    1   5.54m /usr/lib/firefox/firefox
+  0.96   0.00   0.96    1028 S    0  11.36m /usr/lib/xorg/Xorg
+  0.96   0.00   0.96    1978 S    0  32.11m /usr/lib/firefox/firefox
+  0.96   0.96   0.00   42821 S    1   1.18m /usr/lib/firefox/firefox
+  0.96   0.96   0.00   34351 S    1   2.21m /snap/atom/282/usr/share/atom/atom --executed-from=/home/bjorn --pid=34323 /home/bj
+  0.96   0.96   0.00   34412 S    0   3.58m /snap/atom/282/usr/share/atom/atom --type=renderer --enable-experimental-web-platfo
+
+Load Avg 0.85 0.86 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+2325.0 Ctxt/s, 821.0 IRQ/s, 632.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:04)
+  1.00   0.00   1.00    1017 S    0   8.00m /usr/bin/pulseaudio
+  1.00   0.00   1.00   51039 R    0   0.09s cpustat
+  1.00   1.00   0.00   34293 S    0  25.85s /usr/bin/nautilus
+  1.00   1.00   0.00    1333 R    1  12.13m /usr/bin/gnome-shell
+  1.00   0.00   1.00      13 S    0   2.10m [ksoftirqd/0]
+
+Load Avg 0.78 0.84 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+2007.3 Ctxt/s, 770.8 IRQ/s, 600.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:05)
+  1.04   0.00   1.04   34351 S    1   2.21m /snap/atom/282/usr/share/atom/atom --executed-from=/home/bjorn --pid=34323 /home/bj
+  1.04   0.00   1.04   51039 R    0   0.10s cpustat
+  1.04   0.00   1.04    1333 R    1  12.13m /usr/bin/gnome-shell
+  1.04   1.04   0.00    4047 S    1   1.12m /usr/lib/firefox/firefox
+
+Load Avg 0.78 0.84 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+1851.5 Ctxt/s, 705.0 IRQ/s, 558.4 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:06)
+  0.99   0.99   0.00   42821 S    1   1.18m /usr/lib/firefox/firefox
+  0.99   0.99   0.00    1017 S    0   8.00m /usr/bin/pulseaudio
+  0.99   0.00   0.99   51039 R    0   0.11s cpustat
+  0.99   0.99   0.00    3897 S    0   1.11m /usr/lib/firefox/firefox
+  0.99   0.99   0.00    2111 S    0  11.18m /usr/lib/firefox/firefox
+
+Load Avg 0.78 0.84 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+2029.8 Ctxt/s, 744.2 IRQ/s, 594.2 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:07)
+  0.96   0.00   0.96   42821 S    1   1.18m /usr/lib/firefox/firefox
+  0.96   0.00   0.96      14 S    0  31.90s [rcuc/0]
+
+Load Avg 0.78 0.84 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+2009.1 Ctxt/s, 756.6 IRQ/s, 596.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:08)
+  1.01   1.01   0.00    1032 S    1   0.35s /usr/libexec/rtkit-daemon
+  1.01   0.00   1.01   51039 R    0   0.12s cpustat
+  1.01   0.00   1.01    3897 S    0   1.11m /usr/lib/firefox/firefox
+  1.01   0.00   1.01   23111 S    0  10.11m /usr/share/code/code --type=renderer --disable-color-correct-rendering --field-tria
+  1.01   0.00   1.01    4047 S    1   1.12m /usr/lib/firefox/firefox
+  1.01   0.00   1.01    2111 S    0  11.18m /usr/lib/firefox/firefox
+
+Load Avg 0.78 0.84 1.10, Freq Avg 2.49 GHz, 2 CPUs online
+1964.6 Ctxt/s, 745.8 IRQ/s, 592.7 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:09)
+  1.04   0.00   1.04   34351 S    1   2.21m /snap/atom/282/usr/share/atom/atom --executed-from=/home/bjorn --pid=34323 /home/bj
+  1.04   1.04   0.00    1017 S    0   8.00m /usr/bin/pulseaudio
+  1.04   0.00   1.04   51039 R    0   0.13s cpustat
+  1.04   0.00   1.04      13 S    0   2.10m [ksoftirqd/0]
+
+Load Avg 0.72 0.83 1.09, Freq Avg 2.49 GHz, 2 CPUs online
+2421.0 Ctxt/s, 833.0 IRQ/s, 651.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:10)
+  1.00   1.00   0.00   23196 S    0  36.09s /usr/share/code/code
+  1.00   1.00   0.00   27102 S    1   2.18m /usr/lib/firefox/firefox
+  1.00   0.00   1.00    1017 S    0   8.00m /usr/bin/pulseaudio
+  1.00   1.00   0.00   23111 S    0  10.11m /usr/share/code/code --type=renderer --disable-color-correct-rendering --field-tria
+  1.00   1.00   0.00    2111 S    0  11.18m /usr/lib/firefox/firefox
+  1.00   0.00   1.00      24 S    1   2.06m [ksoftirqd/1]
+
+Load Avg 0.72 0.83 1.09, Freq Avg 2.49 GHz, 2 CPUs online
+2144.0 Ctxt/s, 781.0 IRQ/s, 608.0 softIRQ/s, 0.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:11)
+  1.00   1.00   0.00    1804 S    1   1.49m /usr/libexec/gnome-terminal-server
+  1.00   1.00   0.00    1028 S    0  11.36m /usr/lib/xorg/Xorg
+  1.00   1.00   0.00   42821 S    1   1.18m /usr/lib/firefox/firefox
+  1.00   0.00   1.00   34412 S    0   3.58m /snap/atom/282/usr/share/atom/atom --type=renderer --enable-experimental-web-platfo
+  1.00   1.00   0.00   51039 R    0   0.14s cpustat
+  1.00   1.00   0.00   23187 S    0   1.76s /usr/share/code/code
+  1.00   0.00   1.00     434 S    1  26.04s [irq/51-i915]
+  1.00   1.00   0.00   23170 S    1  10.62s /usr/share/code/code --type=renderer --disable-color-correct-rendering --field-tria
+
+Load Avg 0.72 0.83 1.09, Freq Avg 2.49 GHz, 2 CPUs online
+2601.0 Ctxt/s, 828.8 IRQ/s, 653.8 softIRQ/s, 2.9 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:12)
+  2.88   2.88   0.00    1333 R    1  12.13m /usr/bin/gnome-shell
+  0.96   0.96   0.00     831 S    0   0.60s /usr/lib/accountsservice/accounts-daemon
+  0.96   0.96   0.00   34351 S    1   2.21m /snap/atom/282/usr/share/atom/atom --executed-from=/home/bjorn --pid=34323 /home/bj
+  0.96   0.96   0.00    1017 S    0   8.00m /usr/bin/pulseaudio
+  0.96   0.96   0.00    1031 S    1   3.36s /usr/bin/dbus-daemon
+  0.96   0.00   0.96   51039 R    0   0.15s cpustat
+  0.96   0.96   0.00   34293 S    0  25.86s /usr/bin/nautilus
+  0.96   0.96   0.00    4047 S    1   1.12m /usr/lib/firefox/firefox
+
+Load Avg 0.72 0.83 1.09, Freq Avg 2.49 GHz, 2 CPUs online
+2686.0 Ctxt/s, 839.0 IRQ/s, 653.0 softIRQ/s, 5.0 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:13)
+  2.00   0.00   2.00    1978 S    0  32.11m /usr/lib/firefox/firefox
+  1.00   0.00   1.00     425 S    0  18.02s [irq/50-s-iwlwif]
+  1.00   0.00   1.00    1028 S    0  11.36m /usr/lib/xorg/Xorg
+  1.00   0.00   1.00   23056 S    0  54.04s /usr/share/code/code --unity-launch
+  1.00   0.00   1.00    1017 S    0   8.00m /usr/bin/pulseaudio
+  1.00   0.00   1.00   51039 R    0   0.16s cpustat
+  1.00   1.00   0.00    1333 R    1  12.13m /usr/bin/gnome-shell
+  1.00   1.00   0.00    2111 S    0  11.18m /usr/lib/firefox/firefox
+  1.00   1.00   0.00   23170 S    1  10.63s /usr/share/code/code --type=renderer --disable-color-correct-rendering --field-tria
+
+Load Avg 0.72 0.83 1.09, Freq Avg 2.49 GHz, 2 CPUs online
+2800.0 Ctxt/s, 867.7 IRQ/s, 683.3 softIRQ/s, 3.1 new tasks/s, 1 running, 0 blocked
+  %CPU   %USR   %SYS     PID S  CPU    Time Task  (17:28:14)
+  3.13   3.13   0.00    2111 S    0  11.18m /usr/lib/firefox/firefox
+  2.08   1.04   1.04    1978 S    0  32.11m /usr/lib/firefox/firefox
+  1.04   1.04   0.00    3814 S    1   5.54m /usr/lib/firefox/firefox
+  1.04   1.04   0.00   42821 S    1   1.18m /usr/lib/firefox/firefox
+  1.04   0.00   1.04   51039 R    0   0.17s cpustat
+  1.04   0.00   1.04    1333 R    1  12.13m /usr/bin/gnome-shell
+
+Load Avg 0.66 0.81 1.09, Freq Avg 2.49 GHz, 2 CPUs online
+21

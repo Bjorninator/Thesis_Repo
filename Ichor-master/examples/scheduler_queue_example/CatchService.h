@@ -52,9 +52,9 @@ public:
         if (now > 0 && now > max) {max = now;}
         _timerTriggerCount++;
                                 
-        if(_timerTriggerCount == 1000) {
+        if(_timerTriggerCount == 10000) {
             getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-            average = average / 1000; 
+            average = average / 10000; 
             std::cout << "average: " << average  <<"\n";
             std::cout << "minimum: " << min  <<"\n";
             std::cout << "maximum: " << max  <<"\n";

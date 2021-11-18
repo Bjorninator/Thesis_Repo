@@ -11,6 +11,7 @@ namespace Ichor {
         virtual void setDeadline(uint64_t milliseconds) noexcept = 0;
         virtual void setPriority(uint64_t priority) noexcept = 0;
         [[nodiscard]] virtual uint64_t getPriority() const noexcept = 0;
+        virtual void insertEventLoop() = 0;
 
         template <typename Dur>
         void setDeadlineInterval(Dur duration) noexcept {

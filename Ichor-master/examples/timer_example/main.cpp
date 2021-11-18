@@ -20,7 +20,6 @@
 using namespace std::string_literals;
 
 int main() {
-    std::locale::global(std::locale("en_US.UTF-8"));
 
     auto start = std::chrono::steady_clock::now();
     DependencyManager dm{};

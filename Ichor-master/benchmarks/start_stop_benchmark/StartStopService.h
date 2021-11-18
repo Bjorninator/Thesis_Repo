@@ -16,13 +16,16 @@ public:
     }
     ~StartStopService() final = default;
     bool start() final {
+
+        std::cout << startCount << "\n";
+
         if(startCount == 0) {
             _startServiceRegistration = getManager()->registerEventCompletionCallbacks<StartServiceEvent>(this);
             _stopServiceRegistration = getManager()->registerEventCompletionCallbacks<StopServiceEvent>(this);
 
             _start = std::chrono::steady_clock::now();
             getManager()->pushEvent<StopServiceEvent>(getServiceId(), _testServiceId);
-        } else if(startCount < 1'000'000) {
+        } else if(startCount < 1000) {
             getManager()->pushEvent<StopServiceEvent>(getServiceId(), _testServiceId);
         } else {
             auto end = std::chrono::steady_clock::now();

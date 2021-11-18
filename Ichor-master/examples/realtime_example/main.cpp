@@ -30,7 +30,7 @@ void* run_example(void*) {
         dm.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dm.createServiceManager<OptionalService, IOptionalService>();
-        dm.createServiceManager<OptionalService, IOptionalService>();
+       // dm.createServiceManager<OptionalService, IOptionalService>();
         dm.createServiceManager<TestService>();
         dm.startFP();
     }
@@ -42,8 +42,6 @@ void* run_example(void*) {
 }
 
 int main() {
-    std::cout << "Can you print here then?";
-    std::locale::global(std::locale("en_US.UTF-8"));
 
     uid_t uid = getuid();
     uid_t euid = geteuid();

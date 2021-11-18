@@ -34,7 +34,7 @@ int main() {
 
         dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         dm.createServiceManager<TestService>(Properties{{"LogLevel", Ichor::make_any<LogLevel>(dm.getMemoryResource(), LogLevel::WARN)}});
-        dm.start();
+        dm.startFP();
         auto end = std::chrono::steady_clock::now();
         std::cout << fmt::format("Single Threaded Program ran for {:L} µs with {:L} peak memory usage\n", std::chrono::duration_cast<std::chrono::microseconds>(end - start).count(), getPeakRSS());
     }
@@ -57,7 +57,7 @@ int main() {
 
                 managers[i].createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
                 managers[i].createServiceManager<TestService>(Properties{{"LogLevel", Ichor::make_any<LogLevel>(managers[i].getMemoryResource(), LogLevel::WARN)}});
-                managers[i].start();
+                managers[i].startFP();
             });
         }
         for (uint_fast32_t i = 0; i < 8; i++) {

@@ -13,6 +13,8 @@
 
 std::atomic<bool> sigintQuit;
 std::atomic<uint64_t> Ichor::DependencyManager::_managerIdCounter = 0;
+auto loopCheck = std::chrono::steady_clock::now();
+auto endLoopCheck = std::chrono::steady_clock::now();
 
 void on_sigint([[maybe_unused]] int sig) {
     sigintQuit.store(true, std::memory_order_release);
@@ -47,15 +49,18 @@ void Ichor::DependencyManager::startBST() {
         // std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueueBst->empty()) {
             TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
+            std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
+           
             // auto evtNode = _eventQueue.extract(_eventQueue.begin());
 
             // ICHOR_LOG_TRACE(_logger, "Trying to pick up event now");
             auto event = _eventQueueBst->extract(0);
-
             if(event == nullptr ){ICHOR_LOG_TRACE(_logger, "its empty!\n"); std::cout << _eventQueueBst->empty() << "\n";}
             if(event != nullptr) {
+                _eventQueueBst->remove(event->value.value);
                 //  ICHOR_LOG_TRACE(_logger, "Picking up event now");
                 auto evtNode = std::move(event->event);
+            std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n";
                 // std::cout << "custom event met: \n";
                 // std::cout << "treeId: " << event->value.value << "\n";
                 // std::cout << "eventId: " << event->value.ID << "\n";
@@ -210,6 +215,7 @@ void Ichor::DependencyManager::startBST() {
 
                             if (canFinally_quit) {
                                 _quit.store(true, std::memory_order_release);
+                                
                             } else {
                                 pushEventInternal<QuitEvent>(_quitEvt->originatingService, INTERNAL_EVENT_PRIORITY + 1, false);
                             }
@@ -383,6 +389,7 @@ void Ichor::DependencyManager::startBST() {
             }
 
            // lck.lock();
+            std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
         }
        
         }
@@ -433,12 +440,15 @@ void Ichor::DependencyManager::startFP() {
 #endif
 
     while(!_quit.load(std::memory_order_acquire)) {
+        // loopCheck = std::chrono::steady_clock::now();
         _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
+        std::cout << "EXTRACT EVENT BEFORE LOCK, " << get_time_us() << "\n";
         std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
+            std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
             TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
             auto evtNode = _eventQueue.extract(_eventQueue.begin());
-
+            std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n";
             lck.unlock();
             _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
 
@@ -756,8 +766,10 @@ void Ichor::DependencyManager::startFP() {
                     info.postIntercept(evtNode.mapped().get(), allowProcessing && handlerAmount > 0);
                 }
             }
+        std::cout << "END SCHEDULING LOOP BEFORE LOCK, " << get_time_us() << "\n";
 
             lck.lock();
+        std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
         }
 
         _emptyQueue = true;
@@ -767,6 +779,8 @@ void Ichor::DependencyManager::startFP() {
         }
 
         lck.unlock();
+    // endLoopCheck = std::chrono::steady_clock::now();
+    // fmt::print("scheduler loop for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(endLoopCheck-loopCheck).count());
     }
 
     for(auto &[key, manager] : _services) {
@@ -807,10 +821,12 @@ void Ichor::DependencyManager::startEDF() {
 #endif
 
     while(!_quit.load(std::memory_order_acquire)) {
+        // loopCheck = std::chrono::steady_clock::now();
         _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
         std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
             TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
+            std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
             auto HighestNode = _eventQueue.begin();
             // if(_unchangedQueue == true) {std::cout <<"UNCHANGED! \n"; }else {std::cout <<"CHANGED! \n";}
             if(_unchangedQueue == false) {
@@ -823,6 +839,7 @@ void Ichor::DependencyManager::startEDF() {
                 }
             }
              auto evtNode = _eventQueue.extract(HighestNode);
+             std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n";
              _unchangedQueue = true;
              lck.unlock();
              _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
@@ -1141,6 +1158,7 @@ void Ichor::DependencyManager::startEDF() {
             }
 
             lck.lock();
+            std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
         }
 
         _emptyQueue = true;
@@ -1150,6 +1168,9 @@ void Ichor::DependencyManager::startEDF() {
         }
 
         lck.unlock();
+       // endLoopCheck = std::chrono::steady_clock::now();
+       // fmt::print("scheduler loop for {:L} µs\n", std::chrono::duration_cast<std::chrono::microseconds>(endLoopCheck-loopCheck).count());
+   
     }
 
     for(auto &[key, manager] : _services) {
