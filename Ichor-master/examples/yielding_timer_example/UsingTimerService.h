@@ -58,7 +58,7 @@ public:
         std::cout << _timerTriggerCount << "\n";
 
         
-      //  getManager()->pushEvent<QuitEvent>(getServiceId(),10);
+       // getManager()->pushEvent<QuitEvent>(getServiceId(),10);
         
 
         ICHOR_LOG_INFO(_logger, "Timer {} completed 'long' task", getServiceId());

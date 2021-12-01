@@ -23,14 +23,16 @@ public:
         ICHOR_LOG_INFO(_logger, "OtherTimerService started");
         _timerManager = getManager()->createServiceManager<Timer, ITimer>();
         _timerManager->setChronoInterval(std::chrono::milliseconds(500));
-        _timerManager->setDeadlineInterval(std::chrono::milliseconds(20));
+        _timerManager->setDeadlineInterval(std::chrono::milliseconds(500));
         _timerEventRegistration = getManager()->registerEventHandler<TimerEvent>(this, _timerManager->getServiceId());
         _timerManager->startTimer();
         return true;
     }
 
     bool stop() final {
+        std::cout << "This show is over! \n";
         _timerEventRegistration.reset();
+        _timerManager->stopTimer();
         _timerManager = nullptr;
         ICHOR_LOG_INFO(_logger, "OtherTimerService stopped");
         return true;
@@ -56,8 +58,8 @@ public:
             // co_yield (bool)PreventOthersHandling;
         }
 
-        if(_timerTriggerCount == 7) {
-         //   getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
+        if(_timerTriggerCount == 5) {
+           getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
         }
 
         ICHOR_LOG_INFO(_logger, "Timer {} completed other 'long' task", getServiceId());

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <queue>
 #include <stack>
-#include <ichor/Events.h>
+// #include <ichor/Events.h>
 // #include "bst.h"
 
 #if defined(__SANITIZE_THREAD__)
@@ -52,31 +52,29 @@ extern "C" void AnnotateHappensAfter(const char* f, int l, void* addr);
 class BST {
 public:
 
-    bool insert(std::unique_ptr<Ichor::Event> x){
+    bool insert(int x){
         int treeId = treeIdCounter.fetch_add(1, std::memory_order_acq_rel);
-        // std::unique_ptr<BST> bst = std::make_unique<BST>();
+        std::unique_ptr<BST> bst = std::make_unique<BST>();
         // int id = x.get()->id;
-        int priority = x.get()->priority;
-        val v(priority);
+        // int priority = x.get()->priority;
+        val v(x);
        
         seek_record record;
         while (true) {
             record = seek(v);
             if (record.leaf->value == v) {
-                if(priority == 1000){
-                   // std::cout<<idCounter <<" waddap \n";
+                if(x == 1000){
+                    std::cout<<idCounter <<" waddap \n";
                     idCounter++;
                     v.value = v.value + idCounter; 
-                    // std:: cout << v.value << "\n";
-                }else{
-                    v.value++;
+                    std:: cout << v.value << "\n";
                 }
             } else {
                 node* parent = record.parent;
                 node* leaf = record.leaf;
 
                 node* new_leaf = new node(v);
-                new_leaf->event = std::move(x);
+                new_leaf->event = std::move(bst);
 
                 val k = leaf->value;
                 node* new_internal;
@@ -117,17 +115,17 @@ public:
         return false;
     }
 
-    void deallocate_start (int x){
-        std::cout << "FREE IT\n";
-        val v(x);
-        seek_record record = seek(v);
-        node* event = record.leaf;
-        deallocate(event);
-    }
+    // void deallocate_start (int x){
+    //     std::cout << "FREE IT\n";
+    //     val v(x);
+    //     seek_record record = seek(v);
+    //     node* event = record.leaf;
+    //     deallocate(event);
+    // }
 
     bool remove(int x) {
         val v(x);
-        if(idCounter >= 1000 ){idCounter = x - 1000;}
+        if(idCounter > (x - 1000) ){idCounter = x - 1000;}
         bool injecting = true;
         node* leaf = nullptr;
         while (true) {
@@ -148,7 +146,7 @@ public:
 
                     injecting = false;
                     if (cleanup(v, record)){
-                       // std::cout << "does it happen here? \n";
+                        std::cout << "does it happen here? \n";
                         return true;
                     }
                 }else {
@@ -247,7 +245,7 @@ public:
 
     struct node {
         val value;
-        std::unique_ptr<Ichor::Event> event; 
+        std::unique_ptr<BST> event; 
         node* left;
         node* right;
 

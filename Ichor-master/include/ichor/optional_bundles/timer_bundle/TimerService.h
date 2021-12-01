@@ -41,6 +41,7 @@ namespace Ichor {
             if(_quit.compare_exchange_strong(expected, true, std::memory_order_acq_rel)) {
                 _eventInsertionThread->join();
                 _eventInsertionThread = nullptr;
+                std::cout << "This show is over for the timerservice! \n";
             }
         }
 
@@ -75,7 +76,7 @@ namespace Ichor {
                     perror("sched_setscheduler");
 
             while(!_quit.load(std::memory_order_acquire)) {
-                std::cout << "START, " << get_time_us() << "\n";
+                //std::cout << "START, " << get_time_us() << "\n";
 
                 auto now = std::chrono::steady_clock::now();
                 auto next = now + std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
@@ -86,15 +87,15 @@ namespace Ichor {
                     std::this_thread::sleep_for(std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire)/10));
                     now = std::chrono::steady_clock::now();
                 }
-                std::cout << "WAKE UP, " << get_time_us() << "\n";
+               // std::cout << "WAKE UP, " << get_time_us() << "\n";
 
                 MyTimePoint startTimePoint = std::chrono::time_point_cast<MyTimePoint::duration>(std::chrono::steady_clock::time_point(std::chrono::steady_clock::now()));
                 startTimePoint += std::chrono::milliseconds(_intervalDeadline.load(std::memory_order_acquire));
 
                // std::shared_lock lck(_eventQueueMutex);
-               std::cout << "RELEASE JOB, " << get_time_us() << "\n";
+               //std::cout << "RELEASE JOB, " << get_time_us() << "\n";
                 getManager()->pushPrioritisedEvent<TimerEvent>(getServiceId(), _priority.load(std::memory_order_acquire), 10, period, startTimePoint);
-               std::cout << "RELEASED JOB, " << get_time_us() << "\n";
+              // std::cout << "RELEASED JOB, " << get_time_us() << "\n";
                 next += std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
             }
         }

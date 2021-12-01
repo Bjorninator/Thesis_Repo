@@ -43,8 +43,6 @@ public:
     Generator<bool> handleEvent(Custom1Event const * const evt) {
       //  auto start = std::chrono::steady_clock::now();
         ICHOR_LOG_INFO(_logger, "Timer {} starting other 'long' task", getServiceId());
-            
-            
         period = evt->period;
         now = (get_time_us() - period);
         std::cout << eventCount << ", " << (now - totalRuntime) << ", "<< evt->runtime << "\n";
@@ -74,9 +72,9 @@ public:
             totalRuntime = 0;
         } 
 
-        if(_timerTriggerCount == 1001) {
+        if(_timerTriggerCount == 100) {
             getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-            average = average / 1001; 
+            average = average / 100; 
             std::cout << "average: " << average  <<"\n";
             std::cout << "minimum: " << min  <<"\n";
             std::cout << "maximum: " << max  <<"\n";

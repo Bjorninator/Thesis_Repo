@@ -46,7 +46,7 @@ public:
     }
 
     Generator<bool> handleEvent(TimerEvent const * const evt) {
-        std::cout << "START EVENT, " << get_time_us() << "\n";
+        // std::cout << "START EVENT, " << get_time_us() << "\n";
         period = evt->period;
         now = (get_time_us() - period);
         if(startup){
@@ -60,16 +60,16 @@ public:
             if (now > 0 && now > max) {max = now; maxCounter = _timerTriggerCount;}
             _timerTriggerCount++;
                                     
-            if(_timerTriggerCount == 10) {
+            if(_timerTriggerCount == 10000) {
                 getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-                average = average / 10; 
+                average = average / 10000; 
                 std::cout << "maxcounter: " << maxCounter << " mincounter: " << minCounter <<"\n";
                 std::cout << "average: " << average  <<"\n";
                 std::cout << "minimum: " << min  <<"\n";
                 std::cout << "maximum: " << max  <<"\n";
             }
         }
-        std::cout << "END EVENT, " << get_time_us() << "\n";
+        // std::cout << "END EVENT, " << get_time_us() << "\n";
         co_return (bool)PreventOthersHandling;
         
     }

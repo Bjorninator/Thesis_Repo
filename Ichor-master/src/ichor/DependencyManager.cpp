@@ -46,10 +46,10 @@ void Ichor::DependencyManager::startBST() {
 
     while(!_quit.load(std::memory_order_acquire)) {
         _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
-        // std::shared_lock lck(_eventQueueMutex);
+        std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueueBst->empty()) {
-            TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
-            std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
+            
+         //  std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
            
             // auto evtNode = _eventQueue.extract(_eventQueue.begin());
 
@@ -57,49 +57,28 @@ void Ichor::DependencyManager::startBST() {
             auto event = _eventQueueBst->extract(0);
             if(event == nullptr ){ICHOR_LOG_TRACE(_logger, "its empty!\n"); std::cout << _eventQueueBst->empty() << "\n";}
             if(event != nullptr) {
-                _eventQueueBst->remove(event->value.value);
                 //  ICHOR_LOG_TRACE(_logger, "Picking up event now");
-                auto evtNode = std::move(event->event);
-            std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n";
-                // std::cout << "custom event met: \n";
-                // std::cout << "treeId: " << event->value.value << "\n";
-                // std::cout << "eventId: " << event->value.ID << "\n";
-                // int first = event->event.get()->priority; 
-                // ICHOR_LOG_TRACE(_logger, "picked up: id {} type {} has {} prio", event->event.get()->id, event->event.get()->name, event->event.get()->priority);
-                // std::cout << first << "\n";
+                // auto evtNode = std::move(event->event);
+          //  std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n"
             
 
-            // lck.unlock();
+            lck.unlock();
             _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
 
             // ICHOR_LOG_TRACE(_logger, "picked up: id {} type {} has {} prio", evtNode.get()->id, evtNode.get()->name, evtNode.get()->priority);
-
+           // std::cout << "INTERCEPT EVENT, " << get_time_us() << "\n";
             bool allowProcessing = true;
             uint32_t handlerAmount = 1; // for the non-default case below, the DepMan handles the event
             auto interceptorsForAllEvents = _eventInterceptors.find(0);
-            auto interceptorsForEvent = _eventInterceptors.find(evtNode->type);
+            auto interceptorsForEvent = _eventInterceptors.find(event->event.get()->type);
 
-            if(interceptorsForAllEvents != end(_eventInterceptors)) {
-                for(const EventInterceptInfo &info : interceptorsForAllEvents->second) {
-                    if(!info.preIntercept(evtNode.get())) {
-                        allowProcessing = false;
-                    }
-                }
-            }
-
-            if(interceptorsForEvent != end(_eventInterceptors)) {
-                for(const EventInterceptInfo &info : interceptorsForEvent->second) {
-                    if(!info.preIntercept(evtNode.get())) {
-                        allowProcessing = false;
-                    }
-                }
-            }
-
+           
+           // std::cout << "SWITCH EVENT, " << get_time_us() << "\n";
             if(allowProcessing) {
-                switch (evtNode->type) {
+                switch (event->event->type) {
                     case DependencyOnlineEvent::TYPE: {
                         SPDLOG_DEBUG("DependencyOnlineEvent");
-                        auto depOnlineEvt = static_cast<DependencyOnlineEvent *>(evtNode.get());
+                        auto depOnlineEvt = static_cast<DependencyOnlineEvent *>(event->event.get());
                         auto managerIt = _services.find(depOnlineEvt->originatingService);
 
                         if(managerIt == end(_services)) {
@@ -135,7 +114,7 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case DependencyOfflineEvent::TYPE: {
                         SPDLOG_DEBUG("DependencyOfflineEvent");
-                        auto depOfflineEvt = static_cast<DependencyOfflineEvent *>(evtNode.get());
+                        auto depOfflineEvt = static_cast<DependencyOfflineEvent *>(event->event.get());
                         auto managerIt = _services.find(depOfflineEvt->originatingService);
 
                         if(managerIt == end(_services)) {
@@ -170,7 +149,7 @@ void Ichor::DependencyManager::startBST() {
                     }
                         break;
                     case DependencyRequestEvent::TYPE: {
-                        auto depReqEvt = static_cast<DependencyRequestEvent *>(evtNode.get());
+                        auto depReqEvt = static_cast<DependencyRequestEvent *>(event->event.get());
 
                         auto trackers = _dependencyRequestTrackers.find(depReqEvt->dependency.interfaceNameHash);
                         if (trackers == end(_dependencyRequestTrackers)) {
@@ -183,7 +162,7 @@ void Ichor::DependencyManager::startBST() {
                     }
                         break;
                     case DependencyUndoRequestEvent::TYPE: {
-                        auto depUndoReqEvt = static_cast<DependencyUndoRequestEvent *>(evtNode.get());
+                        auto depUndoReqEvt = static_cast<DependencyUndoRequestEvent *>(event->event.get());
 
                         auto trackers = _dependencyUndoRequestTrackers.find(depUndoReqEvt->dependency.interfaceNameHash);
                         if (trackers == end(_dependencyUndoRequestTrackers)) {
@@ -197,7 +176,7 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case QuitEvent::TYPE: {
                         SPDLOG_DEBUG("QuitEvent");
-                        auto _quitEvt = static_cast<QuitEvent *>(evtNode.get());
+                        auto _quitEvt = static_cast<QuitEvent *>(event->event.get());
                         if (!_quitEvt->dependenciesStopped) {
                             for (auto const &[key, possibleManager] : _services) {
                                 pushEventInternal<StopServiceEvent>(_quitEvt->originatingService, possibleManager->getPriority(), possibleManager->serviceId());
@@ -215,7 +194,7 @@ void Ichor::DependencyManager::startBST() {
 
                             if (canFinally_quit) {
                                 _quit.store(true, std::memory_order_release);
-                                
+                                _eventQueueBst->deallocate_start(0);
                             } else {
                                 pushEventInternal<QuitEvent>(_quitEvt->originatingService, INTERNAL_EVENT_PRIORITY + 1, false);
                             }
@@ -224,7 +203,7 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case StopServiceEvent::TYPE: {
                         SPDLOG_DEBUG("StopServiceEvent");
-                        auto stopServiceEvt = static_cast<StopServiceEvent *>(evtNode.get());
+                        auto stopServiceEvt = static_cast<StopServiceEvent *>(event->event.get());
 
                         auto toStopServiceIt = _services.find(stopServiceEvt->serviceId);
 
@@ -251,7 +230,7 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case RemoveServiceEvent::TYPE: {
                         SPDLOG_DEBUG("RemoveServiceEvent");
-                        auto removeServiceEvt = static_cast<RemoveServiceEvent *>(evtNode.get());
+                        auto removeServiceEvt = static_cast<RemoveServiceEvent *>(event->event.get());
 
                         auto toRemoveServiceIt = _services.find(removeServiceEvt->serviceId);
 
@@ -280,7 +259,7 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case StartServiceEvent::TYPE: {
                         SPDLOG_DEBUG("StartServiceEvent");
-                        auto startServiceEvt = static_cast<StartServiceEvent *>(evtNode.get());
+                        auto startServiceEvt = static_cast<StartServiceEvent *>(event->event.get());
 
                         auto toStartServiceIt = _services.find(startServiceEvt->serviceId);
 
@@ -304,12 +283,12 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case DoWorkEvent::TYPE: {
                         SPDLOG_DEBUG("DoWorkEvent");
-                        handleEventCompletion(evtNode.get());
+                        handleEventCompletion(event->event.get());
                     }
                         break;
                     case RemoveCompletionCallbacksEvent::TYPE: {
                         SPDLOG_DEBUG("RemoveCompletionCallbacksEvent");
-                        auto removeCallbacksEvt = static_cast<RemoveCompletionCallbacksEvent *>(evtNode.get());
+                        auto removeCallbacksEvt = static_cast<RemoveCompletionCallbacksEvent *>(event->event.get());
 
                         _completionCallbacks.erase(removeCallbacksEvt->key);
                         _errorCallbacks.erase(removeCallbacksEvt->key);
@@ -317,7 +296,7 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case RemoveEventHandlerEvent::TYPE: {
                         SPDLOG_DEBUG("RemoveEventHandlerEvent");
-                        auto removeEventHandlerEvt = static_cast<RemoveEventHandlerEvent *>(evtNode.get());
+                        auto removeEventHandlerEvt = static_cast<RemoveEventHandlerEvent *>(event->event.get());
 
                         // key.id = service id, key.type == event id
                         auto existingHandlers = _eventCallbacks.find(removeEventHandlerEvt->key.type);
@@ -330,7 +309,7 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case RemoveEventInterceptorEvent::TYPE: {
                         SPDLOG_DEBUG("RemoveEventInterceptorEvent");
-                        auto removeEventHandlerEvt = static_cast<RemoveEventInterceptorEvent *>(evtNode.get());
+                        auto removeEventHandlerEvt = static_cast<RemoveEventInterceptorEvent *>(event->event.get());
 
                         // key.id = service id, key.type == event id
                         auto existingHandlers = _eventInterceptors.find(removeEventHandlerEvt->key.type);
@@ -343,7 +322,7 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case RemoveTrackerEvent::TYPE: {
                         SPDLOG_DEBUG("RemoveTrackerEvent");
-                        auto removeTrackerEvt = static_cast<RemoveTrackerEvent *>(evtNode.get());
+                        auto removeTrackerEvt = static_cast<RemoveTrackerEvent *>(event->event.get());
 
                         _dependencyRequestTrackers.erase(removeTrackerEvt->interfaceNameHash);
                         _dependencyUndoRequestTrackers.erase(removeTrackerEvt->interfaceNameHash);
@@ -352,44 +331,33 @@ void Ichor::DependencyManager::startBST() {
                     case ContinuableEvent<Generator<bool>>::TYPE: {
                         SPDLOG_DEBUG("ContinuableEvent");
                         //  std::cout << "IK BEn EEn CONTINUABLE EVENT! \n";
-                        auto continuableEvt = static_cast<ContinuableEvent<Generator<bool>> *>(evtNode.get());
+                        auto continuableEvt = static_cast<ContinuableEvent<Generator<bool>> *>(event->event.get());
 
                         auto it = continuableEvt->generator.begin();
 
                         if (it == continuableEvt->generator.end()) {
-                            std::cout << evtNode.get()->priority << "\n";
+                            std::cout << event->event.get()->priority << "\n";
                             pushEventInternal<ContinuableEvent<Generator<bool>>>(continuableEvt->originatingService, 10, std::move(continuableEvt->generator));
                         }
                     }
                         break;
                     case RunFunctionEvent::TYPE: {
                         SPDLOG_DEBUG("RunFunctionEvent");
-                        auto runFunctionEvt = static_cast<RunFunctionEvent *>(evtNode.get());
+                        auto runFunctionEvt = static_cast<RunFunctionEvent *>(event->event.get());
                         runFunctionEvt->fun(this);
                     }
                         break;
                     default: {
                         SPDLOG_DEBUG("broadcastEvent");
-                        handlerAmount = broadcastEvent(evtNode.get());
+                        handlerAmount = broadcastEvent(event->event.get());
                     }
                         break;
                 }
             }
 
-            if(interceptorsForAllEvents != end(_eventInterceptors)) {
-                for(const EventInterceptInfo &info : interceptorsForAllEvents->second) {
-                    info.postIntercept(evtNode.get(), allowProcessing && handlerAmount > 0);
-                }
-            }
-
-            if(interceptorsForEvent != end(_eventInterceptors)) {
-                for(const EventInterceptInfo &info : interceptorsForEvent->second) {
-                    info.postIntercept(evtNode.get(), allowProcessing && handlerAmount > 0);
-                }
-            }
-
-           // lck.lock();
-            std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
+            lck.lock();
+           _eventQueueBst->remove(event->value.value);
+           // std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
         }
        
         }
@@ -400,7 +368,7 @@ void Ichor::DependencyManager::startBST() {
           //  _wakeUp.wait_for(lck, std::chrono::milliseconds(1), [this] { return !_eventQueue.empty(); });
         }
 
-      //  lck.unlock();
+        lck.unlock();
     }
 
     for(auto &[key, manager] : _services) {
@@ -446,13 +414,13 @@ void Ichor::DependencyManager::startFP() {
         std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
             std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
-            TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
+           // TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
             auto evtNode = _eventQueue.extract(_eventQueue.begin());
             std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n";
             lck.unlock();
             _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
 
-            ICHOR_LOG_TRACE(_logger, "picked up: id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
+           // ICHOR_LOG_TRACE(_logger, "picked up: id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
 
             bool allowProcessing = true;
             uint32_t handlerAmount = 1; // for the non-default case below, the DepMan handles the event
@@ -766,10 +734,10 @@ void Ichor::DependencyManager::startFP() {
                     info.postIntercept(evtNode.mapped().get(), allowProcessing && handlerAmount > 0);
                 }
             }
-        std::cout << "END SCHEDULING LOOP BEFORE LOCK, " << get_time_us() << "\n";
+        //std::cout << "END SCHEDULING LOOP BEFORE LOCK, " << get_time_us() << "\n";
 
             lck.lock();
-        std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
+       // std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
         }
 
         _emptyQueue = true;
@@ -826,7 +794,7 @@ void Ichor::DependencyManager::startEDF() {
         std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
             TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
-            std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
+            //std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
             auto HighestNode = _eventQueue.begin();
             // if(_unchangedQueue == true) {std::cout <<"UNCHANGED! \n"; }else {std::cout <<"CHANGED! \n";}
             if(_unchangedQueue == false) {
@@ -839,7 +807,7 @@ void Ichor::DependencyManager::startEDF() {
                 }
             }
              auto evtNode = _eventQueue.extract(HighestNode);
-             std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n";
+             //std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n";
              _unchangedQueue = true;
              lck.unlock();
              _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
@@ -1158,7 +1126,7 @@ void Ichor::DependencyManager::startEDF() {
             }
 
             lck.lock();
-            std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
+            //std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
         }
 
         _emptyQueue = true;

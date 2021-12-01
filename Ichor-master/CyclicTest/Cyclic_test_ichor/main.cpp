@@ -25,19 +25,19 @@ void* run_example0(void*) {
     CPU_SET(0, &lock_to_core_set);
     sched_setaffinity(0, sizeof(cpu_set_t), &lock_to_core_set);
    
-    terminating_resource terminatingResource{};
-    std::pmr::set_default_resource(&terminatingResource);
+    // terminating_resource terminatingResource{};
+    // std::pmr::set_default_resource(&terminatingResource);
 
-        buffer_resource<1024 * 1024> resourceOne{};
-        buffer_resource<1024 * 1024> resourceTwo{};
+    //     buffer_resource<1024 * 1024> resourceOne{};
+    //     buffer_resource<1024 * 1024> resourceTwo{};
 
-        DependencyManager dm{&resourceOne, &resourceTwo};
-       // DependencyManager dm{};
+    //     DependencyManager dm{&resourceOne, &resourceTwo};
+        DependencyManager dm{};
         dm.createServiceManager<FRAMEWORK_LOGGER_TYPE, IFrameworkLogger>({}, 10);
         dm.createServiceManager<LoggerAdmin<LOGGER_TYPE>, ILoggerAdmin>();
         // dm.createServiceManager<UsingTimeService, IUsingTimeService>();
         dm.createServiceManager<OtherTimerService, IOtherTimerService>();
-        dm.startFP();
+        dm.startBST();
     
     return nullptr;
 }

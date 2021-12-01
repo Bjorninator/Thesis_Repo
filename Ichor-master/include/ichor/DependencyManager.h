@@ -168,7 +168,7 @@ namespace Ichor {
         template <typename EventT, typename... Args>
         requires Derived<EventT, Event>
         uint64_t pushPrioritisedEvent(uint64_t originatingServiceId, uint64_t priority, Args&&... args){
-            std::cout << "START PUSH EVENT, " << get_time_us() << "\n";
+            //std::cout << "START PUSH EVENT, " << get_time_us() << "\n";
            _unchangedQueue = false;
            //  std::cout <<"HELLOO PRIO EVENT! \n";
             if(_quit.load(std::memory_order_acquire)) {
@@ -184,7 +184,10 @@ namespace Ichor {
                 TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*it));
             }
             else{
-                _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
+                std::unique_ptr<Event> test = std::unique_ptr<Event>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...));
+               
+                 _eventQueueBst->insert(std::move(test));
+
             }
            // std::unique_ptr<Event, Deleter> test = std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)});
            // ICHOR_LOG_TRACE(_logger, "it works! id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
@@ -192,7 +195,7 @@ namespace Ichor {
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
             ICHOR_LOG_TRACE(_logger, "inserted event of type {} into manager {}", typeName<EventT>(), getId());
-            std::cout << "END PUSH EVENT, " << get_time_us() << "\n";
+            //std::cout << "END PUSH EVENT, " << get_time_us() << "\n";
             return eventId;
         }
 
@@ -217,12 +220,14 @@ namespace Ichor {
             _emptyQueue = false;
 
             if(_BSTQueue == false) {
+                // _eventQueueBst->insert(1000);
                 [[maybe_unused]] auto it = _eventQueue.emplace(INTERNAL_EVENT_PRIORITY, std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), INTERNAL_EVENT_PRIORITY, std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
                 TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*it));
             }
             else{
-                _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), INTERNAL_EVENT_PRIORITY, std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
-            }
+               std::unique_ptr<Event> test = std::unique_ptr<Event>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), INTERNAL_EVENT_PRIORITY, std::forward<Args>(args)...));
+                _eventQueueBst->insert(std::move(test));
+                }
 
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
@@ -498,7 +503,9 @@ namespace Ichor {
             TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*it));
 
 
-            _eventQueueBst->insert(std::unique_ptr<Event, Deleter>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...), Deleter{_memResource, sizeof(EventT)}));
+            std::unique_ptr<Event> test = std::unique_ptr<Event>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...));
+               
+             _eventQueueBst->insert(std::move(test));
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
             return eventId;
