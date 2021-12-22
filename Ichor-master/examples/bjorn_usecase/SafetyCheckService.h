@@ -47,7 +47,7 @@ public:
         ICHOR_LOG_INFO(_logger, "Timer {} starting 'long' task", getServiceId());
 
         _timerTriggerCount++;
-        std::cout << "Making a safety check\n";
+        //std::cout << "Making a safety check\n";
         for(uint32_t i = 0; i < 5; i++) {
             //simulate long task
             std::this_thread::sleep_for(std::chrono::milliseconds(40));
@@ -58,9 +58,9 @@ public:
         }
 
         if(_timerTriggerCount == 5){
-        std::cout << "Safety check failed, quiting now\n";
+        //std::cout << "Safety check failed, quiting now\n";
         // getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-        getManager()->getCommunicationChannel()->broadcastEvent<QuitEvent>(getManager(), getServiceId(), INTERNAL_EVENT_PRIORITY+1);
+        // getManager()->getCommunicationChannel()->broadcastEvent<QuitEvent>(getManager(), getServiceId(), INTERNAL_EVENT_PRIORITY+1);
         }
 
 

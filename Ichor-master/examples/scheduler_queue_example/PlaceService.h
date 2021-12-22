@@ -23,8 +23,8 @@ public:
     bool start() final {
         ICHOR_LOG_INFO(_logger, "PlaceService started");
         _timerManager = getManager()->createServiceManager<Timer, ITimer>();
-        _timerManager->setChronoInterval(std::chrono::milliseconds(5));
-        _timerManager->setDeadlineInterval(std::chrono::milliseconds(5));
+        _timerManager->setChronoInterval(std::chrono::milliseconds(10));
+        _timerManager->setDeadlineInterval(std::chrono::milliseconds(10));
         _timerEventRegistration = getManager()->registerEventHandler<TimerEvent>(this, _timerManager->getServiceId());
         _timerManager->startTimer();
         return true;
@@ -50,7 +50,7 @@ public:
         u64 period = get_time_us();
         // getManager()->getCommunicationChannel()->broadcastEvent<CustomEvent>(getManager(), getServiceId(),3, period);
         
-        getManager()->getCommunicationChannel()->sendEventTo<CustomEvent>(2, getServiceId(),5, period);
+        getManager()->getCommunicationChannel()->sendEventTo<CustomEvent>(2, getServiceId(),10, period);
         co_return (bool)PreventOthersHandling;
 
     }

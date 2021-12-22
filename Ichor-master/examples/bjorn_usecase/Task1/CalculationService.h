@@ -67,14 +67,14 @@ public:
         _timerTriggerCount++;
         eventCount++;
         if(eventCount == 2){
-            std::cout << totalRuntime << "\n";
+           // std::cout << totalRuntime << "\n";
             eventCount = 0;
             totalRuntime = 0;
         } 
 
-        if(_timerTriggerCount == 100) {
+        if(_timerTriggerCount == 5000) {
             getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-            average = average / 100; 
+            average = average / 5000; 
             std::cout << "average: " << average  <<"\n";
             std::cout << "minimum: " << min  <<"\n";
             std::cout << "maximum: " << max  <<"\n";

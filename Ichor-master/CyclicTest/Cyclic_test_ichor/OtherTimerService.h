@@ -33,6 +33,7 @@ public:
 
     bool stop() final {
         _timerEventRegistration.reset();
+        _timerManager->stopTimer();
         _timerManager = nullptr;
         return true;
     }
@@ -46,14 +47,17 @@ public:
     }
 
     Generator<bool> handleEvent(TimerEvent const * const evt) {
-        // std::cout << "START EVENT, " << get_time_us() << "\n";
+       // std::cout << deadline <<","<< get_time_us() << ",";
+        deadline++;
+
         period = evt->period;
         now = (get_time_us() - period);
+        
         if(startup){
             startup = false;
         }
         else {
-           // std::cout <<"Overal,"<<_timerTriggerCount << "," << now << "\n";
+            std::cout <<_timerTriggerCount << "," << now << "\n";
             average += now;
             if (now < min){ min = now; minCounter = _timerTriggerCount;}
 
@@ -69,7 +73,8 @@ public:
                 std::cout << "maximum: " << max  <<"\n";
             }
         }
-        // std::cout << "END EVENT, " << get_time_us() << "\n";
+      // std::cout << runtime <<","<< get_time_us() << ",";
+       runtime++;
         co_return (bool)PreventOthersHandling;
         
     }

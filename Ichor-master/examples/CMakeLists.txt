@@ -3,6 +3,67 @@ add_executable(ichor_scheduler_queue_example ${EXAMPLE_SOURCES})
 target_link_libraries(ichor_scheduler_queue_example ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(ichor_scheduler_queue_example ichor)
 
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task1/*.cpp)
+add_executable(ichor_bjorn_usecase1 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase1 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase1 ichor)
+
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task2/*.cpp)
+add_executable(ichor_bjorn_usecase2 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase2 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase2 ichor)
+
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task3/*.cpp)
+add_executable(ichor_bjorn_usecase3 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase3 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase3 ichor)
+
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task4/*.cpp)
+add_executable(ichor_bjorn_usecase4 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase4 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase4 ichor)
+
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task5/*.cpp)
+add_executable(ichor_bjorn_usecase5 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase5 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase5 ichor)
+
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task6/*.cpp)
+add_executable(ichor_bjorn_usecase6 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase6 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase6 ichor)
+
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task7/*.cpp)
+add_executable(ichor_bjorn_usecase7 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase7 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase7 ichor)
+
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task8/*.cpp)
+add_executable(ichor_bjorn_usecase8 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase8 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase8 ichor)
+
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task9/*.cpp)
+add_executable(ichor_bjorn_usecase9 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase9 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase9 ichor)
+
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/*.cpp)
+file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/bjorn_usecase/Task10/*.cpp)
+add_executable(ichor_bjorn_usecase10 ${EXAMPLE_SOURCES})
+target_link_libraries(ichor_bjorn_usecase10 ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(ichor_bjorn_usecase10 ichor)
+
+
 
 file(GLOB_RECURSE EXAMPLE_SOURCES ${TOP_DIR}/examples/yielding_timer_example/*.cpp)
 add_executable(ichor_yielding_timer_example ${EXAMPLE_SOURCES})

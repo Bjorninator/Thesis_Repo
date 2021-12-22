@@ -45,16 +45,16 @@ public:
     Generator<bool> handleEvent(CustomEvent const * const evt) {
         period = evt->period;
         now = (get_time_us() - period);
-        //std::cout <<"Overal,"<<_timerTriggerCount << "," << now << "\n";
+        std::cout <<_timerTriggerCount << "," << now << "\n";
         average += now;
         if (now < min){ min = now;}
 
         if (now > 0 && now > max) {max = now;}
         _timerTriggerCount++;
                                 
-        if(_timerTriggerCount == 10000) {
+        if(_timerTriggerCount == 8000) {
             getManager()->pushEvent<QuitEvent>(getServiceId(), INTERNAL_EVENT_PRIORITY+1);
-            average = average / 10000; 
+            average = average / 8000; 
             std::cout << "average: " << average  <<"\n";
             std::cout << "minimum: " << min  <<"\n";
             std::cout << "maximum: " << max  <<"\n";

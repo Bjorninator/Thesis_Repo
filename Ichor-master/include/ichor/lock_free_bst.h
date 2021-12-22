@@ -1,12 +1,22 @@
-#include <atomic>
-#include <vector>
-#include <memory>
-#include <iostream>
+#pragma once
+
 #include <queue>
 #include <stack>
+#include <vector>
+#include <unordered_map>
+#include <map>
+#include <memory>
+#include <cassert>
+#include <thread>
+#include <chrono>
+#include <iostream>
+#include <atomic>
+#include <csignal>
 #include <ichor/Events.h>
 // #include "bst.h"
 
+// prevent false positives by TSAN
+// See "ThreadSanitizer – data race detection in practice" by Serebryany et al. for more info: https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/35604.pdf
 #if defined(__SANITIZE_THREAD__)
 #define TSAN_ENABLED
 #elif defined(__has_feature)
@@ -26,6 +36,7 @@ extern "C" void AnnotateHappensAfter(const char* f, int l, void* addr);
 #define TSAN_ANNOTATE_HAPPENS_BEFORE(addr)
 #define TSAN_ANNOTATE_HAPPENS_AFTER(addr)
 #endif
+
 
 
 #define PTR(x) (reinterpret_cast<node*>(x))
@@ -55,9 +66,9 @@ public:
     bool insert(std::unique_ptr<Ichor::Event> x){
         int treeId = treeIdCounter.fetch_add(1, std::memory_order_acq_rel);
         // std::unique_ptr<BST> bst = std::make_unique<BST>();
-        // int id = x.get()->id;
+        int id = x.get()->id;
         int priority = x.get()->priority;
-        val v(priority);
+        val v(priority * 10000, id);
        
         seek_record record;
         while (true) {
@@ -93,7 +104,7 @@ public:
                     child_addr = &(parent->right);
                 }
                 
-             
+                TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*new_internal));
                 if (__sync_bool_compare_and_swap(child_addr, leaf, new_internal)){
                     return true;
                 } else {
@@ -105,6 +116,7 @@ public:
                     node* addr = GET_ADDR(child_addr);
                     if (addr == leaf && (GET_TAG(child_addr) || GET_FLAG(child_addr))) {
                         cleanup(v, record);
+                        std::cout << "get stuck here?\n";
                     }
                 }
             }
@@ -117,17 +129,17 @@ public:
         return false;
     }
 
-    void deallocate_start (int x){
+    void deallocate_start (){
         std::cout << "FREE IT\n";
-        val v(x);
+        val v(1);
         seek_record record = seek(v);
         node* event = record.leaf;
-        deallocate(event);
+      //  deallocate(event);
     }
 
     bool remove(int x) {
         val v(x);
-        if(idCounter >= 1000 ){idCounter = x - 1000;}
+        if(idCounter >= 10000000 ){idCounter = x - 10000000;}
         bool injecting = true;
         node* leaf = nullptr;
         while (true) {
@@ -143,25 +155,25 @@ public:
                 leaf = record.leaf;
                 if (leaf->value != v)
                     return false;
+                TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*leaf));
                 if (__sync_bool_compare_and_swap(child_addr, GET_ADDR(leaf), FLAGGED(UNTAGGED(leaf)))) {
                     delete GET_ADDR(leaf);
 
                     injecting = false;
                     if (cleanup(v, record)){
-                       // std::cout << "does it happen here? \n";
                         return true;
                     }
                 }else {
                     node* addr = GET_ADDR(child_addr);
                     if (addr == leaf && (GET_TAG(child_addr) || GET_FLAG(child_addr))) {
-                        std::cout << "or here? \n";
+                      
                         cleanup(v, record);
                     }
                     
                 }
             
             } else if (cleanup(v, record)) {
-                std::cout << "or does it happen here? \n";
+                
                 return true;
             }
         }
@@ -281,6 +293,7 @@ public:
 
         deallocate(event->right);
         deallocate(event->left);
+        (event->event).reset();
         delete event;
     }
 

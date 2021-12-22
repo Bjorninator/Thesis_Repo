@@ -47,7 +47,7 @@ public:
 
     Generator<bool> handleEvent(TimerEvent const * const evt) {
         ICHOR_LOG_INFO(_logger, "Timer {} starting other 'long' task", getServiceId());
-        std::atomic<uint64_t>  newperiod = get_time_us();
+        std::atomic<u64>  newperiod = get_time_us();
         getManager()->pushPrioritisedEvent<Custom1Event>(getServiceId(),10 , 728, newperiod, evt->deadline);
         getManager()->pushPrioritisedEvent<Custom1Event>(getServiceId(),10 , 4271, newperiod, evt->deadline);
         co_return (bool)PreventOthersHandling;

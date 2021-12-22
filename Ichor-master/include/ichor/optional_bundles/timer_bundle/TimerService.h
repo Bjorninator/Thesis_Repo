@@ -76,8 +76,8 @@ namespace Ichor {
                     perror("sched_setscheduler");
 
             while(!_quit.load(std::memory_order_acquire)) {
-                //std::cout << "START, " << get_time_us() << "\n";
-
+                // std::cout << get_time_us() << ",";
+                runtimeStart++;
                 auto now = std::chrono::steady_clock::now();
                 auto next = now + std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
                // std::cout << _intervalNanosec.load(std::memory_order_acquire) / 1000 << "\n";
@@ -87,15 +87,17 @@ namespace Ichor {
                     std::this_thread::sleep_for(std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire)/10));
                     now = std::chrono::steady_clock::now();
                 }
-               // std::cout << "WAKE UP, " << get_time_us() << "\n";
-
+            //    std::cout << get_time_us() << "\n";
+                runtimeEnd++;
                 MyTimePoint startTimePoint = std::chrono::time_point_cast<MyTimePoint::duration>(std::chrono::steady_clock::time_point(std::chrono::steady_clock::now()));
                 startTimePoint += std::chrono::milliseconds(_intervalDeadline.load(std::memory_order_acquire));
 
                // std::shared_lock lck(_eventQueueMutex);
-               //std::cout << "RELEASE JOB, " << get_time_us() << "\n";
+               // std::cout << pushStart << "," << get_time_us() << ",";
+                pushStart++;
                 getManager()->pushPrioritisedEvent<TimerEvent>(getServiceId(), _priority.load(std::memory_order_acquire), 10, period, startTimePoint);
-              // std::cout << "RELEASED JOB, " << get_time_us() << "\n";
+              //std::cout << pushEnd << "," << get_time_us() << ",";
+                pushEnd++;
                 next += std::chrono::nanoseconds(_intervalNanosec.load(std::memory_order_acquire));
             }
         }
@@ -107,9 +109,12 @@ namespace Ichor {
         std::unique_ptr<std::thread> _eventInsertionThread;
         std::atomic<bool> _quit;
         std::atomic<uint64_t> _priority;
-        std::atomic<uint64_t> period;
-        std::atomic<uint64_t> runtimeStart;
-        std::atomic<uint64_t> runtimeEnd;
+        u64 period;
+        std::atomic<uint64_t> runtimeStart =0;
+        std::atomic<uint64_t> runtimeEnd = 0;
+        std::atomic<uint64_t> pushStart =0;
+        std::atomic<uint64_t> pushEnd = 0;
+
         std::atomic<uint64_t> _intervalDeadline;
         struct sched_param sp;
 

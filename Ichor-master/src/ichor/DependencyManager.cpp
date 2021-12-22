@@ -46,23 +46,24 @@ void Ichor::DependencyManager::startBST() {
 
     while(!_quit.load(std::memory_order_acquire)) {
         _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
-        std::shared_lock lck(_eventQueueMutex);
+       // std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueueBst->empty()) {
             
-         //  std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
+          //  std::cout << get_time_us() << ",";
            
             // auto evtNode = _eventQueue.extract(_eventQueue.begin());
 
             // ICHOR_LOG_TRACE(_logger, "Trying to pick up event now");
+            
             auto event = _eventQueueBst->extract(0);
             if(event == nullptr ){ICHOR_LOG_TRACE(_logger, "its empty!\n"); std::cout << _eventQueueBst->empty() << "\n";}
             if(event != nullptr) {
                 //  ICHOR_LOG_TRACE(_logger, "Picking up event now");
                 // auto evtNode = std::move(event->event);
-          //  std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n"
+             //   std::cout << get_time_us() << ",";
             
 
-            lck.unlock();
+            // lck.unlock();
             _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
 
             // ICHOR_LOG_TRACE(_logger, "picked up: id {} type {} has {} prio", evtNode.get()->id, evtNode.get()->name, evtNode.get()->priority);
@@ -175,7 +176,6 @@ void Ichor::DependencyManager::startBST() {
                     }
                         break;
                     case QuitEvent::TYPE: {
-                        SPDLOG_DEBUG("QuitEvent");
                         auto _quitEvt = static_cast<QuitEvent *>(event->event.get());
                         if (!_quitEvt->dependenciesStopped) {
                             for (auto const &[key, possibleManager] : _services) {
@@ -194,7 +194,7 @@ void Ichor::DependencyManager::startBST() {
 
                             if (canFinally_quit) {
                                 _quit.store(true, std::memory_order_release);
-                                _eventQueueBst->deallocate_start(0);
+                                 _eventQueueBst->deallocate_start();
                             } else {
                                 pushEventInternal<QuitEvent>(_quitEvt->originatingService, INTERNAL_EVENT_PRIORITY + 1, false);
                             }
@@ -330,7 +330,6 @@ void Ichor::DependencyManager::startBST() {
                         break;
                     case ContinuableEvent<Generator<bool>>::TYPE: {
                         SPDLOG_DEBUG("ContinuableEvent");
-                        //  std::cout << "IK BEn EEn CONTINUABLE EVENT! \n";
                         auto continuableEvt = static_cast<ContinuableEvent<Generator<bool>> *>(event->event.get());
 
                         auto it = continuableEvt->generator.begin();
@@ -355,9 +354,10 @@ void Ichor::DependencyManager::startBST() {
                 }
             }
 
-            lck.lock();
+            // lck.lock();
+            TSAN_ANNOTATE_HAPPENS_AFTER(_eventQueueBst->remove(event->value.value));
            _eventQueueBst->remove(event->value.value);
-           // std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
+          // std::cout << get_time_us() << "\n";
         }
        
         }
@@ -368,7 +368,7 @@ void Ichor::DependencyManager::startBST() {
           //  _wakeUp.wait_for(lck, std::chrono::milliseconds(1), [this] { return !_eventQueue.empty(); });
         }
 
-        lck.unlock();
+       // lck.unlock();
     }
 
     for(auto &[key, manager] : _services) {
@@ -410,17 +410,16 @@ void Ichor::DependencyManager::startFP() {
     while(!_quit.load(std::memory_order_acquire)) {
         // loopCheck = std::chrono::steady_clock::now();
         _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
-        std::cout << "EXTRACT EVENT BEFORE LOCK, " << get_time_us() << "\n";
+       // std::cout << "EXTRACT EVENT BEFORE LOCK, " << get_time_us() << "\n";
         std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
-            std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
            // TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
             auto evtNode = _eventQueue.extract(_eventQueue.begin());
-            std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n";
+          // std::cout << extracted <<","<< get_time_us() << ",";
             lck.unlock();
             _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
 
-           // ICHOR_LOG_TRACE(_logger, "picked up: id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
+           ICHOR_LOG_TRACE(_logger, "picked up: id {} type {} has {}-{} prio", evtNode.mapped().get()->id, evtNode.mapped().get()->name, evtNode.key(), evtNode.mapped().get()->priority);
 
             bool allowProcessing = true;
             uint32_t handlerAmount = 1; // for the non-default case below, the DepMan handles the event
@@ -563,6 +562,7 @@ void Ichor::DependencyManager::startFP() {
 
                             if (canFinally_quit) {
                                 _quit.store(true, std::memory_order_release);
+                                _eventQueueBst->deallocate_start();
                             } else {
                                 pushEventInternal<QuitEvent>(_quitEvt->originatingService, INTERNAL_EVENT_PRIORITY + 1, false);
                             }
@@ -734,10 +734,8 @@ void Ichor::DependencyManager::startFP() {
                     info.postIntercept(evtNode.mapped().get(), allowProcessing && handlerAmount > 0);
                 }
             }
-        //std::cout << "END SCHEDULING LOOP BEFORE LOCK, " << get_time_us() << "\n";
 
             lck.lock();
-       // std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
         }
 
         _emptyQueue = true;
@@ -794,20 +792,26 @@ void Ichor::DependencyManager::startEDF() {
         std::shared_lock lck(_eventQueueMutex);
         while (!_quit.load(std::memory_order_acquire) && !_eventQueue.empty()) {
             TSAN_ANNOTATE_HAPPENS_AFTER((void*)&(*_eventQueue.begin()));
-            //std::cout << "EXTRACT EVENT, " << get_time_us() << "\n";
-            auto HighestNode = _eventQueue.begin();
-            // if(_unchangedQueue == true) {std::cout <<"UNCHANGED! \n"; }else {std::cout <<"CHANGED! \n";}
-            if(_unchangedQueue == false) {
-                for (auto nodes = _eventQueue.begin(); nodes != _eventQueue.end(); ++nodes){
-                    std::chrono::duration<double, std::milli> elap {nodes->second.get()->deadline - std::chrono::steady_clock::now()};
-                    if(elap.count() > 0){
-                        nodes->second.get()-> priority = elap.count(); 
-                        if(HighestNode->second.get()->priority > round(elap.count()) ) {std::cout << HighestNode->second.get()->priority << " it happened :" << round(elap.count()) << "\n"; HighestNode = nodes; }
+           // std::cout << get_time_us() << ",";
+           Passed = true;
+           auto HighestNode = _eventQueue.begin();
+            while(Passed){
+                HighestNode = _eventQueue.begin();
+                // if(_unchangedQueue == true) {std::cout <<"UNCHANGED! \n"; }else {std::cout <<"CHANGED! \n";}
+                if(_unchangedQueue == false) {
+                    for (auto nodes = _eventQueue.begin(); nodes != _eventQueue.end(); ++nodes){
+                        std::chrono::duration<double, std::milli> elap {nodes->second.get()->deadline - std::chrono::steady_clock::now()};
+                        if(elap.count() > 0){
+                            nodes->second.get()-> priority = elap.count(); 
+                            if(HighestNode->second.get()->priority > round(elap.count()) ) {std::cout << HighestNode->second.get()->priority << " it happened :" << round(elap.count()) << "\n"; HighestNode = nodes; }
                         }
+                    }
                 }
+                std::chrono::duration<double, std::milli> Dcheck {HighestNode->second.get()->deadline - std::chrono::steady_clock::now()};
+                if(Dcheck.count() < 0){_eventQueue.extract(HighestNode); std::cout << "Deadline missed! \n";}else{Passed = false;}
             }
-             auto evtNode = _eventQueue.extract(HighestNode);
-             //std::cout << "EXTRACTED EVENT, " << get_time_us() << "\n";
+            auto evtNode = _eventQueue.extract(HighestNode);
+             // std::cout << get_time_us() << ",";
              _unchangedQueue = true;
              lck.unlock();
              _quit.store(sigintQuit.load(std::memory_order_acquire), std::memory_order_release);
@@ -955,6 +959,7 @@ void Ichor::DependencyManager::startEDF() {
 
                             if (canFinally_quit) {
                                 _quit.store(true, std::memory_order_release);
+                                _eventQueueBst->deallocate_start();
                             } else {
                                 pushEventInternal<QuitEvent>(_quitEvt->originatingService, INTERNAL_EVENT_PRIORITY + 1, false);
                             }
@@ -1125,8 +1130,9 @@ void Ichor::DependencyManager::startEDF() {
                 }
             }
 
+           
             lck.lock();
-            //std::cout << "END SCHEDULING LOOP, " << get_time_us() << "\n";
+           // std::cout << get_time_us() << "\n";
         }
 
         _emptyQueue = true;

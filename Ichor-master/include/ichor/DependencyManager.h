@@ -24,28 +24,6 @@
 #include <ichor/stl/ConditionVariableAny.h>
 #include <ichor/lock_free_bst.h>
 
-// prevent false positives by TSAN
-// See "ThreadSanitizer – data race detection in practice" by Serebryany et al. for more info: https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/35604.pdf
-#if defined(__SANITIZE_THREAD__)
-#define TSAN_ENABLED
-#elif defined(__has_feature)
-#if __has_feature(thread_sanitizer)
-#define TSAN_ENABLED
-#endif
-#endif
-
-#ifdef TSAN_ENABLED
-#define TSAN_ANNOTATE_HAPPENS_BEFORE(addr) \
-    AnnotateHappensBefore(__FILE__, __LINE__, (void*)(addr))
-#define TSAN_ANNOTATE_HAPPENS_AFTER(addr) \
-    AnnotateHappensAfter(__FILE__, __LINE__, (void*)(addr))
-extern "C" void AnnotateHappensBefore(const char* f, int l, void* addr);
-extern "C" void AnnotateHappensAfter(const char* f, int l, void* addr);
-#else
-#define TSAN_ANNOTATE_HAPPENS_BEFORE(addr)
-#define TSAN_ANNOTATE_HAPPENS_AFTER(addr)
-#endif
-
 using namespace std::chrono_literals;
 
 namespace Ichor {
@@ -185,7 +163,7 @@ namespace Ichor {
             }
             else{
                 std::unique_ptr<Event> test = std::unique_ptr<Event>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...));
-               
+                TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*test));
                  _eventQueueBst->insert(std::move(test));
 
             }
@@ -226,6 +204,7 @@ namespace Ichor {
             }
             else{
                std::unique_ptr<Event> test = std::unique_ptr<Event>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), INTERNAL_EVENT_PRIORITY, std::forward<Args>(args)...));
+                TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*test));
                 _eventQueueBst->insert(std::move(test));
                 }
 
@@ -422,6 +401,7 @@ namespace Ichor {
         void startFP();
         void startBST();
         void startEDF();
+        bool Passed = false; 
         RealtimeReadWriteMutex _eventQueueMutex{};
         std::unique_ptr<BST> _eventQueueBst{std::make_unique<BST>()};
         
@@ -504,8 +484,9 @@ namespace Ichor {
 
 
             std::unique_ptr<Event> test = std::unique_ptr<Event>(new (_memResource->allocate(sizeof(EventT))) EventT(std::forward<uint64_t>(eventId), std::forward<uint64_t>(originatingServiceId), std::forward<uint64_t>(priority), std::forward<Args>(args)...));
-               
+             TSAN_ANNOTATE_HAPPENS_BEFORE((void*)&(*test));
              _eventQueueBst->insert(std::move(test));
+             
             _eventQueueMutex.unlock();
             _wakeUp.notify_all();
             return eventId;
@@ -523,6 +504,7 @@ namespace Ichor {
         IFrameworkLogger *_logger{nullptr};
         std::shared_ptr<ILifecycleManager> _preventEarlyDestructionOfFrameworkLogger{nullptr};
         std::pmr::multimap<uint64_t, std::unique_ptr<Event, Deleter>> _eventQueue{_eventMemResource};
+        
         ConditionVariableAny<RealtimeReadWriteMutex> _wakeUp{_eventQueueMutex};
         std::atomic<uint64_t> _eventIdCounter{0};
         std::atomic<uint64_t> _treeIdCounter{0};
